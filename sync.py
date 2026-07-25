@@ -146,14 +146,20 @@ def get_submission(slug):
         }
     })
 
-
     submissions = (
         history
         .get("data", {})
-        .get("submissionList", {})
-        .get("submissions", [])
+        .get("submissionList")
     )
-
+    
+    if not submissions:
+        print("Submission API response:")
+        print(history)
+        return {
+            "code": "",
+            "runtime": None
+        }
+    submissions = submissions.get("submissions", [])
 
     submission_id = None
 
