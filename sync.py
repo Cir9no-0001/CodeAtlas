@@ -128,54 +128,43 @@ def get_submission(slug):
 
     history = post({
         "query": """
-        query submissionList($offset:Int!, $limit:Int!){
+        query submissionList(
+            $offset:Int!,
+            $limit:Int!,
+            $questionSlug:String!
+        ){
             submissionList(
                 offset:$offset,
-                limit:$limit
+                limit:$limit,
+                questionSlug:$questionSlug
             ){
                 submissions{
                     id
-                    titleSlug
                 }
             }
         }
         """,
         "variables": {
             "offset": 0,
-            "limit": 20
+            "limit": 1,
+            "questionSlug": slug
         }
     })
 
-    submissions = (
-        history
-        .get("data", {})
-        .get("submissionList")
-    )
-    
-    if not submissions:
-        print("Submission API response:")
-        print(history)
+    try:
+        submission_id = (
+            history["data"]
+            ["submissionList"]
+            ["submissions"][0]
+            ["id"]
+        )
+
+    except Exception:
+        print("No submission history:", slug)
         return {
             "code": "",
             "runtime": None
         }
-    submissions = submissions.get("submissions", [])
-
-    submission_id = None
-
-    for submission in submissions:
-        if submission["titleSlug"] == slug:
-            submission_id = submission["id"]
-            break
-
-
-    if not submission_id:
-        print("No matching submission:", slug)
-        return {
-            "code": "",
-            "runtime": None
-        }
-
 
     detail = post({
         "query": """
