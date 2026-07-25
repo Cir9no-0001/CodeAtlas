@@ -7,6 +7,7 @@
 --
 
 
+
 with initial as(
     select a.player_id, min(a.event_date) as first_log
     from Activity a

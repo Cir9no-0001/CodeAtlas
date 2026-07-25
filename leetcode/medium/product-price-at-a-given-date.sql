@@ -7,6 +7,7 @@
 --
 
 
+
 select 
     p.product_id,
     p.new_price as 'price'

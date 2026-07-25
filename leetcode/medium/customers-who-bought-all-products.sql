@@ -7,6 +7,7 @@
 -- Hint: group by id, then use having and subquery counter
 
 
+
 select c.customer_id
 from Customer c
 group by c.customer_id

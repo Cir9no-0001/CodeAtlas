@@ -7,6 +7,7 @@
 --
 
 
+
 select 
     u.user_id as 'buyer_id', 
     u.join_date, 

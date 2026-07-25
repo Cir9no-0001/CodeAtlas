@@ -7,6 +7,7 @@
 --
 
 
+
 select 
     case
         when s.id%2=0 then s.id-1

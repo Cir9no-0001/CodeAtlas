@@ -7,6 +7,7 @@
 --
 
 
+
 with temp as(
     select q.person_name, sum(q.weight) over (order by q.turn) as 'total_weight'
     from Queue q

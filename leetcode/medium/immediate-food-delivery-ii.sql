@@ -7,6 +7,7 @@
 -- Hint: case to add to immediate orders, subquery to filter for first orders, don't use CTE
 
 
+
 select
     round(
         sum(

@@ -7,6 +7,7 @@
 -- Hint: use CTE, concat subquery for location, use exclusive logic using count and group
 
 
+
 with valid as (
     select distinct(i.pid), i.tiv_2016
     from Insurance i
