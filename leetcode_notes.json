@@ -138,9 +138,9 @@
     "notes": "Hint: remember that only distinct pairs of (sell_date, product) are valid. Sort lexicographically using order by product asc in the group_concat. [TC: O(n), 1 pass]"
   },
   "patients-with-a-condition": {
-    "notes": ""
+    "notes": "Hint: make sure that DIAB1 is either the beginning of the first condition name or the beginning of the condition name subsequently. [TC: O(n), 1 pass]"
   },
   "bank-account-summary-ii": {
-    "notes": ""
+    "notes": "Hint: group by account number and filter using having and sum [TC: O(N+M), 1 pass]"
   }
 }
