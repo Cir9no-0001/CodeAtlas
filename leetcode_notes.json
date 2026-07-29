@@ -147,6 +147,6 @@
     "notes": "Hint: math problem, group by contest_id, then count, then divide by the total number of users. [TC: O(N+MlogM), 2 passes]"
   },
   "top-travellers": {
-    "notes": ""
+    "notes": "Hint: users can exist without being on the rides table, so make sure null values default to 0; the same thing should be considered when joining. [TC: O(U+RlogU), 1 pass]"
   }
 }
