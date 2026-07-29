@@ -4,7 +4,7 @@
 -- first_seen: 2026-07-28 20:55:59 EDT
 -- runtime: 978ms
 -- Notes:
---
+-- Hint: users can exist without being on the rides table, so make sure null values default to 0; the same thing should be considered when joining. [TC: O(U+RlogU), 1 pass]
 
 
 select 
