@@ -175,5 +175,8 @@
   },
   "top-travellers": {
     "first_seen": "2026-07-28 20:55:59 EDT"
+  },
+  "customer-who-visited-but-did-not-make-any-transactions": {
+    "first_seen": "2026-07-30 03:17:06 EDT"
   }
 }
