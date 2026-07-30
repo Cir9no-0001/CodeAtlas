@@ -414,8 +414,8 @@ Last updated: {stats["last_updated"]}
 - leetcode/hard/
 
 ## Author's Note
-- The hints are the notes btw :>
 - Repo is based on my alt: leetcode.com/u/C1rn0_Fum0/
+- The hints are the notes btw; they will get better and more detailed as I learn more SQL :>
 - Repo meant for SQL LeetCode questions until language recognition is implemented; did two sum by accident, pls ignore for now!
 - Lmk if my questions solved counter ever breaks!
 """
