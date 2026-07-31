@@ -4,7 +4,7 @@
 -- first_seen: 2026-07-30 04:35:57 EDT
 -- runtime: 301ms
 -- Notes:
---
+-- Hint: addition problem with modulo and case/if. [TC: O(N), 1 pass]
 
 
 select
