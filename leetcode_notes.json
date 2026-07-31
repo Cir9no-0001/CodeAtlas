@@ -156,6 +156,6 @@
     "notes": "Hint: addition problem with modulo and case/if. [TC: O(N), 1 pass]"
   },
   "find-students-who-improved": {
-    "notes": ""
+    "notes": "Hint: use a CTE to rank the rows by date of completion, partitioned for pairs of (student_id, subject) twice (chronologically and in reverse). Use a self-join in the main query on the same pairs of (student_id, subject) where firsts meet lasts and filter for improved scores. [TC: O(NlogN), 5 passes]"
   }
 }
