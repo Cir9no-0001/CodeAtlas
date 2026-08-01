@@ -3,8 +3,9 @@
 -- difficulty: easy
 -- first_seen: 2026-07-11 09:02:16 EDT
 -- runtime: 417ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 select distinct(v.author_id) as 'id'

@@ -3,8 +3,11 @@
 -- difficulty: medium
 -- first_seen: 2026-07-21 18:15:05 EDT
 -- runtime: 1770ms
--- Notes:
--- Hint: split the query into two and merge using union all, order by has two variables to consider and lexicographically smaller means name/title asc. [TC: O(R1 + R2log M), 2 passes]
+
+/*
+Notes:
+Hint: split the query into two and merge using union all, order by has two variables to consider and lexicographically smaller means name/title asc. [TC: O(R1 + R2log M), 2 passes]
+*/
 
 
 (

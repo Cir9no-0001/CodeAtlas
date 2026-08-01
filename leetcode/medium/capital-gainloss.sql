@@ -3,8 +3,11 @@
 -- difficulty: medium
 -- first_seen: 2026-07-20 05:50:39 EDT
 -- runtime: 555ms
--- Notes:
--- Hint: group the stocks, then use if depending on the operation
+
+/*
+Notes:
+Hint: group the stocks, then use if depending on the operation
+*/
 
 
 select 

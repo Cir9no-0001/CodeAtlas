@@ -3,8 +3,9 @@
 -- difficulty: medium
 -- first_seen: 2026-07-05 20:53:53 EDT
 -- runtime: 304ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 select s.score, dense_rank() over (order by s.score desc) as "rank"

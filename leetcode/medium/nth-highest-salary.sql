@@ -3,8 +3,9 @@
 -- difficulty: medium
 -- first_seen: 2026-07-05 20:39:59 EDT
 -- runtime: 437ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 CREATE FUNCTION getNthHighestSalary(N INT) 
