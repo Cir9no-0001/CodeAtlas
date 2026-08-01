@@ -51,6 +51,20 @@ def clean(name):
         .lower()
         .replace(" ", "-")
     )
+    
+def format_notes(note_text):
+
+    lines = []
+
+    if note_text:
+        lines = note_text.split("\n")
+
+    return [
+        "/*",
+        "Notes:",
+        *lines,
+        "*/"
+    ]
 
 if os.path.exists(META_FILE):
     with open(META_FILE, "r", encoding="utf-8") as f:
@@ -225,11 +239,32 @@ def update_notes_in_files():
             with open(path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            if "-- Notes:" in content:
+            if "-- Notes:" in content or "/*\nNotes:" in content:
+                if "/*\nNotes:" in content:
+
+                before_notes = content.split("/*\nNotes:")[0]
+                notes_index = content.index("/*\nNotes:")
+            
+                code_start = content.find("*/", notes_index)
+            
+                if code_start != -1:
+                    code = content[code_start + 2:].lstrip("\n")
+                    code = "\n\n" + code
+                else:
+                    code = ""
+            
+            else:
+            
                 before_notes = content.split("-- Notes:")[0]
                 notes_index = content.index("-- Notes:")
-
+            
                 code_start = content.find("\n\n", notes_index)
+            
+                if code_start != -1:
+                    code = content[code_start:].lstrip("\n")
+                    code = "\n\n" + code
+                else:
+                    code = ""
 
                 if code_start != -1:
                     code = content[code_start:].lstrip("\n")
@@ -250,15 +285,11 @@ def update_notes_in_files():
                 before_notes = "\n".join(lines[:insert_position]) + "\n"
                 code = "\n".join(lines[insert_position:])
 
-            new_content = before_notes + "-- Notes:\n"
+            new_content = before_notes
 
-
-            if note_text:
-                for line in note_text.split("\n"):
-                    new_content += f"-- {line}\n"
-
-            else:
-                new_content += "--\n"
+            for line in format_notes(note_text):
+                new_content += line + "\n"
+            
             new_content += code
 
             if new_content != content:
@@ -328,15 +359,13 @@ for submission in subs:
         )
 
     content.extend([
-        "-- Notes:"
+        ""
     ])
-
-    if notes[slug]["notes"]:
-        for line in notes[slug]["notes"].split("\n"):
-            content.append(f"-- {line}")
-    else:
-        content.append("--")
-
+    
+    content.extend(
+        format_notes(notes[slug]["notes"])
+    )
+    
     content.extend([
         "",
         code
