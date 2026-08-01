@@ -242,35 +242,35 @@ def update_notes_in_files():
             if "-- Notes:" in content or "/*\nNotes:" in content:
                 if "/*\nNotes:" in content:
 
-                before_notes = content.split("/*\nNotes:")[0]
-                notes_index = content.index("/*\nNotes:")
+                    before_notes = content.split("/*\nNotes:")[0]
+                    notes_index = content.index("/*\nNotes:")
+                
+                    code_start = content.find("*/", notes_index)
+                
+                    if code_start != -1:
+                        code = content[code_start + 2:].lstrip("\n")
+                        code = "\n\n" + code
+                    else:
+                        code = ""
             
-                code_start = content.find("*/", notes_index)
-            
-                if code_start != -1:
-                    code = content[code_start + 2:].lstrip("\n")
-                    code = "\n\n" + code
                 else:
-                    code = ""
-            
-            else:
-            
-                before_notes = content.split("-- Notes:")[0]
-                notes_index = content.index("-- Notes:")
-            
-                code_start = content.find("\n\n", notes_index)
-            
-                if code_start != -1:
-                    code = content[code_start:].lstrip("\n")
-                    code = "\n\n" + code
-                else:
-                    code = ""
-
-                if code_start != -1:
-                    code = content[code_start:].lstrip("\n")
-                    code = "\n\n" + code
-                else:
-                    code = ""
+                
+                    before_notes = content.split("-- Notes:")[0]
+                    notes_index = content.index("-- Notes:")
+                
+                    code_start = content.find("\n\n", notes_index)
+                
+                    if code_start != -1:
+                        code = content[code_start:].lstrip("\n")
+                        code = "\n\n" + code
+                    else:
+                        code = ""
+    
+                    if code_start != -1:
+                        code = content[code_start:].lstrip("\n")
+                        code = "\n\n" + code
+                    else:
+                        code = ""
 
             else:
 
