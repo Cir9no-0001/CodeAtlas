@@ -3,8 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-10 00:35:07 EDT
 -- runtime: 1090ms
--- Notes:
--- Hint: use inner join. [O(S), 1 pass]
+/*
+Notes:
+Hint: use inner join. [O(S), 1 pass]
+*/
 
 
 select p.product_name, s.year, s.price 

@@ -3,8 +3,9 @@
 -- difficulty: easy
 -- first_seen: 2026-07-10 06:49:35 EDT
 -- runtime: 1208ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 select p.product_id, p.product_name

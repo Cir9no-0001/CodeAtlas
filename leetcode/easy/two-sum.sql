@@ -3,8 +3,9 @@
 -- difficulty: easy
 -- first_seen: 2026-07-08 03:23:37 EDT
 -- runtime: 3ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 class Solution:

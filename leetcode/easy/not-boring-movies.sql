@@ -3,8 +3,9 @@
 -- difficulty: easy
 -- first_seen: 2026-07-08 04:30:18 EDT
 -- runtime: 252ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 Select *

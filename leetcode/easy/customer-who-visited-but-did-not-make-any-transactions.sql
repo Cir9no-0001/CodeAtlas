@@ -3,8 +3,11 @@
 -- difficulty: easy
 -- first_seen: 2026-07-30 03:17:06 EDT
 -- runtime: 1320ms
--- Notes:
--- Hint: join the two tables, then filter out the ones that have ID values in both tables. Group and sum the rest accordingly. [TC: O(V+T), 2 passes]
+
+/*
+Notes:
+Hint: join the two tables, then filter out the ones that have ID values in both tables. Group and sum the rest accordingly. [TC: O(V+T), 2 passes]
+*/
 
 
 select 

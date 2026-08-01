@@ -3,8 +3,11 @@
 -- difficulty: easy
 -- first_seen: 2026-07-20 00:03:50 EDT
 -- runtime: 692ms
--- Notes:
--- Hint: use date_format to get rid of the day from the date, and CTE to get the monthly total units per product_id
+
+/*
+Notes:
+Hint: use date_format to get rid of the day from the date, and CTE to get the monthly total units per product_id
+*/
 
 
 with temp as(

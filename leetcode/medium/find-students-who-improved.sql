@@ -3,8 +3,11 @@
 -- difficulty: medium
 -- first_seen: 2026-07-31 09:22:35 EDT
 -- runtime: 342ms
--- Notes:
--- Hint: use a CTE to rank the rows by date of completion, partitioned for pairs of (student_id, subject) twice (chronologically and in reverse). Use a self-join in the main query on the same pairs of (student_id, subject) where firsts meet lasts and filter for improved scores. [TC: O(NlogN), 5 passes]
+
+/*
+Notes:
+Hint: use a CTE to rank the rows by date of completion, partitioned for pairs of (student_id, subject) twice (chronologically and in reverse). Use a self-join in the main query on the same pairs of (student_id, subject) where firsts meet lasts and filter for improved scores. [TC: O(NlogN), 5 passes]
+*/
 
 
 with valid as (

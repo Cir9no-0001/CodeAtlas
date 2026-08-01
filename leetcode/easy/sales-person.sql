@@ -3,8 +3,9 @@
 -- difficulty: easy
 -- first_seen: 2026-07-08 02:38:07 EDT
 -- runtime: 1346ms
--- Notes:
---
+/*
+Notes:
+*/
 
 
 select s.name

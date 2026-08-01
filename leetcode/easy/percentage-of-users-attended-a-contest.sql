@@ -3,8 +3,11 @@
 -- difficulty: easy
 -- first_seen: 2026-07-27 23:56:04 EDT
 -- runtime: 982ms
--- Notes:
--- Hint: math problem, group by contest_id, then count, then divide by the total number of users. [TC: O(N+MlogM), 2 passes]
+
+/*
+Notes:
+Hint: math problem, group by contest_id, then count, then divide by the total number of users. [TC: O(N+MlogM), 2 passes]
+*/
 
 
 select 
