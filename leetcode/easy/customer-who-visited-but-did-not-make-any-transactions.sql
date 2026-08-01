@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: join the two tables, then filter out the ones that have ID values in both tables. Group and sum the rest accordingly. [TC: O(V+T), 2 passes]
+Hint: join the two tables, then filter out the ones that have ID values in both tables.
+Group and sum the rest accordingly. [TC: O(V+T), 2 passes]
 */
 
 

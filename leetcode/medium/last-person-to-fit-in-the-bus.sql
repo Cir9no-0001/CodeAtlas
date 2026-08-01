@@ -5,7 +5,8 @@
 -- runtime: 756ms
 /*
 Notes:
-Hint: CTE to track the running total, use order by and limit in the main query to retrieve the last person
+Hint: CTE to track the running total, use order by and limit in the main query to
+retrieve the last person
 */
 
 

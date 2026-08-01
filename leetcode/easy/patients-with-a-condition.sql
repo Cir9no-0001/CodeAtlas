@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: make sure that DIAB1 is either the beginning of the first condition name or the beginning of the condition name subsequently. [TC: O(n), 1 pass]
+Hint: make sure that DIAB1 is either the beginning of the first condition name or the
+beginning of the condition name subsequently. [TC: O(n), 1 pass]
 */
 
 

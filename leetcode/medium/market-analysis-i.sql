@@ -5,7 +5,8 @@
 -- runtime: 1287ms
 /*
 Notes:
-Hint: use left join to keep people with 0 orders; filters should be after the on clause for easy
+Hint: use left join to keep people with 0 orders; filters should be after the on clause
+for easy
 */
 
 

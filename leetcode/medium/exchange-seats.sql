@@ -5,7 +5,8 @@
 -- runtime: 347ms
 /*
 Notes:
-Hint: use case and modulo to change the IDs, then reorder the IDs, don't forget about the last odd seat
+Hint: use case and modulo to change the IDs, then reorder the IDs, don't forget about the
+last odd seat
 */
 
 
