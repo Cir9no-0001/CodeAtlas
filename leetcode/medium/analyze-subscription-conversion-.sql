@@ -4,7 +4,7 @@
 -- first_seen: 2026-08-01 16:13:07 EDT
 -- runtime: 660ms
 -- Notes:
---
+-- Hint: almost pure logic/math question; make sure that the average part includes a distinct before the case statement to count only the distinct days the user has used the plan. Filter out the people who didn't upgrade from the free plan by only keeping those with activity durations in both the free and paid plans. [TC: O(NlogN), 4 passes]
 
 select
     u.user_id,
