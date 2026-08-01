@@ -6,7 +6,9 @@
 
 /*
 Notes:
-Hint: use a CTE to count the number of customers in the given time frame and find the daily sum of all customers for every day, main query to find moving sum and moving average, use offset to remove days with invalid windows
+Hint: use a CTE to count the number of customers in the given time frame and find the
+daily sum of all customers for every day, main query to find moving sum and moving
+average, use offset to remove days with invalid windows
 */
 
 

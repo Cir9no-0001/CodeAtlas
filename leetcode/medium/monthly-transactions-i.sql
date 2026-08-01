@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: use date_format to get rid of the day portion of the date; repeat when multigrouping
+Hint: use date_format to get rid of the day portion of the date; repeat when
+multigrouping
 */
 
 

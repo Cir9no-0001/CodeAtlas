@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: users can exist without being on the rides table, so make sure null values default to 0; the same thing should be considered when joining. [TC: O(U+RlogU), 1 pass]
+Hint: users can exist without being on the rides table, so make sure null values default
+to 0; the same thing should be considered when joining. [TC: O(U+RlogU), 1 pass]
 */
 
 

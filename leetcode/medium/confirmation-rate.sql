@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: Use left join and group by carefully to include missing IDs not in Confirmations; otherwise, it's simple math. Also, use avg for one pass. [TC: O(S + C), 1 pass]
+Hint: Use left join and group by carefully to include missing IDs not in Confirmations;
+otherwise, it's simple math. Also, use avg for one pass. [TC: O(S + C), 1 pass]
 */
 
 

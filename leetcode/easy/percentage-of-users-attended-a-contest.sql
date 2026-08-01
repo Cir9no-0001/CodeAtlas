@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: math problem, group by contest_id, then count, then divide by the total number of users. [TC: O(N+MlogM), 2 passes]
+Hint: math problem, group by contest_id, then count, then divide by the total number of
+users. [TC: O(N+MlogM), 2 passes]
 */
 
 

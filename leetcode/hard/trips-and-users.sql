@@ -5,7 +5,8 @@
 -- runtime: 493ms
 /*
 Notes:
-Hint: CTE and double inner join to filter banned users, case to sum cancels, and group by date
+Hint: CTE and double inner join to filter banned users, case to sum cancels, and group by
+date
 */
 
 

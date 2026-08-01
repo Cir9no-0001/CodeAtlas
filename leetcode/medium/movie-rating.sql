@@ -6,7 +6,9 @@
 
 /*
 Notes:
-Hint: split the query into two and merge using union all, order by has two variables to consider and lexicographically smaller means name/title asc. [TC: O(R1 + R2log M), 2 passes]
+Hint: split the query into two and merge using union all, order by has two variables to
+consider and lexicographically smaller means name/title asc. [TC: O(R1 + R2log M), 2
+passes]
 */
 
 

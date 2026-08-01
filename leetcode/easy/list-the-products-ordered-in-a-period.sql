@@ -6,7 +6,8 @@
 
 /*
 Notes:
-Hint: use date_format to get rid of the day from the date, and CTE to get the monthly total units per product_id
+Hint: use date_format to get rid of the day from the date, and CTE to get the monthly
+total units per product_id
 */
 
 
