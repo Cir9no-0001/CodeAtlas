@@ -54,15 +54,38 @@ def clean(name):
     
 def format_notes(note_text):
 
-    lines = []
+    max_length = 90
+
+    formatted_lines = []
 
     if note_text:
-        lines = note_text.split("\n")
+
+        for paragraph in note_text.split("\n"):
+
+            words = paragraph.split(" ")
+
+            current_line = ""
+
+            for word in words:
+
+                if len(current_line) + len(word) + 1 <= max_length:
+                    current_line += word + " "
+
+                else:
+                    formatted_lines.append(current_line.rstrip())
+                    current_line = word + " "
+
+            if current_line:
+                formatted_lines.append(current_line.rstrip())
+
+    else:
+        formatted_lines.append("")
+
 
     return [
         "/*",
         "Notes:",
-        *lines,
+        *formatted_lines,
         "*/"
     ]
 
