@@ -265,12 +265,6 @@ def update_notes_in_files():
                         code = "\n\n" + code
                     else:
                         code = ""
-    
-                    if code_start != -1:
-                        code = content[code_start:].lstrip("\n")
-                        code = "\n\n" + code
-                    else:
-                        code = ""
 
             else:
 
