@@ -6,7 +6,9 @@
 
 /*
 Notes:
-
+Hint: use regexp_like to get case sensitivity for the suffix, or use an extra like
+binary. Watch out for the period in the suffix, which is a wildcard, so put it in square
+brackets. [TC: O(N), 1 pass]
 */
 
 
