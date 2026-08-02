@@ -6,7 +6,7 @@
 
 /*
 Notes:
-
+Hint: use if, braindead question
 */
 
 
