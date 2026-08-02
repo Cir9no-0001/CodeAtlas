@@ -12,6 +12,7 @@ plan. Filter out the people who didn't upgrade from the free plan by only keepin
 with activity durations in both the free and paid plans. [TC: O(NlogN), 4 passes]
 */
 
+
 select
     u.user_id,
     round(sum(case when u.activity_type = 'free_trial' then u.activity_duration else 0 end)/count(distinct case when u.activity_type = 'free_trial' then u.activity_date end), 2) as 'trial_avg_duration',
