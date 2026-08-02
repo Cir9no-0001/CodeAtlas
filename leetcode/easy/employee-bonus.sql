@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:03 EDT
 -- runtime: 919ms
+/*
+Notes:
+
+*/
 
 # Write your MySQL query statement below
 Select e.name, b.bonus

@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:05 EDT
 -- runtime: 814ms
+/*
+Notes:
+
+*/
 
 Delete d
 from Person p

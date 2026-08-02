@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:06 EDT
 -- runtime: 576ms
+/*
+Notes:
+
+*/
 
 Select c.name as Customers
 From Customers c

@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:03 EDT
 -- runtime: 473
+/*
+Notes:
+
+*/
 
 SELECT 
     player_id, 
