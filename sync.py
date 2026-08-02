@@ -51,6 +51,43 @@ def clean(name):
         .lower()
         .replace(" ", "-")
     )
+
+
+def repair_notes_json():
+
+    print("\nChecking missing notes entries...")
+
+    added = 0
+
+    for difficulty in ["easy", "medium", "hard"]:
+
+        folder = f"leetcode/{difficulty}"
+
+        if not os.path.exists(folder):
+            continue
+
+        for file in os.listdir(folder):
+
+            if not file.endswith(".sql"):
+                continue
+
+            slug = file[:-4]   # removes .sql
+
+            if slug not in notes:
+
+                notes[slug] = {
+                    "notes": ""
+                }
+
+                print("Added missing notes entry:", slug)
+                added += 1
+
+
+    if added == 0:
+        print("All SQL files already have notes entries.")
+
+    else:
+        print(f"Added {added} missing notes entries.")
     
 def format_notes(note_text):
 
@@ -404,6 +441,8 @@ for submission in subs:
         print("Updated:", title)
 
 update_notes_in_files()
+
+repair_notes_json()
 
 stats = {
     "easy": 0,
