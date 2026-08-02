@@ -160,5 +160,8 @@
   },
   "analyze-subscription-conversion": {
     "notes": "Hint: almost pure logic/math question; make sure that the average part includes a distinct before the case statement to count only the distinct days the user has used the plan. Filter out the people who didn't upgrade from the free plan by only keeping those with activity durations in both the free and paid plans. [TC: O(NlogN), 4 passes]"
+  },
+  "find-users-with-valid-e-mails": {
+    "notes": ""
   }
 }
