@@ -8,6 +8,7 @@ Notes:
 
 */
 
+
 Select w.id as Id
 from Weather w
 inner join Weather q

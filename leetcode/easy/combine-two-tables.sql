@@ -8,6 +8,7 @@ Notes:
 
 */
 
+
 Select p.firstName, p.lastname, a.city, a.state
 From Person p
 left join Address a

@@ -8,6 +8,7 @@ Notes:
 
 */
 
+
 Select c.name
 from Customer c
 left join Customer b
