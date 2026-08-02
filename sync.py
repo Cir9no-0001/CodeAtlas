@@ -46,10 +46,11 @@ def clean(name):
         re.sub(
             r"[^a-zA-Z0-9\- ]",
             "",
-            name
+            name.strip()
         )
         .lower()
         .replace(" ", "-")
+        .strip("-")
     )
 
 
