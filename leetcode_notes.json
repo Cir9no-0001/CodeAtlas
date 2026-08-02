@@ -163,5 +163,38 @@
   },
   "find-users-with-valid-e-mails": {
     "notes": "Hint: use regexp_like to get case sensitivity for the suffix, or use an extra like binary. Watch out for the period in the suffix, which is a wildcard, so put it in square brackets. [TC: O(N), 1 pass]"
+  },
+  "customers-who-never-order": {
+    "notes": ""
+  },
+  "employees-earning-more-than-their-managers": {
+    "notes": ""
+  },
+  "duplicate-emails": {
+    "notes": ""
+  },
+  "combine-two-tables": {
+    "notes": ""
+  },
+  "find-customer-referee": {
+    "notes": ""
+  },
+  "rising-temperature": {
+    "notes": ""
+  },
+  "employee-bonus": {
+    "notes": ""
+  },
+  "delete-duplicate-emails": {
+    "notes": ""
+  },
+  "game-play-analysis-i": {
+    "notes": ""
+  },
+  "dna-pattern-recognition-": {
+    "notes": ""
+  },
+  "analyze-subscription-conversion-": {
+    "notes": ""
   }
 }
