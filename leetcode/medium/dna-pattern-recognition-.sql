@@ -9,7 +9,6 @@ Notes:
 Hint: use if, braindead question
 */
 
-
 select 
     s.sample_id,
     s.dna_sequence,
