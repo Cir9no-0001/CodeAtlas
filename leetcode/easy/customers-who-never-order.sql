@@ -8,6 +8,7 @@ Notes:
 
 */
 
+
 Select c.name as Customers
 From Customers c
 left join orders o
