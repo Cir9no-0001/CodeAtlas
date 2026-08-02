@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:02 EDT
 -- runtime: 455
+/*
+Notes:
+
+*/
 
 Select c.name
 from Customer c

@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:08 EDT
 -- runtime: 414ms
+/*
+Notes:
+
+*/
 
 Select p.firstName, p.lastname, a.city, a.state
 From Person p

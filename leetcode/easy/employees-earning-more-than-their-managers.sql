@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:07 EDT
 -- runtime: 416ms
+/*
+Notes:
+
+*/
 
 SELECT 
     e.name AS Employee

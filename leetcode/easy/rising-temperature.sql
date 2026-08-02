@@ -3,6 +3,10 @@
 -- difficulty: easy
 -- first_seen: 2026-07-05 20:40:05 EDT
 -- runtime: 515
+/*
+Notes:
+
+*/
 
 Select w.id as Id
 from Weather w
