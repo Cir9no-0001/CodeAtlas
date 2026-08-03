@@ -484,72 +484,180 @@ with open("leetcode_stats.json", "w", encoding="utf-8") as f:
 
 readme = f"""# LeetCode Tracker
 
+> An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
+
 Last updated: {stats["last_updated"]}
+
+---
+
+# 📊 Progress Statistics
 
 | Difficulty | Count |
 |---|---:|
 | Easy | {stats["easy"]} |
 | Medium | {stats["medium"]} |
 | Hard | {stats["hard"]} |
-| Total | {stats["total"]} |
+| **Total** | **{stats["total"]}** |
 
-## Folder Structure
+---
 
-- leetcode/easy/
-- leetcode/medium/
-- leetcode/hard/
+# 📁 Repository Structure
+.
+├── sync.py
+├── leetcode_meta.json
+├── leetcode_notes.json
+├── leetcode_stats.json
+├── README.md
+│
+└── leetcode/
+├── easy/
+├── medium/
+└── hard/
 
-## Author's Note
-- Repo is based on my alt: leetcode.com/u/C1rn0_Fum0/
-- The hints are the notes btw; they will get better and more detailed as I learn more SQL :>
-- Repo meant for SQL LeetCode questions until language recognition is implemented; did two sum by accident, pls ignore for now!
-- Lmk if my questions solved counter ever breaks!
+---
+
+# ⚙️ How It Works
+
+This repository automatically synchronizes accepted LeetCode submissions into organized SQL solution files.
+
+## Workflow
+
+1. GitHub Actions runs `sync.py` automatically on a scheduled interval.
+2. The script authenticates with the LeetCode GraphQL API.
+3. Accepted submissions are retrieved.
+4. Solution metadata is collected:
+   - Problem title
+   - Problem difficulty
+   - Runtime performance
+   - First solved timestamp
+5. SQL solution files are created or updated automatically.
+6. Manual notes from `leetcode_notes.json` are injected into each SQL file.
+7. Missing notes entries are automatically detected and repaired.
+8. Repository statistics and README progress tracking are regenerated.
+
+## Architecture
+
+LeetCode GraphQL API
+|
+v
+sync.py
+|
++------+------+
+| |
+v v
+SQL Solutions Metadata
+(.sql files) (.json files)
+
+      |
+      v
+
+README Dashboard
+
+---
+
+# ✨ Implemented Features
+
+<details>
+<summary>Click to expand implemented features</summary>
+
+## Automation & CI/CD
+
+- [x] GitHub Actions automated synchronization
+- [x] Scheduled workflow execution
+- [x] Automatic repository updates through CI/CD
+- [x] Secure credential handling through environment variables
+
+## LeetCode Integration
+
+- [x] Fetch accepted submissions through LeetCode GraphQL API
+- [x] Automatically retrieve submitted SQL code
+- [x] Automatically retrieve problem difficulty
+- [x] Track LeetCode runtime performance
+- [x] Cache repeated difficulty requests
+- [x] Handle API errors and missing responses
+
+## Solution File Management
+
+- [x] Automatically create SQL solution files
+- [x] Organize solutions by difficulty
+- [x] Automatically clean problem titles into valid filenames
+- [x] Preserve existing SQL solutions while updating metadata
+- [x] Avoid unnecessary file writes when no changes occur
+- [x] Detect missing solution note entries
+- [x] Repair missing metadata connections from existing files
+
+## Metadata Tracking
+
+- [x] Store first solved timestamps
+- [x] Maintain separate solution metadata (`leetcode_meta.json`)
+- [x] Maintain separate manual notes (`leetcode_notes.json`)
+- [x] Generate repository statistics (`leetcode_stats.json`)
+- [x] Use timezone-aware timestamps
+
+## Notes System
+
+- [x] Separate generated data from manually written notes
+- [x] Automatically create missing notes entries
+- [x] Inject notes into SQL solutions
+- [x] Convert notes into SQL block comments
+- [x] Preserve SQL code while modifying comments
+- [x] Automatically wrap long notes for readability
+- [x] Update SQL comments when notes change
+- [x] Support migration from previous comment formats
+
+</details>
+
+---
 
 # Incoming Features
 
-Potential future improvements (from most to least important):
+Potential future improvements:
 
-- Add support for multiple coding languages
-- Separate solution explanations from hints/notes
-- Automatic time complexity analysis
-- Automatic space complexity analysis
-- Automatic solution tagging system (Tags: JOIN, CTE, Window Functions, Subqueries, etc.)
-- Search/filter system for solved problems
-- Generate progress graphs and visual analytics
-- Track daily/weekly/monthly solving streaks
-- Better README statistics dashboard
-- Difficulty distribution charts
-- Detect duplicate solutions or renamed files
-- Automatically generate problem summaries
-- Automatically deploy a web interface/extension for browsing solutions through CI/CD
+## Intelligent Analysis
 
+- [ ] Automatic time complexity analysis
+- [ ] Automatic space complexity analysis
+- [ ] Generate solution explanations
+- [ ] Generate problem summaries
+- [ ] Detect inefficient solutions
+- [ ] Suggest SQL query optimizations
 
-# Implemented Features
+## File Organization
 
-<sub>
+- [ ] Automatic solution tagging system:
+  - JOIN
+  - CTE
+  - Window Functions
+  - Subqueries
+  - Aggregations
+  - Ranking
+  - Date Manipulation
 
-- [x] Automatic LeetCode submission syncing using GitHub Actions
-- [x] Fetch accepted submissions through LeetCode API
-- [x] Automatically create SQL solution files
-- [x] Automatically organize solutions by difficulty
-- [x] Automatically clean problem titles into valid filenames
-- [x] Store first solved timestamps
-- [x] Track LeetCode runtime performance
-- [x] Maintain separate metadata (`leetcode_meta.json`)
-- [x] Maintain separate manual notes (`leetcode_notes.json`)
-- [x] Automatically create missing notes entries
-- [x] Scan existing SQL files for missing notes
-- [x] Automatically inject notes into SQL files
-- [x] Convert notes into SQL block comments
-- [x] Automatically update SQL comments when notes change
-- [x] Preserve existing SQL solutions while modifying comments
-- [x] Automatically wrap long notes for readability
-- [x] Cache LeetCode difficulty requests
-- [x] Generate LeetCode stats
-- [x] Automatically update README stats
-- [x] Automatically commit synced changes through GH Actions
+- [ ] Search and filter system for solutions
+- [ ] Detect duplicate solutions or renamed files
+- [ ] Add solution categorization
 
-</sub>
+## Data Analytics
+
+- [ ] Generate progress graphs
+- [ ] Track daily/weekly/monthly solving streaks
+- [ ] Difficulty distribution charts
+- [ ] Advanced README statistics dashboard
+
+## Platform Expansion
+
+- [ ] Support multiple programming languages
+- [ ] Automatically create and deploy a web interface/extension for browsing solutions through CI/CD
+- [ ] Build an interactive solution explorer
+
+---
+
+# Author Notes
+
+- Repo is based on my LeetCode alternate account: leetcode.com/u/C1rn0_Fum0/
+- Notes are manually written hints that improve over time as I learn more SQL.
+- Repository currently focuses on SQL LeetCode problems.
+- Multi-language support and additional analysis features are planned for future updates.
 
 """
 
