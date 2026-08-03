@@ -508,8 +508,6 @@ Last updated: {stats["last_updated"]}
 <details>
 <summary>Repository Structure</summary>
 
-<br>
-
     .
     ├── sync.py
     ├── leetcode_meta.json
@@ -533,8 +531,6 @@ Last updated: {stats["last_updated"]}
 
 <details>
 <summary>How It Works</summary>
-
-<br>
 
 This repository automatically synchronizes accepted LeetCode submissions into organized SQL solution files.
 
@@ -605,8 +601,6 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 <details>
 <summary>Design Decisions</summary>
 
-<br>
-
 ## Why Separate Notes From Solutions?
 
 A common approach is to write comments directly into a LeetCode submission before submitting. This project intentionally takes a different approach.
@@ -632,8 +626,6 @@ The goal is not just to archive solved problems, but to build a system that can 
 
 <details>
 <summary>Implemented Features</summary>
-
-<br>
 
 ## Automation & CI/CD
 
@@ -687,8 +679,6 @@ The goal is not just to archive solved problems, but to build a system that can 
 <details>
 <summary>Incoming Features</summary>
 
-<br>
-
 ## Automated Analysis Features
 
 - [ ] Automatic time complexity analysis
@@ -733,8 +723,6 @@ The goal is not just to archive solved problems, but to build a system that can 
 
 <details>
 <summary>Author Notes</summary>
-
-<br>
 
 - The hints are the notes btw :>
 - Repo is based on my alt: leetcode.com/u/C1rn0_Fum0/
