@@ -482,7 +482,11 @@ with open(NOTES_FILE, "w", encoding="utf-8") as f:
 with open("leetcode_stats.json", "w", encoding="utf-8") as f:
     json.dump(stats, f, indent=2)
 
-readme = f"""# LeetCode Tracker
+readme = f"""# LeetCode Tracker [Pre-Alpha Testing Open]
+
+![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-black)
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
@@ -490,19 +494,19 @@ Last updated: {stats["last_updated"]}
 
 ---
 
-# 📊 Progress Statistics
+# Progress Statistics
 
 | Difficulty | Count |
 |---|---:|
-| 🟢 Easy | {stats["easy"]} |
-| 🟡 Medium | {stats["medium"]} |
-| 🔴 Hard | {stats["hard"]} |
+| Easy | {stats["easy"]} |
+| Medium | {stats["medium"]} |
+| Hard | {stats["hard"]} |
 | **Total** | **{stats["total"]}** |
 
 ---
 
 <details>
-<summary>📁 Repository Structure</summary>
+<summary>Repository Structure</summary>
 
 <br>
 
@@ -528,7 +532,7 @@ Last updated: {stats["last_updated"]}
 ---
 
 <details>
-<summary>⚙️ How It Works</summary>
+<summary>How It Works</summary>
 
 <br>
 
@@ -536,56 +540,70 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 
 ## Workflow
 
-1. **Automated Trigger**
-   - GitHub Actions runs `sync.py` automatically on a scheduled interval.
-   - The workflow can also be manually triggered through GitHub Actions.
+1. **Automation**
+    - GitHub Actions runs `sync.py` automatically on a scheduled interval.
+    - Manual synchronization can also be triggered through GitHub Actions.
 
 2. **Authentication & API Connection**
-   - The script authenticates with the LeetCode GraphQL API.
-   - Credentials are securely stored through GitHub Actions secrets:
-     - `LEETCODE_USERNAME`
-     - `LEETCODE_SESSION`
+    - The script authenticates with the LeetCode GraphQL API.
+    - Credentials are securely stored through GitHub Actions secrets:
+        - `LEETCODE_USERNAME`
+        - `LEETCODE_SESSION`
 
 3. **Submission Retrieval**
-   - The script queries LeetCode's `recentAcSubmissionList`.
-   - Accepted submissions are retrieved automatically.
+    - The script queries LeetCode's `recentAcSubmissionList` GraphQL endpoint.
+    - The endpoint currently provides access to the 15 most recently accepted submissions.
+    - Retrieved submissions are processed and synchronized automatically.
 
 4. **Metadata Collection**
-   - Additional GraphQL requests collect:
-     - Problem title
-     - Difficulty
-     - Runtime performance
-     - First solved timestamp
+    - Additional GraphQL requests collect:
+        - Problem title
+        - Difficulty
+        - Runtime performance
+    - Repository tracking timestamps are stored separately in `leetcode_meta.json`.
 
 5. **Solution Generation**
-   - SQL files are automatically created or updated.
-   - Solutions are organized into:
-   
+    - SQL solution files are automatically created or updated.
+    - Solutions are organized by difficulty:
+    
         leetcode/
         ├── easy/
         ├── medium/
         └── hard/
 
-6. **Notes Synchronization**
-   - Manual notes from `leetcode_notes.json` are injected into SQL files.
-   - Notes are converted into SQL block comments.
-   - Existing SQL solutions are preserved.
+6. **Metadata & Notes Separation**
+    - Automated metadata is stored separately from manual notes:
+        - `leetcode_meta.json` → generated repository metadata
+        - `leetcode_notes.json` → manually maintained explanations and hints
+    - Prevents API synchronization from overwriting personal documentation.
 
-7. **Repository Repair**
-   - Existing SQL files are scanned for missing note entries.
-   - Missing entries are automatically added to `leetcode_notes.json`.
+7. **Notes Synchronization**
+    - Manual notes are injected into SQL files independently from LeetCode API responses.
+    - Notes are formatted into SQL block comments.
+    - Long notes are automatically wrapped for readability.
+    - Existing SQL solutions are preserved while comments are updated.
 
-8. **Statistics Generation**
-   - Solution counts are calculated.
-   - `leetcode_stats.json` is updated.
-   - README statistics are regenerated.
+8. **Repository Repair & Consistency Checks**
+    - Existing SQL files are scanned for missing note entries.
+    - Missing entries are automatically added to `leetcode_notes.json`.
+    - Recently detected accepted submissions can regenerate missing SQL files when available through the LeetCode API.
+
+9. **Optimization & Reliability**
+    - LeetCode difficulty requests are cached to reduce unnecessary API calls.
+    - Problem titles are normalized into safe filenames.
+    - File formatting is standardized during synchronization.
+
+10. **Statistics Generation**
+    - Solution counts are calculated from existing `.sql` files.
+    - `leetcode_stats.json` is updated.
+    - README statistics are automatically regenerated.
 
 </details>
 
 ---
 
 <details>
-<summary>✨ Implemented Features</summary>
+<summary>Implemented Features</summary>
 
 <br>
 
@@ -618,7 +636,7 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 
 ## Metadata System
 
-- [x] Store first solved timestamps
+- [x] Track when solutions are first added to the repository
 - [x] Maintain `leetcode_meta.json`
 - [x] Maintain `leetcode_notes.json`
 - [x] Generate `leetcode_stats.json`
@@ -639,11 +657,11 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 ---
 
 <details>
-<summary>🚀 Incoming Features</summary>
+<summary>Incoming Features</summary>
 
 <br>
 
-## 🧠 Intelligent Analysis
+## AI Features
 
 - [ ] Automatic time complexity analysis
 - [ ] Automatic space complexity analysis
@@ -652,7 +670,7 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 - [ ] Detect inefficient queries
 - [ ] Suggest SQL optimizations
 
-## 🗂️ Organization
+## Organization
 
 - [ ] Automatic solution tagging system:
   - JOIN
@@ -662,20 +680,20 @@ This repository automatically synchronizes accepted LeetCode submissions into or
   - Aggregations
   - Ranking
   - Date Manipulation
+  - etc
 
 - [ ] Search and filter system
 - [ ] Detect duplicate solutions
 - [ ] Detect renamed files
-- [ ] Categorize solutions automatically
 
-## 📈 Analytics
+## Analytics
 
 - [ ] Progress graphs
 - [ ] Daily/weekly/monthly solving streaks
 - [ ] Difficulty distribution charts
 - [ ] Advanced README dashboard
 
-## 🌐 Platform Expansion
+## Platform Expansion
 
 - [ ] Multi-language support
 - [ ] Automatically deploy a web interface/extension for browsing solutions through CI/CD
@@ -686,14 +704,14 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 ---
 
 <details>
-<summary>📝 Author Notes</summary>
+<summary>Author Notes</summary>
 
 <br>
 
-- Repo is based on my LeetCode alternate account: leetcode.com/u/C1rn0_Fum0/
-- Notes are manually written hints that improve over time as I learn more SQL.
-- Repository currently focuses on SQL LeetCode problems.
-- Multi-language support and additional analysis features are planned for future updates.
+- The hints are the notes btw :>
+- Repo is based on my alt: leetcode.com/u/C1rn0_Fum0/
+- Repo meant for SQL LeetCode questions until language recognition is implemented; did two sum by accident, pls ignore for now!
+- Lmk if my questions solved counter ever breaks!
 
 </details>
 """
