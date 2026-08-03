@@ -482,13 +482,15 @@ with open(NOTES_FILE, "w", encoding="utf-8") as f:
 with open("leetcode_stats.json", "w", encoding="utf-8") as f:
     json.dump(stats, f, indent=2)
 
-readme = f"""# CodeAtlas [Pre-Alpha Testing Open]
+readme = f"""# CodeAtlas 
+
+**Status:** Pre-Alpha Testing
 
 ![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-black)
 
-> An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
+> An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GH Actions.
 
 Last updated: {stats["last_updated"]}
 
@@ -524,9 +526,37 @@ Currently focused on SQL solutions, this project automatically:
 
 The long-term goal is to transform a simple solution archive into a continuously improving platform for analyzing, organizing, and exploring programming solutions.
 
+# Key Features
+
+## Automated Synchronization
+
+- Automatically retrieves accepted LeetCode submissions
+- Generates organized solution files
+- Runs through GitHub Actions
+- No manual copying required
+
+## Documentation System
+
+- Personal notes stored separately
+- Notes automatically injected into solutions
+- Preserves original submission code
+
+## Repository Management
+
+- Automatic statistics generation
+- Metadata tracking
+- Solution organization
+- README auto-updates
+
 ## Why was this built?
 
-This project started as a way to automatically save and organize my LeetCode SQL progress without having to maintain files manually.
+Learning software engineering often creates a documentation problem.
+
+Developers build projects, learn new technologies, and solve problems, but the evidence of that growth becomes scattered across repositories, notes, and forgotten experiments.
+
+CodeAtlas was created to solve this problem by automatically capturing progress, organizing solutions, and preserving the reasoning behind the code.
+
+This project started as a 3:00 AM SYDEquest on a scuffed idea to automatically save and organize my LeetCode SQL progress without having to maintain files manually.
 
 Over time, it evolved into a larger system focused on separating:
 
@@ -541,7 +571,7 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 Solutions and documentation are intentionally separated.
 
-- `*.sql` files store the actual submitted solutions and generated metadata.
+- Solution files store submitted code and generated metadata.
 - `leetcode_notes.json` stores manually written explanations, hints, and future annotations.
 - `leetcode_meta.json` stores generated repository metadata such as first detected timestamps.
 
@@ -795,16 +825,6 @@ This design allows documentation to improve over time without changing the origi
 - Web-based solution browsing
 
 The goal is not just to archive solved problems, but to build a system that can continue improving and analyzing solutions after they are created.
-
-## Separation of Generated and Manual Data
-
-Generated data and personal documentation are intentionally stored separately.
-
-- Generated metadata can be updated automatically without overwriting personal notes.
-- Manual notes can evolve independently as understanding improves.
-- Future automation can build on existing data without modifying the original solution.
-
-This prevents synchronization from accidentally destroying user-created documentation.
 
 ## Repository as the Source of Truth
 
