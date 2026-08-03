@@ -566,7 +566,6 @@ Install dependencies:
     - ```bash
     - pip install requests
 
-
 ##GitHub Actions Setup
 
 This project uses GitHub Actions secrets to authenticate with LeetCode.
@@ -597,15 +596,19 @@ Running Locally (Optional)
 Set environment variables:
 
 Windows PowerShell
+
     1. $env:LEETCODE_USERNAME="your_username"
     2. $env:LEETCODE_SESSION="your_session_cookie"
 
 Linux / Mac
+
     1. export LEETCODE_USERNAME="your_username"
     2. export LEETCODE_SESSION="your_session_cookie"
 
 ##Troubleshooting
+
 Check:
+
 - GitHub Actions workflow is enabled.
 - LEETCODE_USERNAME is correct.
 - LEETCODE_SESSION has not expired.
