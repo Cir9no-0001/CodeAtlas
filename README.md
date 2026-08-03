@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 00:51:01 EDT
+Last updated: 2026-08-03 00:54:44 EDT
 
 ---
 
@@ -82,7 +82,7 @@ Install dependencies:
     - ```bash
     - pip install requests
 
-##GitHub Actions Setup
+## GitHub Actions Setup
 
 This project uses GitHub Actions secrets to authenticate with LeetCode.
 
@@ -121,7 +121,7 @@ Linux / Mac
     1. export LEETCODE_USERNAME="your_username"
     2. export LEETCODE_SESSION="your_session_cookie"
 
-##Troubleshooting
+## Troubleshooting
 
 Check:
 
