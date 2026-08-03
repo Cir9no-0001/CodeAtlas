@@ -505,6 +505,139 @@ Last updated: {stats["last_updated"]}
 
 ---
 
+# Project Overview
+
+## What is this?
+
+LeetCode Tracker is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured SQL repository.
+
+Instead of manually copying solutions, organizing files, tracking metadata, and maintaining documentation, this project automates the process through GitHub Actions and the LeetCode GraphQL API.
+
+Currently focused on SQL solutions, this project automatically:
+
+- Retrieves accepted LeetCode submissions
+- Creates and organizes SQL solution files
+- Tracks solution metadata and timestamps
+- Maintains separate personal notes and explanations
+- Generates repository statistics
+- Keeps documentation synchronized with the repository
+
+The long-term goal is to transform a simple solution archive into a continuously improving platform for analyzing, organizing, and exploring programming solutions.
+
+## Why was this built?
+
+This project started as a way to automatically save and organize my LeetCode SQL progress without manually maintaining files.
+
+Over time, it evolved into a larger system focused on separating:
+
+- The original solution code
+- Personal learning notes
+- Generated metadata
+- Future analysis features
+
+This allows solutions to remain unchanged while documentation, complexity analysis, tagging, and other features can continue improving after the solution is created.
+
+## Design Philosophy
+
+Solutions and documentation are intentionally separated.
+
+- `*.sql` files store the actual submitted solutions and generated metadata.
+- `leetcode_notes.json` stores manually written explanations, hints, and future annotations.
+- `leetcode_meta.json` stores generated repository metadata such as first detected timestamps.
+
+This design allows the repository to evolve beyond a simple collection of solutions while preserving the original code.
+
+---
+
+<details>
+<summary>Setup Guide</summary>
+
+## Requirements
+
+Before running this project, make sure you have:
+
+- Python 3.12+
+- A GitHub repository
+- GitHub Actions enabled
+- A LeetCode account with accepted submissions
+
+Install dependencies:
+
+```bash
+pip install requests
+GitHub Actions Setup
+
+This project uses GitHub Actions secrets to authenticate with LeetCode.
+
+Navigate to: Repository -> Settings -> Secrets and variables -> Actions -> New repository secret
+
+Add the following secrets:
+
+LEETCODE_USERNAME (Your LeetCode username)
+LEETCODE_SESSION (Your LeetCode session cookie)
+
+This allows the script to access your accepted submissions through the LeetCode GraphQL API.
+
+To find LEETCODE_SESSION:
+
+1. Open https://leetcode.com/
+2. Log into your LeetCode account.
+3. Open Developer Tools:
+4. Chrome / Edge: F12 Or Ctrl + Shift + I
+5. Navigate to: Application -> Cookies -> https://leetcode.com -> LEETCODE_SESSION
+6. Copy the full cookie value.
+7. Add it as a GitHub Actions secret: LEETCODE_SESSION = your_cookie_value
+
+Keep this value private. This cookie provides access to your LeetCode session.
+
+Running Locally (Optional)
+
+Set environment variables:
+
+Windows PowerShell
+$env:LEETCODE_USERNAME="your_username"
+$env:LEETCODE_SESSION="your_session_cookie"
+Linux / Mac
+export LEETCODE_USERNAME="your_username"
+export LEETCODE_SESSION="your_session_cookie"
+
+Run:
+
+python sync.py
+First Synchronization
+
+After running successfully:
+
+SQL solutions will be generated in:
+
+leetcode/
+├── easy/
+├── medium/
+└── hard/
+
+Metadata files will be updated:
+
+leetcode_meta.json
+leetcode_notes.json
+leetcode_stats.json
+
+The README statistics table will also automatically regenerate.
+
+Troubleshooting
+No solutions appear
+
+Check:
+
+GitHub Actions workflow is enabled.
+LEETCODE_USERNAME is correct.
+LEETCODE_SESSION has not expired.
+Your LeetCode account has accepted submissions.
+Authentication errors
+
+</details>
+
+---
+
 <details>
 <summary>Repository Structure</summary>
 
@@ -716,6 +849,39 @@ The goal is not just to archive solved problems, but to build a system that can 
 - [ ] Multi-language support
 - [ ] Automatically deploy a web interface/extension for browsing solutions through CI/CD
 - [ ] Interactive solution explorer
+
+</details>
+
+---
+
+<details>
+<summary>Limitations / Known Issues</summary>
+
+## API Limitations
+
+- The project currently relies on LeetCode's `recentAcSubmissionList` GraphQL endpoint.
+- This endpoint only provides access to the 15 most recently accepted submissions.
+- If a solution is missed because it falls outside this limit, the problem may need to be resubmitted on LeetCode to appear in synchronization.
+
+## Current Scope
+
+- Currently optimized for SQL LeetCode solutions.
+- Multi-language support is planned but not currently implemented.
+- Some metadata depends on information available through the LeetCode API.
+
+## Repository Tracking
+
+- `first_seen` represents the first time a solution was detected and added to this repository.
+- It does not necessarily represent the actual date the LeetCode problem was first solved.
+
+## Repair System
+
+The repair system can restore missing or corrupted solution files when the problem is available through the recent accepted submission list.
+
+However:
+
+- Deleted solutions outside the API retrieval window cannot be automatically recovered.
+- Manual edits to metadata files may not be recoverable.
 
 </details>
 
