@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 00:54:44 EDT
+Last updated: 2026-08-03 01:00:20 EDT
 
 ---
 
@@ -236,8 +236,9 @@ A common approach is to write comments directly into a LeetCode submission befor
 
 Solutions and documentation are separated into different layers:
 
-- `SQL file` → Stores the actual submitted solution and generated metadata.
+- `*.sql` files → Store the actual submitted solution code and generated metadata.
 - `leetcode_notes.json` → Stores personal explanations, hints, complexity analysis, and future annotations.
+- `leetcode_meta.json` → Stores generated repository metadata such as timestamps.
 
 This design allows documentation to improve over time without changing the original solution. It also makes future features possible, such as:
 
@@ -248,6 +249,51 @@ This design allows documentation to improve over time without changing the origi
 - Web-based solution browsing
 
 The goal is not just to archive solved problems, but to build a system that can continue improving and analyzing solutions after they are created.
+
+---
+
+## Separation of Generated and Manual Data
+
+Generated data and personal documentation are intentionally stored separately.
+
+- Generated metadata can be updated automatically without overwriting personal notes.
+- Manual notes can evolve independently as understanding improves.
+- Future automation can build on existing data without modifying the original solution.
+
+This prevents synchronization from accidentally destroying user-created documentation.
+
+---
+
+## Repository as the Source of Truth
+
+The repository files are treated as the primary source of truth.
+
+Solution statistics are generated from existing `.sql` files rather than relying only on external API data.
+
+This allows the repository to remain functional even if API availability changes or synchronization is temporarily unavailable.
+
+---
+
+## Credential Security
+
+Authentication credentials are handled through GitHub Actions Secrets rather than being stored inside the repository.
+
+Sensitive information such as `LEETCODE_SESSION` is never committed to source control.
+
+This keeps authentication data separate from the project code and reduces the risk of accidental exposure.
+
+---
+
+## Minimizing Unnecessary Repository Changes
+
+The synchronization system compares generated files against existing files before writing updates.
+
+Files are only modified when actual changes occur.
+
+This helps:
+- Keep commit history cleaner
+- Avoid unnecessary GitHub Actions executions
+- Reduce redundant file operations
 
 </details>
 
