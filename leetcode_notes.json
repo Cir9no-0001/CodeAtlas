@@ -190,5 +190,8 @@
   },
   "game-play-analysis-i": {
     "notes": ""
+  },
+  "average-time-of-process-per-machine": {
+    "notes": ""
   }
 }
