@@ -494,7 +494,7 @@ Last updated: {stats["last_updated"]}
 
 ---
 
-# Progress Statistics
+# My Progress Statistics
 
 | Difficulty | Count |
 |---|---:|
