@@ -482,7 +482,7 @@ with open(NOTES_FILE, "w", encoding="utf-8") as f:
 with open("leetcode_stats.json", "w", encoding="utf-8") as f:
     json.dump(stats, f, indent=2)
 
-readme = f"""# LeetCode Tracker [Pre-Alpha Testing Open]
+readme = f"""# CodeAtlas [Pre-Alpha Testing Open]
 
 ![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
@@ -509,7 +509,7 @@ Last updated: {stats["last_updated"]}
 
 ## What is this?
 
-LeetCode Tracker is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured SQL repository.
+CodeAtlas is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured SQL repository.
 
 Instead of manually copying solutions, organizing files, tracking metadata, and maintaining documentation, this project automates the process through GitHub Actions and the LeetCode GraphQL API.
 
