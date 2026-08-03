@@ -605,7 +605,7 @@ Linux / Mac
     1. export LEETCODE_USERNAME="your_username"
     2. export LEETCODE_SESSION="your_session_cookie"
 
-##Troubleshooting
+## Troubleshooting
 
 Check:
 
