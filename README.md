@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 02:17:47 EDT
+Last updated: 2026-08-03 05:14:38 EDT
 
 ---
 
@@ -68,14 +68,22 @@ This design allows the repository to evolve beyond a simple collection of soluti
 <details>
 <summary>Setup Guide</summary>
 
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
+
 ## Requirements
 
-Before running this project, make sure you have:
+Before running CodeAtlas, make sure you have:
 
 - Python 3.12+
-- A GitHub repository
-- GitHub Actions enabled
 - A LeetCode account with accepted submissions
+- A GitHub repository (required for GitHub Actions synchronization)
 
 Install dependencies:
 
@@ -83,7 +91,16 @@ Install dependencies:
 pip install requests
 ```
 
-## GitHub Actions Setup
+## Authentication Setup
+
+CodeAtlas requires LeetCode authentication to retrieve accepted submissions.
+
+Choose one of the following methods:
+
+1. GitHub Actions (recommended)
+2. Running locally
+
+### Option 1: GitHub Actions Setup (recommended)
 
 This project uses GitHub Actions secrets to authenticate with LeetCode.
 
@@ -91,10 +108,8 @@ Navigate to: Repository -> Settings -> Secrets and variables -> Actions -> New r
 
 Add the following secrets:
 
-1. LEETCODE_USERNAME (Your LeetCode username)
-2. LEETCODE_SESSION (Your LeetCode session cookie)
-
-This allows the script to access your accepted submissions through the LeetCode GraphQL API.
+1. `LEETCODE_USERNAME` (Your LeetCode username)
+2. `LEETCODE_SESSION` (Your LeetCode session cookie)
 
 To find LEETCODE_SESSION:
 
@@ -108,7 +123,25 @@ To find LEETCODE_SESSION:
 
 Keep this value private. This cookie provides access to your LeetCode session.
 
-Running Locally (Optional)
+After completing authentication setup, run the workflow to synchronize your LeetCode submissions.
+
+1. Navigate to:
+   Repository → Actions → LeetCode Sync
+
+2. Select:
+   Run workflow → Run workflow
+
+3. Wait for the workflow to complete.
+
+After a successful synchronization, CodeAtlas will:
+
+- Create or update SQL solution files
+- Update solution metadata
+- Synchronize personal notes
+- Refresh repository statistics
+- Update README progress tracking
+
+## Running Locally (Optional)
 
 Set environment variables:
 
@@ -126,14 +159,38 @@ export LEETCODE_USERNAME="your_username"
 export LEETCODE_SESSION="your_session_cookie"
 ```
 
-## Troubleshooting
+After setting the variables, run:
 
-Check:
+```bash
+python sync.py
+```
 
-- GitHub Actions workflow is enabled.
-- LEETCODE_USERNAME is correct.
-- LEETCODE_SESSION has not expired.
+## Expected Output
+
+Your repository should contain:
+
+leetcode/
+├── easy/
+├── medium/
+└── hard/
+
+along with updated:
+
+- `leetcode_meta.json` (Tracks generated solution first-seen metadata)
+- `leetcode_notes.json` (Stores personal notes and explanations)
+- `leetcode_stats.json` (Stores repository statistics)
+
+## Troubleshooting Checklist
+
 - Your LeetCode account has accepted submissions.
+- Your submissions are available through LeetCode's recent accepted submission history.
+- LEETCODE_USERNAME matches your LeetCode username.
+- LEETCODE_SESSION has not expired.
+- The complete session cookie was copied correctly.
+- GitHub Actions does not run
+- GitHub Actions is enabled for the repository.
+- Repository secrets are configured correctly.
+- The workflow file exists in .github/workflows/.
 
 </details>
 
