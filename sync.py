@@ -591,7 +591,7 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 9. **Optimization & Reliability**
     - LeetCode difficulty requests are cached to reduce unnecessary API calls.
     - Problem titles are normalized into safe filenames.
-    - File formatting is standardized during synchronization.
+    - SQL comments and notes are reformatted consistently during synchronization.
 
 10. **Statistics Generation**
     - Solution counts are calculated from existing `.sql` files.
@@ -627,12 +627,12 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 ## File Management
 
 - [x] Automatically create SQL solution files
+- [x] Avoid unnecessary file rewrites when no changes occur
 - [x] Organize solutions by difficulty
 - [x] Clean problem titles into filenames
 - [x] Preserve existing solutions
 - [x] Avoid unnecessary file writes
-- [x] Detect missing notes entries
-- [x] Repair older solutions
+- [x] Repair missing note entries and synchronize existing solutions
 
 ## Metadata System
 
