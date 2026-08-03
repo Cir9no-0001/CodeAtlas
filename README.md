@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 01:00:20 EDT
+Last updated: 2026-08-03 01:18:40 EDT
 
 ---
 
@@ -31,12 +31,12 @@ Instead of manually copying solutions, organizing files, tracking metadata, and 
 
 Currently focused on SQL solutions, this project automatically:
 
-    - Retrieves accepted LeetCode submissions
-    - Creates and organizes SQL solution files
-    - Tracks solution metadata and timestamps
-    - Maintains separate personal notes and explanations
-    - Generates repository statistics
-    - Keeps documentation synchronized with the repository
+- Retrieves accepted LeetCode submissions
+- Creates and organizes SQL solution files
+- Tracks solution metadata and timestamps
+- Maintains separate personal notes and explanations
+- Generates repository statistics
+- Keeps documentation synchronized with the repository
 
 The long-term goal is to transform a simple solution archive into a continuously improving platform for analyzing, organizing, and exploring programming solutions.
 
@@ -46,10 +46,10 @@ This project started as a way to automatically save and organize my LeetCode SQL
 
 Over time, it evolved into a larger system focused on separating:
 
-    - The original solution code
-    - Personal learning notes
-    - Generated metadata
-    - Future analysis features
+- The original solution code
+- Personal learning notes
+- Generated metadata
+- Future analysis features
     
 This allows solutions to remain unchanged while documentation, complexity analysis, tagging, and other features can continue improving after the solution is created.
 
@@ -57,9 +57,9 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 Solutions and documentation are intentionally separated.
 
-    - `*.sql` files store the actual submitted solutions and generated metadata.
-    - `leetcode_notes.json` stores manually written explanations, hints, and future annotations.
-    - `leetcode_meta.json` stores generated repository metadata such as first detected timestamps.
+- `*.sql` files store the actual submitted solutions and generated metadata.
+- `leetcode_notes.json` stores manually written explanations, hints, and future annotations.
+- `leetcode_meta.json` stores generated repository metadata such as first detected timestamps.
 
 This design allows the repository to evolve beyond a simple collection of solutions while preserving the original code.
 
@@ -72,15 +72,15 @@ This design allows the repository to evolve beyond a simple collection of soluti
 
 Before running this project, make sure you have:
 
-    - Python 3.12+
-    - A GitHub repository
-    - GitHub Actions enabled
-    - A LeetCode account with accepted submissions
+- Python 3.12+
+- A GitHub repository
+- GitHub Actions enabled
+- A LeetCode account with accepted submissions
 
 Install dependencies:
 
-    - ```bash
-    - pip install requests
+```bash
+pip install requests
 
 ## GitHub Actions Setup
 
@@ -90,20 +90,20 @@ Navigate to: Repository -> Settings -> Secrets and variables -> Actions -> New r
 
 Add the following secrets:
 
-    1. LEETCODE_USERNAME (Your LeetCode username)
-    2. LEETCODE_SESSION (Your LeetCode session cookie)
+1. LEETCODE_USERNAME (Your LeetCode username)
+2. LEETCODE_SESSION (Your LeetCode session cookie)
 
 This allows the script to access your accepted submissions through the LeetCode GraphQL API.
 
 To find LEETCODE_SESSION:
 
-    1. Open https://leetcode.com/
-    2. Log into your LeetCode account.
-    3. Open Developer Tools:
-    4. Chrome / Edge: F12 Or Ctrl + Shift + I
-    5. Navigate to: Application -> Cookies -> https://leetcode.com -> LEETCODE_SESSION
-    6. Copy the full cookie value.
-    7. Add it as a GitHub Actions secret: LEETCODE_SESSION = your_cookie_value
+1. Open https://leetcode.com/
+2. Log into your LeetCode account.
+3. Open Developer Tools:
+4. Chrome / Edge: F12 Or Ctrl + Shift + I
+5. Navigate to: Application -> Cookies -> https://leetcode.com -> LEETCODE_SESSION
+6. Copy the full cookie value.
+7. Add it as a GitHub Actions secret: LEETCODE_SESSION = your_cookie_value
 
 Keep this value private. This cookie provides access to your LeetCode session.
 
@@ -113,13 +113,15 @@ Set environment variables:
 
 Windows PowerShell
 
-    1. $env:LEETCODE_USERNAME="your_username"
-    2. $env:LEETCODE_SESSION="your_session_cookie"
+```powershell
+$env:LEETCODE_USERNAME="your_username"
+$env:LEETCODE_SESSION="your_session_cookie"
 
 Linux / Mac
 
-    1. export LEETCODE_USERNAME="your_username"
-    2. export LEETCODE_SESSION="your_session_cookie"
+```bash
+export LEETCODE_USERNAME="your_username"
+export LEETCODE_SESSION="your_session_cookie"
 
 ## Troubleshooting
 
@@ -166,62 +168,62 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 ## Workflow
 
 1. **Automation**
-    - GitHub Actions runs `sync.py` automatically on a scheduled interval.
-    - Manual synchronization can also be triggered through GitHub Actions.
+- GitHub Actions runs `sync.py` automatically on a scheduled interval.
+- Manual synchronization can also be triggered through GitHub Actions.
 
 2. **Authentication & API Connection**
-    - The script authenticates with the LeetCode GraphQL API.
-    - Credentials are securely stored through GitHub Actions secrets:
-        - `LEETCODE_USERNAME`
-        - `LEETCODE_SESSION`
+- The script authenticates with the LeetCode GraphQL API.
+- Credentials are securely stored through GitHub Actions secrets:
+  - `LEETCODE_USERNAME`
+  - `LEETCODE_SESSION`
 
 3. **Submission Retrieval**
-    - The script queries LeetCode's `recentAcSubmissionList` GraphQL endpoint.
-    - The endpoint currently provides access to the 15 most recently accepted submissions.
-    - Retrieved submissions are processed and synchronized automatically.
+- The script queries LeetCode's `recentAcSubmissionList` GraphQL endpoint.
+- The endpoint currently provides access to the 15 most recently accepted submissions.
+- Retrieved submissions are processed and synchronized automatically.
 
 4. **Metadata Collection**
-    - Additional GraphQL requests collect:
-        - Problem title
-        - Difficulty
-        - Runtime performance
-    - Repository tracking timestamps are stored separately in `leetcode_meta.json`.
+- Additional GraphQL requests collect:
+  - Problem title
+  - Difficulty
+  - Runtime performance
+- Repository tracking timestamps are stored separately in `leetcode_meta.json`.
 
 5. **Solution Generation**
-    - SQL solution files are automatically created or updated.
-    - Solutions are organized by difficulty:
+- SQL solution files are automatically created or updated.
+- Solutions are organized by difficulty:
     
-        leetcode/
+    leetcode/
         ├── easy/
         ├── medium/
         └── hard/
 
 6. **Metadata & Notes Separation**
-    - Automated metadata is stored separately from manual notes:
-        - `leetcode_meta.json` → generated repository metadata
-        - `leetcode_notes.json` → manually maintained explanations and hints
-    - Prevents API synchronization from overwriting personal documentation.
+- Automated metadata is stored separately from manual notes:
+- `leetcode_meta.json` → generated repository metadata
+- `leetcode_notes.json` → manually maintained explanations and hints
+- Prevents API synchronization from overwriting personal documentation.
 
 7. **Notes Synchronization**
-    - Manual notes are injected into SQL files independently from LeetCode API responses.
-    - Notes are formatted into SQL block comments.
-    - Long notes are automatically wrapped for readability.
-    - Existing SQL solutions are preserved while comments are updated.
+- Manual notes are injected into SQL files independently from LeetCode API responses.
+- Notes are formatted into SQL block comments.
+- Long notes are automatically wrapped for readability.
+- Existing SQL solutions are preserved while comments are updated.
 
 8. **Repository Repair & Consistency Checks**
-    - Existing SQL files are scanned for missing note entries.
-    - Missing entries are automatically added to `leetcode_notes.json`.
-    - Recently detected accepted submissions can regenerate missing SQL files when available through the LeetCode API.
+- Existing SQL files are scanned for missing note entries.
+- Missing entries are automatically added to `leetcode_notes.json`.
+- Recently detected accepted submissions can regenerate missing SQL files when available through the LeetCode API.
 
 9. **Optimization & Reliability**
-    - LeetCode difficulty requests are cached to reduce unnecessary API calls.
-    - Problem titles are normalized into safe filenames.
-    - SQL comments and notes are reformatted consistently during synchronization.
+- LeetCode difficulty requests are cached to reduce unnecessary API calls.
+- Problem titles are normalized into safe filenames.
+- SQL comments and notes are reformatted consistently during synchronization.
 
 10. **Statistics Generation**
-    - Solution counts are calculated from existing `.sql` files.
-    - `leetcode_stats.json` is updated.
-    - README statistics are automatically regenerated.
+- Solution counts are calculated from existing `.sql` files.
+- `leetcode_stats.json` is updated.
+- README statistics are automatically regenerated.
 
 </details>
 
