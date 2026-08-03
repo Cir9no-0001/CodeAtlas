@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 01:18:40 EDT
+Last updated: 2026-08-03 01:28:55 EDT
 
 ---
 
@@ -81,6 +81,7 @@ Install dependencies:
 
 ```bash
 pip install requests
+```
 
 ## GitHub Actions Setup
 
@@ -116,12 +117,14 @@ Windows PowerShell
 ```powershell
 $env:LEETCODE_USERNAME="your_username"
 $env:LEETCODE_SESSION="your_session_cookie"
+```
 
 Linux / Mac
 
 ```bash
 export LEETCODE_USERNAME="your_username"
 export LEETCODE_SESSION="your_session_cookie"
+```
 
 ## Troubleshooting
 
