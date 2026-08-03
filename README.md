@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 05:14:38 EDT
+Last updated: 2026-08-03 05:18:58 EDT
 
 ---
 
@@ -126,10 +126,10 @@ Keep this value private. This cookie provides access to your LeetCode session.
 After completing authentication setup, run the workflow to synchronize your LeetCode submissions.
 
 1. Navigate to:
-   Repository → Actions → LeetCode Sync
+   Repository -> Actions -> LeetCode Sync
 
 2. Select:
-   Run workflow → Run workflow
+   Run workflow -> Run workflow
 
 3. Wait for the workflow to complete.
 
@@ -169,10 +169,12 @@ python sync.py
 
 Your repository should contain:
 
+```text
 leetcode/
 ├── easy/
 ├── medium/
 └── hard/
+```
 
 along with updated:
 
@@ -258,8 +260,8 @@ along with updated:
 
 6. **Metadata & Notes Separation**
 - Automated metadata is stored separately from manual notes:
-- `leetcode_meta.json` → generated repository metadata
-- `leetcode_notes.json` → manually maintained explanations and hints
+- `leetcode_meta.json` -> generated repository metadata
+- `leetcode_notes.json` -> manually maintained explanations and hints
 - Prevents API synchronization from overwriting personal documentation.
 
 7. **Notes Synchronization**
@@ -296,9 +298,9 @@ A common approach is to write comments directly into a LeetCode submission befor
 
 Solutions and documentation are separated into different layers:
 
-- `*.sql` files → Store the actual submitted solution code and generated metadata.
-- `leetcode_notes.json` → Stores personal explanations, hints, complexity analysis, and future annotations.
-- `leetcode_meta.json` → Stores generated repository metadata such as timestamps.
+- `*.sql` files -> Store the actual submitted solution code and generated metadata.
+- `leetcode_notes.json` -> Stores personal explanations, hints, complexity analysis, and future annotations.
+- `leetcode_meta.json` -> Stores generated repository metadata such as timestamps.
 
 This design allows documentation to improve over time without changing the original solution. It also makes future features possible, such as:
 
