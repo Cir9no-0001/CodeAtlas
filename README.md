@@ -6,11 +6,11 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 00:45:51 EDT
+Last updated: 2026-08-03 00:51:01 EDT
 
 ---
 
-# Progress Statistics
+# My Progress Statistics
 
 | Difficulty | Count |
 |---|---:|
@@ -82,7 +82,6 @@ Install dependencies:
     - ```bash
     - pip install requests
 
-
 ##GitHub Actions Setup
 
 This project uses GitHub Actions secrets to authenticate with LeetCode.
@@ -113,15 +112,19 @@ Running Locally (Optional)
 Set environment variables:
 
 Windows PowerShell
+
     1. $env:LEETCODE_USERNAME="your_username"
     2. $env:LEETCODE_SESSION="your_session_cookie"
 
 Linux / Mac
+
     1. export LEETCODE_USERNAME="your_username"
     2. export LEETCODE_SESSION="your_session_cookie"
 
 ##Troubleshooting
+
 Check:
+
 - GitHub Actions workflow is enabled.
 - LEETCODE_USERNAME is correct.
 - LEETCODE_SESSION has not expired.
