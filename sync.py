@@ -566,7 +566,7 @@ Install dependencies:
     - ```bash
     - pip install requests
 
-##GitHub Actions Setup
+## GitHub Actions Setup
 
 This project uses GitHub Actions secrets to authenticate with LeetCode.
 
