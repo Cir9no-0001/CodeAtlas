@@ -661,7 +661,7 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 
 <br>
 
-## AI Features
+## Automated Analysis Features
 
 - [ ] Automatic time complexity analysis
 - [ ] Automatic space complexity analysis
