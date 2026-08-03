@@ -1,4 +1,4 @@
-# LeetCode Tracker [Pre-Alpha Testing Open]
+# CodeAtlas [Pre-Alpha Testing Open]
 
 ![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
@@ -6,7 +6,7 @@
 
 > An automated LeetCode SQL solution archive powered by GitHub Actions, LeetCode GraphQL API synchronization, and structured metadata management.
 
-Last updated: 2026-08-03 05:18:58 EDT
+Last updated: 2026-08-03 05:29:18 EDT
 
 ---
 
@@ -25,7 +25,7 @@ Last updated: 2026-08-03 05:18:58 EDT
 
 ## What is this?
 
-LeetCode Tracker is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured SQL repository.
+CodeAtlas is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured SQL repository.
 
 Instead of manually copying solutions, organizing files, tracking metadata, and maintaining documentation, this project automates the process through GitHub Actions and the LeetCode GraphQL API.
 
