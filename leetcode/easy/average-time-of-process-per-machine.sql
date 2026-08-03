@@ -6,7 +6,10 @@
 
 /*
 Notes:
-
+Hint: literally a math question; think about how you can rearrange the original formula
+to optimize it for SQL grouping. Group by the IDs, then split each group into its
+corresponding activity type, then find the difference and divide by the distinct
+processes. [O(NlogN), 1 pass]
 */
 
 
