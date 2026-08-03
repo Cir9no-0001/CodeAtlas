@@ -603,6 +603,34 @@ This repository automatically synchronizes accepted LeetCode submissions into or
 ---
 
 <details>
+<summary>Design Decisions</summary>
+
+<br>
+
+## Why Separate Notes From Solutions?
+
+A common approach is to write comments directly into a LeetCode submission before submitting. This project intentionally takes a different approach.
+
+Solutions and documentation are separated into different layers:
+
+- `SQL file` → Stores the actual submitted solution and generated metadata.
+- `leetcode_notes.json` → Stores personal explanations, hints, complexity analysis, and future annotations.
+
+This design allows documentation to improve over time without changing the original solution. It also makes future features possible, such as:
+
+- Automatic time and space complexity analysis
+- SQL pattern detection (JOIN, CTE, Window Functions, etc.)
+- Solution tagging
+- AI-assisted explanations
+- Web-based solution browsing
+
+The goal is not just to archive solved problems, but to build a system that can continue improving and analyzing solutions after they are created.
+
+</details>
+
+---
+
+<details>
 <summary>Implemented Features</summary>
 
 <br>
