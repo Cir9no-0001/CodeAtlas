@@ -650,8 +650,6 @@ Check:
 <details>
 <summary>How It Works</summary>
 
-This repository automatically synchronizes accepted LeetCode submissions into organized SQL solution files.
-
 ## Workflow
 
 1. **Automation**
@@ -739,8 +737,6 @@ This design allows documentation to improve over time without changing the origi
 
 The goal is not just to archive solved problems, but to build a system that can continue improving and analyzing solutions after they are created.
 
----
-
 ## Separation of Generated and Manual Data
 
 Generated data and personal documentation are intentionally stored separately.
@@ -751,8 +747,6 @@ Generated data and personal documentation are intentionally stored separately.
 
 This prevents synchronization from accidentally destroying user-created documentation.
 
----
-
 ## Repository as the Source of Truth
 
 The repository files are treated as the primary source of truth.
@@ -761,8 +755,6 @@ Solution statistics are generated from existing `.sql` files rather than relying
 
 This allows the repository to remain functional even if API availability changes or synchronization is temporarily unavailable.
 
----
-
 ## Credential Security
 
 Authentication credentials are handled through GitHub Actions Secrets rather than being stored inside the repository.
@@ -770,8 +762,6 @@ Authentication credentials are handled through GitHub Actions Secrets rather tha
 Sensitive information such as `LEETCODE_SESSION` is never committed to source control.
 
 This keeps authentication data separate from the project code and reduces the risk of accidental exposure.
-
----
 
 ## Minimizing Unnecessary Repository Changes
 
