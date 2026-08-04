@@ -842,7 +842,7 @@ along with updated:
 
 ## Architecture
 
-​```mermaid
+```mermaid
 flowchart TD
     A[GitHub Actions] -->|scheduled/manual trigger| B[sync.py]
     B --> C[LeetCode GraphQL API]
