@@ -580,6 +580,82 @@ This allows solutions to remain unchanged while documentation, complexity analys
 ---
 
 <details>
+<summary>Design Decisions</summary>
+
+## Why Separate Notes From Solutions?
+
+**Decision:** Solution code and personal documentation are stored in separate layers rather than as comments inside the submission itself.
+
+- `*.sql` files — the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
+- `leetcode_notes.json` — personal hints, explanations, and complexity notes
+- `leetcode_meta.json` — generated repository metadata
+
+**Why:** A common approach is writing notes directly into the LeetCode submission before solving. This project deliberately avoids that, so documentation can keep improving after a problem is solved without ever touching the original, already-submitted code - and so future automated analysis (complexity detection, pattern tagging, AI-assisted explanations — see [Incoming Features](#incoming-features)) has a clean layer to build on rather than parsing free-text comments out of code.
+
+**Trade-off:** This adds a synchronization step — notes have to be correctly matched back to their solution file on every run — rather than the simpler (but less durable) approach of just editing the submission comment directly.
+
+## Repository as the Source of Truth
+
+**Decision:** The repository's own files are treated as ground truth, not the LeetCode API.
+
+**Why:** Statistics are computed by counting existing `.sql` files on disk rather than trusting a running counter or re-querying the API. If LeetCode's API changes or synchronization temporarily breaks, the repository stays accurate and functional on its own.
+
+**Trade-off:** Solution filenames are derived from the problem title, while metadata/notes are keyed by LeetCode's slug. These are expected to match but aren't strictly guaranteed to — a known constraint to keep in mind if problem titles ever contain unusual formatting.
+
+## Credential Security
+
+**Decision:** Authentication is handled entirely through GitHub Actions Secrets, never committed to source control.
+
+**Why:** `LEETCODE_SESSION` and `LEETCODE_USERNAME` are injected as environment variables at runtime. Keeping credentials out of the repository entirely removes an entire class of accidental-exposure risk (no history to scrub, nothing to `.gitignore` correctly, nothing to accidentally push).
+
+## Minimizing Unnecessary Repository Changes
+
+**Decision:** Files are only written when their content actually changes.
+
+**Why:** Generated output is diffed against the existing file before any write. This keeps the commit history meaningful (a commit means something actually changed), avoids triggering unnecessary downstream GitHub Actions runs, and reduces disk I/O on every sync.
+
+</details>
+
+---
+
+<details>
+<summary>Example Output</summary>
+
+## Example: Generated Solution File
+
+`leetcode/easy/find-users-with-valid-e-mails.sql`
+
+​```sql
+-- Find Users With Valid E-Mails
+-- https://leetcode.com/problems/find-users-with-valid-e-mails
+-- difficulty: easy
+-- first_seen: 2026-08-01 20:11:01 EDT
+-- runtime: 744ms
+
+/*
+Notes:
+Hint: use regexp_like to get case sensitivity for the suffix, or use an extra
+like binary. Watch out for the period in the suffix, which is a wildcard, so
+put it in square brackets. [TC: O(N), 1 pass]
+*/
+
+select *
+from Users u
+where regexp_like(u.mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$', 'c')
+​```
+
+Every field above is generated automatically by `sync.py`: the header
+(title, URL, difficulty, timestamp, runtime) and the code are written by
+the sync engine on each run. The `Notes` block is the one exception — it's
+independently maintained in `leetcode_notes.json` and re-injected into the
+file without touching the surrounding code or header, so documentation can
+keep improving without ever risking the submitted solution itself.
+
+</details>
+
+---
+
+<details>
 <summary>Setup Guide</summary>
 
 ## Installation
@@ -798,60 +874,6 @@ along with updated:
 - Solution counts are calculated from existing `.sql` files.
 - `leetcode_stats.json` is updated.
 - README statistics are automatically regenerated.
-
-</details>
-
----
-
-<details>
-<summary>Design Decisions</summary>
-
-## Why Separate Notes From Solutions?
-
-A common approach is to write comments directly into a LeetCode submission before submitting. This project intentionally takes a different approach.
-
-Solutions and documentation are separated into different layers:
-
-- `*.sql` files -> Store the actual submitted solution code and generated metadata.
-- `leetcode_notes.json` -> Stores personal explanations, hints, complexity analysis, and future annotations.
-- `leetcode_meta.json` -> Stores generated repository metadata such as timestamps.
-
-This design allows documentation to improve over time without changing the original solution. It also makes future features possible, such as:
-
-- Automatic time and space complexity analysis
-- SQL pattern detection (JOIN, CTE, Window Functions, etc.)
-- Solution tagging
-- AI-assisted explanations
-- Web-based solution browsing
-
-The goal is not just to archive solved problems, but to build a system that can continue improving and analyzing solutions after they are created.
-
-## Repository as the Source of Truth
-
-The repository files are treated as the primary source of truth.
-
-Solution statistics are generated from existing `.sql` files rather than relying only on external API data.
-
-This allows the repository to remain functional even if API availability changes or synchronization is temporarily unavailable.
-
-## Credential Security
-
-Authentication credentials are handled through GitHub Actions Secrets rather than being stored inside the repository.
-
-Sensitive information such as `LEETCODE_SESSION` is never committed to source control.
-
-This keeps authentication data separate from the project code and reduces the risk of accidental exposure.
-
-## Minimizing Unnecessary Repository Changes
-
-The synchronization system compares generated files against existing files before writing updates.
-
-Files are only modified when actual changes occur.
-
-This helps:
-- Keep commit history cleaner
-- Avoid unnecessary GitHub Actions executions
-- Reduce redundant file operations
 
 </details>
 
