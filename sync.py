@@ -488,7 +488,7 @@ readme = f"""# CodeAtlas
 
 ![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
-![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-black)
+![GitHub Actions](https://github.com/Cir9no-0001/CodeAtlas/actions/workflows/leetcode.yml/badge.svg)
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
@@ -504,6 +504,26 @@ Last updated: {stats["last_updated"]}
 | Medium | {stats["medium"]} |
 | Hard | {stats["hard"]} |
 | **Total** | **{stats["total"]}** |
+
+---
+
+## Table of Contents
+
+- [Statistics](#statistics)
+- [Project Overview](#project-overview)
+  - [What is this?](#what-is-this)
+  - [Tech Stack](#tech-stack)
+  - [Key Features](#key-features)
+  - [Why was this built?](#why-was-this-built)
+- [Design Decisions](#design-decisions)
+- [Example Output](#example-output)
+- [Setup Guide](#setup-guide)
+- [Repository Structure](#repository-structure)
+- [How It Works](#how-it-works)
+- [Implemented Features](#implemented-features)
+- [Incoming Features](#incoming-features)
+- [Limitations / Known Issues](#limitations--known-issues)
+- [License](#license)
 
 ---
 
@@ -1004,6 +1024,12 @@ However:
 
 - Deleted solutions outside the API retrieval window cannot be automatically recovered.
 - Manual edits to metadata files may not be recoverable.
+
+---
+
+## License
+
+© 2026 [Your Name/GitHub handle]. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
 
 </details>
 """
