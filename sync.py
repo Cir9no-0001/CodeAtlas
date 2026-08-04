@@ -853,7 +853,7 @@ flowchart TD
     E --> G[Metadata & notes JSON]
     F --> H[README generation]
     G --> H
-​```
+```
 
 ## Workflow
 
