@@ -8,7 +8,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-04 00:28:49 EDT
+Last updated: 2026-08-04 00:35:27 EDT
 
 ---
 
@@ -541,10 +541,11 @@ However:
 - Deleted solutions outside the API retrieval window cannot be automatically recovered.
 - Manual edits to metadata files may not be recoverable.
 
+</details>
+
 ---
 
 ## License
 
 © 2026 [Your Name/GitHub handle]. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
 
-</details>
