@@ -4,11 +4,11 @@
 
 ![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
-![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-black)
+![GitHub Actions](https://github.com/Cir9no-0001/CodeAtlas/actions/workflows/leetcode.yml/badge.svg)
 
-> An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GH Actions.
+> An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-04 00:18:34 EDT
+Last updated: 2026-08-04 00:28:49 EDT
 
 ---
 
@@ -20,6 +20,26 @@ Last updated: 2026-08-04 00:18:34 EDT
 | Medium | 26 |
 | Hard | 2 |
 | **Total** | **65** |
+
+---
+
+## Table of Contents
+
+- [Statistics](#statistics)
+- [Project Overview](#project-overview)
+  - [What is this?](#what-is-this)
+  - [Tech Stack](#tech-stack)
+  - [Key Features](#key-features)
+  - [Why was this built?](#why-was-this-built)
+- [Design Decisions](#design-decisions)
+- [Example Output](#example-output)
+- [Setup Guide](#setup-guide)
+- [Repository Structure](#repository-structure)
+- [How It Works](#how-it-works)
+- [Implemented Features](#implemented-features)
+- [Incoming Features](#incoming-features)
+- [Limitations / Known Issues](#limitations--known-issues)
+- [License](#license)
 
 ---
 
@@ -158,7 +178,7 @@ put it in square brackets. [TC: O(N), 1 pass]
 select *
 from Users u
 where regexp_like(u.mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$', 'c')
-​```
+```
 
 Every field above is generated automatically by `sync.py`: the header
 (title, URL, difficulty, timestamp, runtime) and the code are written by
@@ -520,5 +540,11 @@ However:
 
 - Deleted solutions outside the API retrieval window cannot be automatically recovered.
 - Manual edits to metadata files may not be recoverable.
+
+---
+
+## License
+
+© 2026 [Your Name/GitHub handle]. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
 
 </details>
