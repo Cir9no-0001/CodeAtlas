@@ -496,7 +496,7 @@ Last updated: {stats["last_updated"]}
 
 ---
 
-# Progress Statistics
+# Statistics
 
 | Difficulty | Count |
 |---|---:|
@@ -601,6 +601,7 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 <details>
 <summary>Design Decisions</summary>
+<a name="design-decisions"></a>
 
 ## Why Separate Notes From Solutions?
 
@@ -640,6 +641,7 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 <details>
 <summary>Example Output</summary>
+<a name="example-output"></a>
 
 ## Example: Generated Solution File
 
@@ -677,6 +679,7 @@ keep improving without ever risking the submitted solution itself.
 
 <details>
 <summary>Setup Guide</summary>
+<a name="setup-guide"></a>
 
 ## Installation
 
@@ -810,6 +813,7 @@ along with updated:
 
 <details>
 <summary>Repository Structure</summary>
+<a name="repository-structure"></a>
 
     .
     ├── sync.py
@@ -834,6 +838,7 @@ along with updated:
 
 <details>
 <summary>How It Works</summary>
+<a name="how-it-works"></a>
 
 ## Workflow
 
@@ -901,6 +906,7 @@ along with updated:
 
 <details>
 <summary>Implemented Features</summary>
+<a name="implemented-features"></a>
 
 ## Automation & CI/CD
 
@@ -953,6 +959,7 @@ along with updated:
 
 <details>
 <summary>Incoming Features</summary>
+<a name="incoming-features"></a>
 
 ## Automated Analysis Features
 
@@ -998,6 +1005,7 @@ along with updated:
 
 <details>
 <summary>Limitations / Known Issues</summary>
+<a name="limitations--known-issues"></a>
 
 ## API Limitations
 
@@ -1031,7 +1039,7 @@ However:
 
 ## License
 
-© 2026 [Your Name/GitHub handle]. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
+© 2026 Stanley Chen. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
 
 """
 
