@@ -1025,13 +1025,14 @@ However:
 - Deleted solutions outside the API retrieval window cannot be automatically recovered.
 - Manual edits to metadata files may not be recoverable.
 
+</details>
+
 ---
 
 ## License
 
 © 2026 [Your Name/GitHub handle]. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
 
-</details>
 """
 
 with open("README.md", "w", encoding="utf-8") as f:
