@@ -840,6 +840,21 @@ along with updated:
 <summary>How It Works</summary>
 <a name="how-it-works"></a>
 
+## Architecture
+
+​```mermaid
+flowchart TD
+    A[GitHub Actions] -->|scheduled/manual trigger| B[sync.py]
+    B --> C[LeetCode GraphQL API]
+    B --> D[Local repository]
+    C --> E[Submission processing]
+    D --> E
+    E --> F[Solution files .sql]
+    E --> G[Metadata & notes JSON]
+    F --> H[README generation]
+    G --> H
+​```
+
 ## Workflow
 
 1. **Automation**
