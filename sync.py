@@ -496,7 +496,7 @@ Last updated: {stats["last_updated"]}
 
 ---
 
-# My Progress Statistics
+# Progress Statistics
 
 | Difficulty | Count |
 |---|---:|
@@ -526,22 +526,32 @@ Currently focused on SQL solutions, this project automatically:
 
 The long-term goal is to transform a simple solution archive into a continuously improving platform for analyzing, organizing, and exploring programming solutions.
 
-# Key Features
+## Tech Stack
 
-## Automated Synchronization
+- **Language:** Python 3.12
+- **API Integration:** LeetCode GraphQL API
+- **CI/CD:** GitHub Actions (scheduled + manual workflow dispatch)
+- **Data Persistence:** JSON (metadata, notes, statistics)
+- **Dependencies:** `requests`
+- **Standard Library:** `zoneinfo` (timezone-aware timestamps), `re` (filename normalization), `json`, `os`
+- **Version Control Automation:** Git (automated commits via GitHub Actions bot identity)
+
+## Key Features
+
+### Automated Synchronization
 
 - Automatically retrieves accepted LeetCode submissions
 - Generates organized solution files
 - Runs through GitHub Actions
 - No manual copying required
 
-## Documentation System
+### Documentation System
 
 - Personal notes stored separately
 - Notes automatically injected into solutions
 - Preserves original submission code
 
-## Repository Management
+### Repository Management
 
 - Automatic statistics generation
 - Metadata tracking
@@ -567,16 +577,6 @@ Over time, it evolved into a larger system focused on separating:
     
 This allows solutions to remain unchanged while documentation, complexity analysis, tagging, and other features can continue improving after the solution is created.
 
-## Design Philosophy
-
-Solutions and documentation are intentionally separated.
-
-- Solution files store submitted code and generated metadata.
-- `leetcode_notes.json` stores manually written explanations, hints, and future annotations.
-- `leetcode_meta.json` stores generated repository metadata such as first detected timestamps.
-
-This design allows the repository to evolve beyond a simple collection of solutions while preserving the original code.
-
 ---
 
 <details>
@@ -587,8 +587,8 @@ This design allows the repository to evolve beyond a simple collection of soluti
 Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/Cir9no-0001/CodeAtlas
+cd CodeAtlas
 ```
 
 ## Requirements
@@ -982,18 +982,6 @@ However:
 
 - Deleted solutions outside the API retrieval window cannot be automatically recovered.
 - Manual edits to metadata files may not be recoverable.
-
-</details>
-
----
-
-<details>
-<summary>Author Notes</summary>
-
-- The hints are the notes btw :>
-- Repo is based on my alt: leetcode.com/u/C1rn0_Fum0/
-- Repo meant for SQL LeetCode questions until language recognition is implemented; did two sum by accident, pls ignore for now!
-- Lmk if my questions solved counter ever breaks!
 
 </details>
 """
