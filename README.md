@@ -8,7 +8,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-04 01:49:14 EDT
+Last updated: 2026-08-04 02:56:55 EDT
 
 ---
 
@@ -102,7 +102,7 @@ Developers build projects, learn new technologies, and solve problems, but the e
 
 CodeAtlas was created to solve this problem by automatically capturing progress, organizing solutions, and preserving the reasoning behind the code.
 
-This project started as a 3:00 AM SYDEquest on a scuffed idea to automatically save and organize my LeetCode SQL progress without having to maintain files manually.
+This project started as a 3:00 AM SYDEquest from a Python API-handling tutorial hell on a scuffed idea to automatically save and organize my LeetCode SQL progress without having to maintain files manually.
 
 Over time, it evolved into a larger system focused on separating:
 
@@ -570,5 +570,10 @@ However:
 
 ## License
 
-© 2026 Stanley Chen. All rights reserved. This project is not licensed for reuse, modification, or distribution without permission.
+This project is source-available but **not open source**. Copyright (c)
+2026 Stanley Chen — All Rights Reserved.
 
+You may clone, fork, and run this project locally for personal, non-commercial
+evaluation, testing, and code review. Commercial use, redistribution,
+hosting as a service, and incorporation into other projects are not
+permitted. See [LICENSE](LICENSE) for the full terms.
