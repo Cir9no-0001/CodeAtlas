@@ -586,7 +586,7 @@ Developers build projects, learn new technologies, and solve problems, but the e
 
 CodeAtlas was created to solve this problem by automatically capturing progress, organizing solutions, and preserving the reasoning behind the code.
 
-This project started as a 3:00 AM SYDEquest on a scuffed idea to automatically save and organize my LeetCode SQL progress without having to maintain files manually.
+This project started as a 3:00 AM SYDEquest from a Python API-handling tutorial hell on a scuffed idea to automatically save and organize my LeetCode SQL progress without having to maintain files manually.
 
 Over time, it evolved into a larger system focused on separating:
 
