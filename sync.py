@@ -490,7 +490,7 @@ readme = f"""# CodeAtlas
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-black)
 
-> An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GH Actions.
+> An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
 Last updated: {stats["last_updated"]}
 
@@ -642,7 +642,7 @@ put it in square brackets. [TC: O(N), 1 pass]
 select *
 from Users u
 where regexp_like(u.mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$', 'c')
-​```
+```
 
 Every field above is generated automatically by `sync.py`: the header
 (title, URL, difficulty, timestamp, runtime) and the code are written by
