@@ -6,7 +6,8 @@
 
 /*
 Notes:
-
+Hint: split each name into head and tail using substring, uppercase the head, lowercase
+the tail, then concat both for the correct name format. [TC: O(NlogN), 1 pass]
 */
 
 
