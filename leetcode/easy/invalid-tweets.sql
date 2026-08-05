@@ -6,7 +6,8 @@
 
 /*
 Notes:
-
+Hint: filter for tweet ids where the length of content is greater than 15, literally.
+[TC: O(N), 1 pass]
 */
 
 
