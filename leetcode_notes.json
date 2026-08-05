@@ -198,6 +198,6 @@
     "notes": "Hint: split each name into head and tail using substring, uppercase the head, lowercase the tail, then concat both for the correct name format. [TC: O(NlogN), 1 pass]"
   },
   "invalid-tweets": {
-    "notes": ""
+    "notes": "Hint: filter for tweet ids where the length of content is greater than 15, literally. [TC: O(N), 1 pass]"
   }
 }
