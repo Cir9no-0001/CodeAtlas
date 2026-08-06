@@ -6,7 +6,7 @@
 
 /*
 Notes:
-
+Hint: remember to group by both name and date. [TC: O(NlogN), 2 passes]
 */
 
 
