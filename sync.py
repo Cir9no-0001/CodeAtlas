@@ -607,11 +607,11 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 **Decision:** Solution code and personal documentation are stored in separate layers rather than as comments inside the submission itself.
 
-- `*.sql` files — the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
-- `leetcode_notes.json` — personal hints, explanations, and complexity notes
-- `leetcode_meta.json` — generated repository metadata
+- `*.sql` files - the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
+- `leetcode_notes.json` - personal hints, explanations, and complexity notes
+- `leetcode_meta.json` - generated repository metadata
 
-**Why:** A common approach is writing notes directly into the LeetCode submission before solving. This project deliberately avoids that, so documentation can keep improving after a problem is solved without ever touching the original, already-submitted code - and so future automated analysis (complexity detection, pattern tagging, AI-assisted explanations — see [Incoming Features](#incoming-features)) has a clean layer to build on rather than parsing free-text comments out of code.
+**Why:** A common approach is writing notes directly into the LeetCode submission before solving. This project deliberately avoids that, so documentation can keep improving after a problem is solved without ever touching the original, already-submitted code - and so future automated analysis (complexity detection, pattern tagging, AI-assisted explanations - see [Incoming Features](#incoming-features)) has a clean layer to build on rather than parsing free-text comments out of code.
 
 **Trade-off:** This adds a synchronization step where notes have to be correctly matched back to their solution file on every run, rather than using the simpler but less durable approach of directly editing the submission comment.
 
