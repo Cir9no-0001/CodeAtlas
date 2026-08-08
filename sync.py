@@ -482,7 +482,12 @@ with open(NOTES_FILE, "w", encoding="utf-8") as f:
 with open("leetcode_stats.json", "w", encoding="utf-8") as f:
     json.dump(stats, f, indent=2)
 
-readme = f"""# CodeAtlas 
+readme = f"""
+# CodeAtlas 
+
+<p align="center">
+  <img src="CodeAtlas-1.png" width="100%">
+</p>
 
 **Status:** Pre-Alpha Testing
 
