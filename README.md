@@ -1,4 +1,9 @@
+
 # CodeAtlas 
+
+<p align="center">
+  <img src="CodeAtlas-1.png" width="100%">
+</p>
 
 **Status:** Pre-Alpha Testing
 
@@ -8,7 +13,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-08 16:10:06 EDT
+Last updated: 2026-08-08 19:48:25 EDT
 
 ---
 
@@ -123,13 +128,13 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 **Decision:** Solution code and personal documentation are stored in separate layers rather than as comments inside the submission itself.
 
-- `*.sql` files — the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
-- `leetcode_notes.json` — personal hints, explanations, and complexity notes
-- `leetcode_meta.json` — generated repository metadata
+- `*.sql` files - the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
+- `leetcode_notes.json` - personal hints, explanations, and complexity notes
+- `leetcode_meta.json` - generated repository metadata
 
-**Why:** A common approach is writing notes directly into the LeetCode submission before solving. This project deliberately avoids that, so documentation can keep improving after a problem is solved without ever touching the original, already-submitted code - and so future automated analysis (complexity detection, pattern tagging, AI-assisted explanations — see [Incoming Features](#incoming-features)) has a clean layer to build on rather than parsing free-text comments out of code.
+**Why:** A common approach is writing notes directly into the LeetCode submission before solving. This project deliberately avoids that, so documentation can keep improving after a problem is solved without ever touching the original, already-submitted code - and so future automated analysis (complexity detection, pattern tagging, AI-assisted explanations - see [Incoming Features](#incoming-features)) has a clean layer to build on rather than parsing free-text comments out of code.
 
-**Trade-off:** This adds a synchronization step — notes have to be correctly matched back to their solution file on every run — rather than the simpler (but less durable) approach of just editing the submission comment directly.
+**Trade-off:** This adds a synchronization step where notes have to be correctly matched back to their solution file on every run, rather than using the simpler but less durable approach of directly editing the submission comment.
 
 ## Repository as the Source of Truth
 
@@ -137,7 +142,7 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 **Why:** Statistics are computed by counting existing `.sql` files on disk rather than trusting a running counter or re-querying the API. If LeetCode's API changes or synchronization temporarily breaks, the repository stays accurate and functional on its own.
 
-**Trade-off:** Solution filenames are derived from the problem title, while metadata/notes are keyed by LeetCode's slug. These are expected to match but aren't strictly guaranteed to — a known constraint to keep in mind if problem titles ever contain unusual formatting.
+**Trade-off:** Solution filenames are derived from the problem title, while metadata/notes are keyed by LeetCode's slug. These are expected to match but aren't strictly guaranteed to, a known constraint to keep in mind if problem titles ever contain unusual formatting.
 
 ## Credential Security
 
@@ -184,7 +189,7 @@ where regexp_like(u.mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$', 'c')
 
 Every field above is generated automatically by `sync.py`: the header
 (title, URL, difficulty, timestamp, runtime) and the code are written by
-the sync engine on each run. The `Notes` block is the one exception — it's
+the sync engine on each run. The `Notes` block is the one exception as it's
 independently maintained in `leetcode_notes.json` and re-injected into the
 file without touching the surrounding code or header, so documentation can
 keep improving without ever risking the submitted solution itself.
