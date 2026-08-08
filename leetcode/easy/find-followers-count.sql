@@ -6,7 +6,8 @@
 
 /*
 Notes:
-
+Hint: group by user IDs, then count the distinct follower IDs per user ID. [TC: O(NlogN),
+2 passes]
 */
 
 
