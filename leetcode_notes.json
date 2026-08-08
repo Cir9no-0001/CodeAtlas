@@ -204,6 +204,6 @@
     "notes": "Hint: remember to group by both name and date. [TC: O(NlogN), 2 passes]"
   },
   "find-followers-count": {
-    "notes": ""
+    "notes": "Hint: group by user IDs, then count the distinct follower IDs per user ID. [TC: O(NlogN), 2 passes]"
   }
 }
