@@ -6,7 +6,10 @@
 
 /*
 Notes:
-
+Hint: treat the reports_to column as the main column then filter out null values, then
+self-join to get the manager's name instead of the employee's name, then group by this
+pair. The rest of the problem is basic math, but don't forget to round the average_age to
+the nearest integer and order by reports_to. [TC: O(NLogN), 2 passes?]
 */
 
 
