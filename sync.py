@@ -446,7 +446,7 @@ for submission in subs:
         exist_ok=True
     )
 
-    path = f"{folder}/{clean(title)}.sql"
+    path = f"{folder}/{clean(title)}{meta[slug]['file_extension']}"
 
 
     content = [
