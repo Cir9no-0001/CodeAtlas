@@ -13,7 +13,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-12 18:48:49 EDT
+Last updated: 2026-08-12 18:51:54 EDT
 
 ---
 
@@ -21,10 +21,10 @@ Last updated: 2026-08-12 18:48:49 EDT
 
 | Difficulty | Count |
 |---|---:|
-| Easy | 44 |
+| Easy | 43 |
 | Medium | 26 |
 | Hard | 2 |
-| **Total** | **72** |
+| **Total** | **71** |
 
 ---
 
