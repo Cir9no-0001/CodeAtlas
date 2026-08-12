@@ -53,6 +53,44 @@ def clean(name):
         .strip("-")
     )
 
+def language_to_extension(language):
+
+    language_extensions = {
+        "python": ".py",
+        "python2": ".py",
+        "python3": ".py",
+
+        "mysql": ".sql",
+        "mssql": ".sql",
+        "oracle": ".sql",
+        "postgresql": ".sql",
+
+        "cpp": ".cpp",
+        "c": ".c",
+        "java": ".java",
+        "csharp": ".cs",
+        "javascript": ".js",
+        "typescript": ".ts",
+        "kotlin": ".kt",
+        "swift": ".swift",
+        "golang": ".go",
+        "rust": ".rs",
+        "php": ".php",
+        "ruby": ".rb",
+        "scala": ".scala",
+        "dart": ".dart",
+        "racket": ".rkt",
+        "erlang": ".erl",
+        "elixir": ".ex",
+        "bash": ".sh",
+        "groovy": ".groovy",
+        "lua": ".lua",
+        "perl": ".pl",
+        "clojure": ".clj",
+        "haskell": ".hs"
+    }
+
+    return language_extensions.get(language)
 
 def repair_notes_json():
 
@@ -385,7 +423,10 @@ for submission in subs:
 
     if slug not in meta:
         meta[slug] = {
-            "first_seen": now()
+            "first_seen": now(),
+            "file_extension": language_to_extension(
+                submission["lang"]
+            )
         }
 
     if slug not in notes:
