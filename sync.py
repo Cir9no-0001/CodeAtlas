@@ -92,6 +92,28 @@ def language_to_extension(language):
 
     return language_extensions.get(language)
 
+def add_missing_file_extensions():
+
+    print("\nChecking missing file extensions...")
+
+    added = 0
+
+    for slug in meta:
+
+        if "file_extension" not in meta[slug]:
+
+            meta[slug]["file_extension"] = ".sql"
+
+            print("Added .sql file extension:", slug)
+            added += 1
+
+    if added == 0:
+        print("All metadata entries already have file extensions.")
+
+    else:
+        print(f"Added file extensions to {added} metadata entries.")
+        
+
 def repair_notes_json():
 
     print("\nChecking missing notes entries...")
@@ -399,7 +421,10 @@ def update_notes_in_files():
 
         if not found:
             print("SQL file not found:", slug)
-            
+
+
+add_missing_file_extensions()
+
 for submission in subs:
 
     title = submission["title"]
