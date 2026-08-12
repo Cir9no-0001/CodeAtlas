@@ -6,7 +6,7 @@
 
 /*
 Notes:
-
+Hint: brain-dead math question; just group and do math. [TC: O(NLogN), 2 passes]
 */
 
 
