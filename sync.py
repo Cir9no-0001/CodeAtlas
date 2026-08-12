@@ -322,6 +322,60 @@ def get_submission(slug):
         "runtime": result.get("runtime")
     }
 
+def validate_file_extensions():
+
+    print("\nChecking file extensions...")
+
+    mismatches = 0
+
+    for slug, data in meta.items():
+
+        expected_extension = data.get("file_extension")
+
+        if not expected_extension:
+            print("Missing file extension metadata:", slug)
+            continue
+
+        found_file = None
+
+        for difficulty in ["easy", "medium", "hard"]:
+
+            folder = f"leetcode/{difficulty}"
+
+            if not os.path.exists(folder):
+                continue
+
+            for file in os.listdir(folder):
+
+                filename_without_extension, extension = os.path.splitext(file)
+
+                if filename_without_extension == slug:
+                    found_file = os.path.join(folder, file)
+                    actual_extension = extension
+                    break
+
+            if found_file:
+                break
+
+        if not found_file:
+            continue
+
+        if actual_extension != expected_extension:
+
+            print(
+                f"Extension mismatch: {found_file} "
+                f"(expected {expected_extension}, "
+                f"found {actual_extension})"
+            )
+
+            mismatches += 1
+
+    if mismatches == 0:
+        print("All existing file extensions match metadata.")
+
+    else:
+        print(f"Found {mismatches} extension mismatch(es).")
+
 def update_notes_in_files():
 
     print("\nUpdating notes from leetcode_notes.json...")
@@ -404,6 +458,7 @@ def update_notes_in_files():
         if not found:
             print("SQL file not found:", slug)
 
+validate_file_extensions()
 
 for submission in subs:
 
