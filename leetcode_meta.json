@@ -290,5 +290,9 @@
   "palindrome-number": {
     "first_seen": "2026-08-12 18:40:14 EDT",
     "file_extension": ".py"
+  },
+  "roman-to-integer": {
+    "first_seen": "2026-08-12 19:00:31 EDT",
+    "file_extension": ".java"
   }
 }

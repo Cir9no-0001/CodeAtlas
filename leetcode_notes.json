@@ -217,5 +217,8 @@
   },
   "palindrome-number": {
     "notes": ""
+  },
+  "roman-to-integer": {
+    "notes": ""
   }
 }
