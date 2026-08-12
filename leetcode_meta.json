@@ -1,216 +1,287 @@
 {
   "nth-highest-salary": {
-    "first_seen": "2026-07-05 20:39:59 EDT"
+    "first_seen": "2026-07-05 20:39:59 EDT",
+    "file_extension": ".sql"
   },
   "second-highest-salary": {
-    "first_seen": "2026-07-05 20:40:00 EDT"
+    "first_seen": "2026-07-05 20:40:00 EDT",
+    "file_extension": ".sql"
   },
   "classes-with-at-least-5-students": {
-    "first_seen": "2026-07-05 20:40:00 EDT"
+    "first_seen": "2026-07-05 20:40:00 EDT",
+    "file_extension": ".sql"
   },
   "big-countries": {
-    "first_seen": "2026-07-05 20:40:01 EDT"
+    "first_seen": "2026-07-05 20:40:01 EDT",
+    "file_extension": ".sql"
   },
   "customer-placing-the-largest-number-of-orders": {
-    "first_seen": "2026-07-05 20:40:01 EDT"
+    "first_seen": "2026-07-05 20:40:01 EDT",
+    "file_extension": ".sql"
   },
   "find-customer-referee": {
-    "first_seen": "2026-07-05 20:40:02 EDT"
+    "first_seen": "2026-07-05 20:40:02 EDT",
+    "file_extension": ".sql"
   },
   "employee-bonus": {
-    "first_seen": "2026-07-05 20:40:03 EDT"
+    "first_seen": "2026-07-05 20:40:03 EDT",
+    "file_extension": ".sql"
   },
   "game-play-analysis-i": {
-    "first_seen": "2026-07-05 20:40:03 EDT"
+    "first_seen": "2026-07-05 20:40:03 EDT",
+    "file_extension": ".sql"
   },
   "rising-temperature": {
-    "first_seen": "2026-07-05 20:40:05 EDT"
+    "first_seen": "2026-07-05 20:40:05 EDT",
+    "file_extension": ".sql"
   },
   "delete-duplicate-emails": {
-    "first_seen": "2026-07-05 20:40:05 EDT"
+    "first_seen": "2026-07-05 20:40:05 EDT",
+    "file_extension": ".sql"
   },
   "customers-who-never-order": {
-    "first_seen": "2026-07-05 20:40:06 EDT"
+    "first_seen": "2026-07-05 20:40:06 EDT",
+    "file_extension": ".sql"
   },
   "duplicate-emails": {
-    "first_seen": "2026-07-05 20:40:06 EDT"
+    "first_seen": "2026-07-05 20:40:06 EDT",
+    "file_extension": ".sql"
   },
   "employees-earning-more-than-their-managers": {
-    "first_seen": "2026-07-05 20:40:07 EDT"
+    "first_seen": "2026-07-05 20:40:07 EDT",
+    "file_extension": ".sql"
   },
   "combine-two-tables": {
-    "first_seen": "2026-07-05 20:40:08 EDT"
+    "first_seen": "2026-07-05 20:40:08 EDT",
+    "file_extension": ".sql"
   },
   "rank-scores": {
-    "first_seen": "2026-07-05 20:53:53 EDT"
+    "first_seen": "2026-07-05 20:53:53 EDT",
+    "file_extension": ".sql"
   },
   "department-highest-salary": {
-    "first_seen": "2026-07-05 22:27:45 EDT"
+    "first_seen": "2026-07-05 22:27:45 EDT",
+    "file_extension": ".sql"
   },
   "consecutive-numbers": {
-    "first_seen": "2026-07-08 02:38:05 EDT"
+    "first_seen": "2026-07-08 02:38:05 EDT",
+    "file_extension": ".sql"
   },
   "department-top-three-salaries": {
-    "first_seen": "2026-07-08 02:38:05 EDT"
+    "first_seen": "2026-07-08 02:38:05 EDT",
+    "file_extension": ".sql"
   },
   "swap-sex-of-employees": {
-    "first_seen": "2026-07-08 02:38:06 EDT"
+    "first_seen": "2026-07-08 02:38:06 EDT",
+    "file_extension": ".sql"
   },
   "sales-person": {
-    "first_seen": "2026-07-08 02:38:07 EDT"
+    "first_seen": "2026-07-08 02:38:07 EDT",
+    "file_extension": ".sql"
   },
   "triangle-judgement": {
-    "first_seen": "2026-07-08 03:16:17 EDT"
+    "first_seen": "2026-07-08 03:16:17 EDT",
+    "file_extension": ".sql"
   },
   "two-sum": {
-    "first_seen": "2026-07-08 03:23:37 EDT"
+    "first_seen": "2026-07-08 03:23:37 EDT",
+    "file_extension": ".sql"
   },
   "not-boring-movies": {
-    "first_seen": "2026-07-08 04:30:18 EDT"
+    "first_seen": "2026-07-08 04:30:18 EDT",
+    "file_extension": ".sql"
   },
   "actors-and-directors-who-cooperated-at-least-three-times": {
-    "first_seen": "2026-07-09 02:31:14 EDT"
+    "first_seen": "2026-07-09 02:31:14 EDT",
+    "file_extension": ".sql"
   },
   "biggest-single-number": {
-    "first_seen": "2026-07-09 04:53:51 EDT"
+    "first_seen": "2026-07-09 04:53:51 EDT",
+    "file_extension": ".sql"
   },
   "managers-with-at-least-5-direct-reports": {
-    "first_seen": "2026-07-09 05:18:24 EDT"
+    "first_seen": "2026-07-09 05:18:24 EDT",
+    "file_extension": ".sql"
   },
   "game-play-analysis-iv": {
-    "first_seen": "2026-07-09 21:20:34 EDT"
+    "first_seen": "2026-07-09 21:20:34 EDT",
+    "file_extension": ".sql"
   },
   "investments-in-2016": {
-    "first_seen": "2026-07-10 00:31:24 EDT"
+    "first_seen": "2026-07-10 00:31:24 EDT",
+    "file_extension": ".sql"
   },
   "product-sales-analysis-i": {
-    "first_seen": "2026-07-10 00:35:07 EDT"
+    "first_seen": "2026-07-10 00:35:07 EDT",
+    "file_extension": ".sql"
   },
   "project-employees-i": {
-    "first_seen": "2026-07-10 01:50:51 EDT"
+    "first_seen": "2026-07-10 01:50:51 EDT",
+    "file_extension": ".sql"
   },
   "sales-analysis-iii": {
-    "first_seen": "2026-07-10 06:49:35 EDT"
+    "first_seen": "2026-07-10 06:49:35 EDT",
+    "file_extension": ".sql"
   },
   "user-activity-for-the-past-30-days-i": {
-    "first_seen": "2026-07-11 07:51:00 EDT"
+    "first_seen": "2026-07-11 07:51:00 EDT",
+    "file_extension": ".sql"
   },
   "article-views-i": {
-    "first_seen": "2026-07-11 09:02:16 EDT"
+    "first_seen": "2026-07-11 09:02:16 EDT",
+    "file_extension": ".sql"
   },
   "tree-node": {
-    "first_seen": "2026-07-11 15:33:17 EDT"
+    "first_seen": "2026-07-11 15:33:17 EDT",
+    "file_extension": ".sql"
   },
   "reformat-department-table": {
-    "first_seen": "2026-07-11 23:36:28 EDT"
+    "first_seen": "2026-07-11 23:36:28 EDT",
+    "file_extension": ".sql"
   },
   "students-and-examinations": {
-    "first_seen": "2026-07-12 23:07:02 EDT"
+    "first_seen": "2026-07-12 23:07:02 EDT",
+    "file_extension": ".sql"
   },
   "exchange-seats": {
-    "first_seen": "2026-07-12 23:32:52 EDT"
+    "first_seen": "2026-07-12 23:32:52 EDT",
+    "file_extension": ".sql"
   },
   "customers-who-bought-all-products": {
-    "first_seen": "2026-07-12 23:52:16 EDT"
+    "first_seen": "2026-07-12 23:52:16 EDT",
+    "file_extension": ".sql"
   },
   "product-sales-analysis-iii": {
-    "first_seen": "2026-07-13 17:42:43 EDT"
+    "first_seen": "2026-07-13 17:42:43 EDT",
+    "file_extension": ".sql"
   },
   "product-price-at-a-given-date": {
-    "first_seen": "2026-07-14 11:53:25 EDT"
+    "first_seen": "2026-07-14 11:53:25 EDT",
+    "file_extension": ".sql"
   },
   "market-analysis-i": {
-    "first_seen": "2026-07-14 11:53:25 EDT"
+    "first_seen": "2026-07-14 11:53:25 EDT",
+    "file_extension": ".sql"
   },
   "last-person-to-fit-in-the-bus": {
-    "first_seen": "2026-07-14 14:26:55 EDT"
+    "first_seen": "2026-07-14 14:26:55 EDT",
+    "file_extension": ".sql"
   },
   "immediate-food-delivery-ii": {
-    "first_seen": "2026-07-14 19:39:03 EDT"
+    "first_seen": "2026-07-14 19:39:03 EDT",
+    "file_extension": ".sql"
   },
   "trips-and-users": {
-    "first_seen": "2026-07-15 22:32:48 EDT"
+    "first_seen": "2026-07-15 22:32:48 EDT",
+    "file_extension": ".sql"
   },
   "monthly-transactions-i": {
-    "first_seen": "2026-07-15 23:44:19 EDT"
+    "first_seen": "2026-07-15 23:44:19 EDT",
+    "file_extension": ".sql"
   },
   "queries-quality-and-percentage": {
-    "first_seen": "2026-07-16 23:54:21 EDT"
+    "first_seen": "2026-07-16 23:54:21 EDT",
+    "file_extension": ".sql"
   },
   "restaurant-growth": {
-    "first_seen": "2026-07-18 10:33:02 EDT"
+    "first_seen": "2026-07-18 10:33:02 EDT",
+    "file_extension": ".sql"
   },
   "dna-pattern-recognition": {
-    "first_seen": "2026-07-18 10:56:06 EDT"
+    "first_seen": "2026-07-18 10:56:06 EDT",
+    "file_extension": ".sql"
   },
   "count-salary-categories": {
-    "first_seen": "2026-07-18 15:01:07 EDT"
+    "first_seen": "2026-07-18 15:01:07 EDT",
+    "file_extension": ".sql"
   },
   "list-the-products-ordered-in-a-period": {
-    "first_seen": "2026-07-20 00:03:50 EDT"
+    "first_seen": "2026-07-20 00:03:50 EDT",
+    "file_extension": ".sql"
   },
   "capital-gainloss": {
-    "first_seen": "2026-07-20 05:50:39 EDT"
+    "first_seen": "2026-07-20 05:50:39 EDT",
+    "file_extension": ".sql"
   },
   "replace-employee-id-with-the-unique-identifier": {
-    "first_seen": "2026-07-21 16:38:21 EDT"
+    "first_seen": "2026-07-21 16:38:21 EDT",
+    "file_extension": ".sql"
   },
   "movie-rating": {
-    "first_seen": "2026-07-21 18:15:05 EDT"
+    "first_seen": "2026-07-21 18:15:05 EDT",
+    "file_extension": ".sql"
   },
   "confirmation-rate": {
-    "first_seen": "2026-07-22 21:00:20 EDT"
+    "first_seen": "2026-07-22 21:00:20 EDT",
+    "file_extension": ".sql"
   },
   "group-sold-products-by-the-date": {
-    "first_seen": "2026-07-24 23:20:34 EDT"
+    "first_seen": "2026-07-24 23:20:34 EDT",
+    "file_extension": ".sql"
   },
   "patients-with-a-condition": {
-    "first_seen": "2026-07-25 21:19:42 EDT"
+    "first_seen": "2026-07-25 21:19:42 EDT",
+    "file_extension": ".sql"
   },
   "bank-account-summary-ii": {
-    "first_seen": "2026-07-26 22:35:45 EDT"
+    "first_seen": "2026-07-26 22:35:45 EDT",
+    "file_extension": ".sql"
   },
   "percentage-of-users-attended-a-contest": {
-    "first_seen": "2026-07-27 23:56:04 EDT"
+    "first_seen": "2026-07-27 23:56:04 EDT",
+    "file_extension": ".sql"
   },
   "top-travellers": {
-    "first_seen": "2026-07-28 20:55:59 EDT"
+    "first_seen": "2026-07-28 20:55:59 EDT",
+    "file_extension": ".sql"
   },
   "customer-who-visited-but-did-not-make-any-transactions": {
-    "first_seen": "2026-07-30 03:17:06 EDT"
+    "first_seen": "2026-07-30 03:17:06 EDT",
+    "file_extension": ".sql"
   },
   "odd-and-even-transactions": {
-    "first_seen": "2026-07-30 04:35:57 EDT"
+    "first_seen": "2026-07-30 04:35:57 EDT",
+    "file_extension": ".sql"
   },
   "find-students-who-improved": {
-    "first_seen": "2026-07-31 09:22:35 EDT"
+    "first_seen": "2026-07-31 09:22:35 EDT",
+    "file_extension": ".sql"
   },
   "analyze-subscription-conversion": {
-    "first_seen": "2026-08-01 16:13:07 EDT"
+    "first_seen": "2026-08-01 16:13:07 EDT",
+    "file_extension": ".sql"
   },
   "find-users-with-valid-e-mails": {
-    "first_seen": "2026-08-01 20:11:01 EDT"
+    "first_seen": "2026-08-01 20:11:01 EDT",
+    "file_extension": ".sql"
   },
   "average-time-of-process-per-machine": {
-    "first_seen": "2026-08-02 21:01:18 EDT"
+    "first_seen": "2026-08-02 21:01:18 EDT",
+    "file_extension": ".sql"
   },
   "fix-names-in-a-table": {
-    "first_seen": "2026-08-04 06:02:24 EDT"
+    "first_seen": "2026-08-04 06:02:24 EDT",
+    "file_extension": ".sql"
   },
   "invalid-tweets": {
-    "first_seen": "2026-08-05 10:14:17 EDT"
+    "first_seen": "2026-08-05 10:14:17 EDT",
+    "file_extension": ".sql"
   },
   "daily-leads-and-partners": {
-    "first_seen": "2026-08-06 08:54:21 EDT"
+    "first_seen": "2026-08-06 08:54:21 EDT",
+    "file_extension": ".sql"
   },
   "find-followers-count": {
-    "first_seen": "2026-08-08 16:09:35 EDT"
+    "first_seen": "2026-08-08 16:09:35 EDT",
+    "file_extension": ".sql"
   },
   "the-number-of-employees-which-report-to-each-employee": {
-    "first_seen": "2026-08-10 20:40:20 EDT"
+    "first_seen": "2026-08-10 20:40:20 EDT",
+    "file_extension": ".sql"
   },
   "find-total-time-spent-by-each-employee": {
-    "first_seen": "2026-08-11 15:11:35 EDT"
+    "first_seen": "2026-08-11 15:11:35 EDT",
+    "file_extension": ".sql"
   },
   "employees-with-missing-information": {
     "first_seen": "2026-08-12 18:25:32 EDT",
