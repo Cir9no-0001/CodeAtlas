@@ -769,9 +769,8 @@ for submission in subs:
 
         print("Updated:", title)
 
-update_notes_in_files()
-
 repair_notes_json()
+update_notes_in_files()
 
 stats = {
     "easy": 0,
