@@ -127,13 +127,13 @@ COMMENT_SYNTAX = {
         "multi_end": "*/"
     },
 
-    ".javascript": {
+    ".js": {
         "single": "//",
         "multi_start": "/*",
         "multi_end": "*/"
     },
 
-    ".typescript": {
+    ".ts": {
         "single": "//",
         "multi_start": "/*",
         "multi_end": "*/"
@@ -194,7 +194,7 @@ def repair_notes_json():
             if not file.endswith(".sql"):
                 continue
 
-            slug = file[:-4]   # removes .sql
+            slug = file[:-4]
 
             if slug not in notes:
 
@@ -212,7 +212,7 @@ def repair_notes_json():
     else:
         print(f"Added {added} missing notes entries.")
     
-def format_notes(note_text):
+def format_notes(note_text, file_extension):
 
     max_length = 90
 
@@ -242,12 +242,54 @@ def format_notes(note_text):
         formatted_lines.append("")
 
 
+    comment = COMMENT_SYNTAX.get(file_extension)
+
+    if not comment:
+        raise ValueError(
+            f"Unsupported comment syntax for extension: {file_extension}"
+        )
+    
+    if comment["multi_start"] and comment["multi_end"]:
+    
+        return [
+            comment["multi_start"],
+            "Notes:",
+            *formatted_lines,
+            comment["multi_end"]
+        ]
+    
     return [
-        "/*",
-        "Notes:",
-        *formatted_lines,
-        "*/"
+        comment["single"] + " Notes:",
+        *[
+            comment["single"] + " " + line
+            if line
+            else comment["single"]
+            for line in formatted_lines
+        ]
     ]
+
+def format_header(title, slug, difficulty, first_seen, runtime, file_extension):
+
+    comment = COMMENT_SYNTAX.get(file_extension)
+
+    if not comment:
+        raise ValueError(
+            f"Unsupported comment syntax for extension: {file_extension}"
+        )
+
+    lines = [
+        f"{comment['single']} {title}",
+        f"{comment['single']} https://leetcode.com/problems/{slug}",
+        f"{comment['single']} difficulty: {difficulty}",
+        f"{comment['single']} first_seen: {first_seen}"
+    ]
+
+    if runtime:
+        lines.append(
+            f"{comment['single']} runtime: {runtime}ms"
+        )
+
+    return lines
 
 if os.path.exists(META_FILE):
     with open(META_FILE, "r", encoding="utf-8") as f:
@@ -530,79 +572,115 @@ def update_notes_in_files():
 
         note_text = data.get("notes", "")
 
-        found = False
+        if slug not in meta:
+            print("No metadata found:", slug)
+            continue
+
+        expected_extension = meta[slug].get("file_extension")
+
+        if not expected_extension:
+            print("No file extension metadata:", slug)
+            continue
+
+        found_file = None
 
         for difficulty in ["easy", "medium", "hard"]:
 
-            path = f"leetcode/{difficulty}/{slug}.sql"
+            folder = f"leetcode/{difficulty}"
 
-            if not os.path.exists(path):
+            if not os.path.exists(folder):
                 continue
 
-            found = True
+            expected_filename = f"{slug}{expected_extension}"
+            path = os.path.join(folder, expected_filename)
 
-            with open(path, "r", encoding="utf-8") as f:
-                content = f.read()
+            if os.path.exists(path):
+                found_file = path
+                break
 
-            if "-- Notes:" in content or "/*\nNotes:" in content:
-                if "/*\nNotes:" in content:
+        if not found_file:
+            print("Solution file not found:", slug)
+            continue
 
-                    before_notes = content.split("/*\nNotes:")[0]
-                    notes_index = content.index("/*\nNotes:")
-                
-                    code_start = content.find("*/", notes_index)
-                
-                    if code_start != -1:
-                        code = content[code_start + 2:].lstrip("\n")
-                        code = "\n\n" + code
-                    else:
-                        code = ""
-            
-                else:
-                
-                    before_notes = content.split("-- Notes:")[0]
-                    notes_index = content.index("-- Notes:")
-                
-                    code_start = content.find("\n\n", notes_index)
-                
-                    if code_start != -1:
-                        code = content[code_start:].lstrip("\n")
-                        code = "\n\n" + code
-                    else:
-                        code = ""
+        with open(found_file, "r", encoding="utf-8") as f:
+            content = f.read()
 
-            else:
+        comment = COMMENT_SYNTAX.get(expected_extension)
 
-                lines = content.split("\n")
-                insert_position = 0
+        if not comment:
+            print(
+                f"Unsupported comment syntax: "
+                f"{expected_extension} ({slug})"
+            )
+            continue
 
-                for i, line in enumerate(lines):
-                    if not line.startswith("--"):
-                        insert_position = i
-                        break
+        if comment["multi_start"] in content:
 
-                before_notes = "\n".join(lines[:insert_position]) + "\n"
-                code = "\n".join(lines[insert_position:])
+            before_notes = content.split(
+                comment["multi_start"],
+                1
+            )[0]
 
-            new_content = before_notes
+            notes_index = content.index(
+                comment["multi_start"]
+            )
 
-            for line in format_notes(note_text):
-                new_content += line + "\n"
-            
-            new_content += code
+            code_start = content.find(
+                comment["multi_end"],
+                notes_index
+            )
 
-            if new_content != content:
-                with open(path, "w", encoding="utf-8") as f:
-                    f.write(new_content)
-                print("Updated notes:", path)
+            if code_start != -1:
+
+                code = content[
+                    code_start + len(comment["multi_end"]):
+                ].lstrip("\n")
+
+                code = "\n\n" + code
 
             else:
-                print("Already correct:", path)
+                code = ""
 
-            break
+        else:
 
-        if not found:
-            print("SQL file not found:", slug)
+            lines = content.split("\n")
+
+            insert_position = 0
+
+            for i, line in enumerate(lines):
+
+                if not line.startswith(comment["single"]):
+                    insert_position = i
+                    break
+
+            before_notes = (
+                "\n".join(lines[:insert_position])
+                + "\n"
+            )
+
+            code = "\n".join(
+                lines[insert_position:]
+            )
+
+        new_content = before_notes
+
+        for line in format_notes(
+            note_text,
+            expected_extension
+        ):
+            new_content += line + "\n"
+
+        new_content += code
+
+        if new_content != content:
+
+            with open(found_file, "w", encoding="utf-8") as f:
+                f.write(new_content)
+
+            print("Updated notes:", found_file)
+
+        else:
+            print("Already correct:", found_file)
 
 validate_file_extensions()
 repair_file_extensions()
@@ -651,24 +729,24 @@ for submission in subs:
     path = f"{folder}/{clean(title)}{meta[slug]['file_extension']}"
 
 
-    content = [
-        f"-- {title}",
-        f"-- https://leetcode.com/problems/{slug}",
-        f"-- difficulty: {difficulty}",
-        f"-- first_seen: {meta[slug]['first_seen']}"
-    ]
-
-    if runtime:
-        content.append(
-            f"-- runtime: {runtime}ms"
-        )
-
+    content = format_header(
+        title,
+        slug,
+        difficulty,
+        meta[slug]["first_seen"],
+        runtime,
+        meta[slug]["file_extension"]
+    )
+    
     content.extend([
         ""
     ])
     
     content.extend(
-        format_notes(notes[slug]["notes"])
+        format_notes(
+            notes[slug]["notes"],
+            meta[slug]["file_extension"]
+        )
     )
     
     content.extend([
