@@ -7,13 +7,13 @@
 
 **Status:** Pre-Alpha Testing
 
-![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
+![Version](https://img.shields.io/badge/version-v0.1.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![GitHub Actions](https://github.com/Cir9no-0001/CodeAtlas/actions/workflows/leetcode.yml/badge.svg)
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-11 20:46:04 EDT
+Last updated: 2026-08-12 01:51:36 EDT
 
 ---
 
