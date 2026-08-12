@@ -211,5 +211,9 @@
   },
   "find-total-time-spent-by-each-employee": {
     "first_seen": "2026-08-11 15:11:35 EDT"
+  },
+  "employees-with-missing-information": {
+    "first_seen": "2026-08-12 18:25:32 EDT",
+    "file_extension": ".sql"
   }
 }
