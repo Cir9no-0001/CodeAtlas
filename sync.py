@@ -145,6 +145,7 @@ response = post({
         recentAcSubmissionList(username:$username){
             title
             titleSlug
+            lang
         }
     }
     """,
@@ -166,6 +167,7 @@ print("\nAccepted submissions:")
 
 for s in subs:
     print("-", s["title"])
+    print("  Language:", s.get("lang"))
 
 difficulty_cache = {}
 
