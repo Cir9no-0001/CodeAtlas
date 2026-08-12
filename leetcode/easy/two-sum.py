@@ -2,9 +2,13 @@
 # https://leetcode.com/problems/two-sum
 # difficulty: easy
 # first_seen: 2026-07-08 03:23:37 EDT
-# runtime: 0ms
 
 """
+Notes:
+
+"""
+
+
 Notes:
 
 """
