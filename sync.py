@@ -376,6 +376,72 @@ def validate_file_extensions():
     else:
         print(f"Found {mismatches} extension mismatch(es).")
 
+def repair_file_extensions():
+
+    print("\nRepairing file extensions...")
+
+    repaired = 0
+
+    for slug, data in meta.items():
+
+        expected_extension = data.get("file_extension")
+
+        if not expected_extension:
+            continue
+
+        found_file = None
+        actual_extension = None
+
+        for difficulty in ["easy", "medium", "hard"]:
+
+            folder = f"leetcode/{difficulty}"
+
+            if not os.path.exists(folder):
+                continue
+
+            for file in os.listdir(folder):
+
+                filename_without_extension, extension = os.path.splitext(file)
+
+                if filename_without_extension == slug:
+
+                    found_file = os.path.join(folder, file)
+                    actual_extension = extension
+
+                    break
+
+            if found_file:
+                break
+
+        if not found_file:
+            continue
+
+        if actual_extension == expected_extension:
+            continue
+
+        new_file = os.path.splitext(found_file)[0] + expected_extension
+
+        if os.path.exists(new_file):
+            print(
+                f"Cannot repair {found_file}: "
+                f"{new_file} already exists."
+            )
+            continue
+
+        os.rename(found_file, new_file)
+
+        print(
+            f"Renamed: {found_file} -> {new_file}"
+        )
+
+        repaired += 1
+
+    if repaired == 0:
+        print("No file extensions needed repair.")
+
+    else:
+        print(f"Repaired {repaired} file extension(s).")
+
 def update_notes_in_files():
 
     print("\nUpdating notes from leetcode_notes.json...")
@@ -459,6 +525,7 @@ def update_notes_in_files():
             print("SQL file not found:", slug)
 
 validate_file_extensions()
+repair_file_extensions()
 
 for submission in subs:
 
