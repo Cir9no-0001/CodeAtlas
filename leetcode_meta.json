@@ -85,7 +85,7 @@
   },
   "two-sum": {
     "first_seen": "2026-07-08 03:23:37 EDT",
-    "file_extension": ".sql"
+    "file_extension": ".py"
   },
   "not-boring-movies": {
     "first_seen": "2026-07-08 04:30:18 EDT",
