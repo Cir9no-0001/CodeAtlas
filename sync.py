@@ -94,7 +94,87 @@ def language_to_extension(language):
         raise ValueError(f"Unsupported LeetCode language: {language}")
     
     return language_extensions[language]
-    
+
+
+COMMENT_SYNTAX = {
+    ".py": {
+        "single": "#",
+        "multi_start": '"""',
+        "multi_end": '"""'
+    },
+
+    ".sql": {
+        "single": "--",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".cpp": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".c": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".java": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".javascript": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".typescript": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".cs": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".go": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".rs": {
+        "single": "//",
+        "multi_start": "/*",
+        "multi_end": "*/"
+    },
+
+    ".rb": {
+        "single": "#",
+        "multi_start": "=begin",
+        "multi_end": "=end"
+    },
+
+    ".sh": {
+        "single": "#",
+        "multi_start": None,
+        "multi_end": None
+    },
+
+    ".lua": {
+        "single": "--",
+        "multi_start": "--[[",
+        "multi_end": "]]"
+    }
+}
 
 def repair_notes_json():
 
