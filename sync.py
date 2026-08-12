@@ -491,7 +491,7 @@ readme = f"""
 
 **Status:** Pre-Alpha Testing
 
-![Version](https://img.shields.io/badge/version-v0.3.0--alpha-orange)
+![Version](https://img.shields.io/badge/version-v0.1.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![GitHub Actions](https://github.com/Cir9no-0001/CodeAtlas/actions/workflows/leetcode.yml/badge.svg)
 
