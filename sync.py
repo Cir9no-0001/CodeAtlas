@@ -182,6 +182,10 @@ def repair_notes_json():
 
     added = 0
 
+    supported_extensions = set(
+        COMMENT_SYNTAX.keys()
+    )
+
     for difficulty in ["easy", "medium", "hard"]:
 
         folder = f"leetcode/{difficulty}"
@@ -191,10 +195,12 @@ def repair_notes_json():
 
         for file in os.listdir(folder):
 
-            if not file.endswith(".sql"):
+            file_extension = os.path.splitext(file)[1]
+
+            if file_extension not in supported_extensions:
                 continue
 
-            slug = file[:-4]
+            slug = os.path.splitext(file)[0]
 
             if slug not in notes:
 
@@ -205,12 +211,13 @@ def repair_notes_json():
                 print("Added missing notes entry:", slug)
                 added += 1
 
-
     if added == 0:
-        print("All SQL files already have notes entries.")
+        print("All solution files already have notes entries.")
 
     else:
-        print(f"Added {added} missing notes entries.")
+        print(
+            f"Added {added} missing notes entries."
+        )
     
 def format_notes(note_text, file_extension):
 
