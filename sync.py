@@ -564,6 +564,47 @@ def repair_file_extensions():
     else:
         print(f"Repaired {repaired} file extension(s).")
 
+
+def find_notes_block(content, comment):
+    """
+    Find the CodeAtlas-generated Notes block.
+
+    Returns:
+        (notes_start, notes_end)
+        where notes_start is the beginning of the multiline
+        comment and notes_end is the end of the multiline
+        comment.
+
+        Returns (None, None) if no CodeAtlas Notes block exists.
+    """
+
+    if not comment["multi_start"] or not comment["multi_end"]:
+        return None, None
+
+    notes_marker = (
+        comment["multi_start"]
+        + "\n"
+        + "Notes:"
+    )
+
+    notes_start = content.find(notes_marker)
+
+    if notes_start == -1:
+        return None, None
+
+    notes_end = content.find(
+        comment["multi_end"],
+        notes_start + len(notes_marker)
+    )
+
+    if notes_end == -1:
+        return None, None
+
+    notes_end += len(comment["multi_end"])
+
+    return notes_start, notes_end
+
+
 def update_notes_in_files():
 
     print("\nUpdating notes from leetcode_notes.json...")
@@ -614,50 +655,39 @@ def update_notes_in_files():
             )
             continue
 
-        if comment["multi_start"] in content:
-
-            before_notes = content.split(
-                comment["multi_start"],
-                1
-            )[0]
-
-            notes_index = content.index(
-                comment["multi_start"]
-            )
-
-            code_start = content.find(
-                comment["multi_end"],
-                notes_index + len(comment["multi_start"])
-            )
-
-            if code_start != -1:
-
-                code = content[
-                    code_start + len(comment["multi_end"]):
-                ].lstrip("\n")
-
+        notes_start, notes_end = find_notes_block(
+            content,
+            comment
+        )
+        
+        if notes_start is not None:
+        
+            before_notes = content[:notes_start]
+        
+            code = content[notes_end:].lstrip("\n")
+        
+            if code:
                 code = "\n\n" + code
-
             else:
                 code = ""
-
+        
         else:
-
+        
             lines = content.split("\n")
-
+        
             insert_position = 0
-
+        
             for i, line in enumerate(lines):
-
+        
                 if not line.startswith(comment["single"]):
                     insert_position = i
                     break
-
+        
             before_notes = (
                 "\n".join(lines[:insert_position])
                 + "\n"
             )
-
+        
             code = "\n".join(
                 lines[insert_position:]
             )
