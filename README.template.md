@@ -12,7 +12,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: {stats["last_updated"]}
+Last updated: {{LAST_UPDATED}}
 
 ---
 
@@ -20,10 +20,10 @@ Last updated: {stats["last_updated"]}
 
 | Difficulty | Count |
 |---|---:|
-| Easy | {stats["easy"]} |
-| Medium | {stats["medium"]} |
-| Hard | {stats["hard"]} |
-| **Total** | **{stats["total"]}** |
+| Easy | {{EASY}} |
+| Medium | {{MEDIUM}} |
+| Hard | {{HARD}} |
+| **Total** | **{{TOTAL}}** |
 
 ---
 
