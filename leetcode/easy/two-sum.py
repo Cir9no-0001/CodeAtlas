@@ -5,12 +5,12 @@
 
 """
 Notes:
-
+hash map, easy one
 """
 
 
 Notes:
-
+hash map, easy one
 """
 
 class Solution:
