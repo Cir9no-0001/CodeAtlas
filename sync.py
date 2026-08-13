@@ -809,6 +809,8 @@ for submission in subs:
 repair_notes_json()
 update_notes_in_files()
 
+supported_extensions = set(COMMENT_SYNTAX.keys())
+
 stats = {
     "easy": 0,
     "medium": 0,
@@ -826,7 +828,7 @@ for difficulty in ["easy", "medium", "hard"]:
         stats[difficulty] = len([
             file
             for file in os.listdir(folder)
-            if file.endswith(".sql")
+            if os.path.splitext(file)[1] in supported_extensions
         ])
 
 stats["total"] = (
