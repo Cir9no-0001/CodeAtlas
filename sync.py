@@ -284,7 +284,7 @@ def format_header(title, slug, difficulty, first_seen, runtime, file_extension):
         f"{comment['single']} first_seen: {first_seen}"
     ]
 
-    if runtime:
+    if runtime is not None:
         lines.append(
             f"{comment['single']} runtime: {runtime}ms"
         )
@@ -627,7 +627,7 @@ def update_notes_in_files():
 
             code_start = content.find(
                 comment["multi_end"],
-                notes_index
+                notes_index + len(comment["multi_start"])
             )
 
             if code_start != -1:
