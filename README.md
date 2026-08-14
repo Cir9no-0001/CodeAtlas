@@ -12,7 +12,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-14 03:38:02 EDT
+Last updated: 2026-08-14 03:49:07 EDT
 
 ---
 
@@ -129,7 +129,7 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 **Decision:** Solution code and personal documentation are stored in separate layers rather than as comments inside the submission itself.
 
-- `*.sql` files - the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
+- `{problem-slug}.{extension}` files - the submitted solution code and generated metadata (title, difficulty, timestamps, runtime)
 - `leetcode_notes.json` - personal hints, explanations, and complexity notes
 - `leetcode_meta.json` - generated repository metadata
 
@@ -141,7 +141,7 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 **Decision:** The repository's own files are treated as ground truth, not the LeetCode API.
 
-**Why:** Statistics are computed by counting existing `.sql` files on disk rather than trusting a running counter or re-querying the API. If LeetCode's API changes or synchronization temporarily breaks, the repository stays accurate and functional on its own.
+**Why:** Statistics are computed by counting existing supported files on disk rather than trusting a running counter or re-querying the API. If LeetCode's API changes or synchronization temporarily breaks, the repository stays accurate and functional on its own.
 
 **Trade-off:** Solution filenames are derived from the problem title, while metadata/notes are keyed by LeetCode's slug. These are expected to match but aren't strictly guaranteed to, a known constraint to keep in mind if problem titles ever contain unusual formatting.
 
@@ -314,7 +314,7 @@ After completing authentication setup, run the workflow to synchronize your Leet
 
 After a successful synchronization, CodeAtlas will:
 
-- Create or update SQL solution files
+- Create or update solution files
 - Update solution metadata
 - Synchronize personal notes
 - Refresh repository statistics
@@ -422,15 +422,26 @@ along with updated:
 
 ```mermaid
 flowchart TD
-    A[GitHub Actions] -->|scheduled/manual trigger| B[sync.py]
-    B --> C[LeetCode GraphQL API]
-    B --> D[Local repository]
-    C --> E[Submission processing]
-    D --> E
-    E --> F[Solution files .sql]
-    E --> G[Metadata & notes JSON]
-    F --> H[README generation]
-    G --> H
+    A[GitHub Actions<br/>Scheduled or Manual Run]
+    --> B[Sync Engine<br/>sync.py]
+
+    B --> C[Authenticate & Retrieve<br/>Accepted Submissions]
+    C --> D[Process & Normalize<br/>Solutions + Metadata]
+
+    D --> E[Language Configuration]
+    E --> F[Generate / Update<br/>Solution Files]
+
+    D --> G[Repository Metadata]
+    D --> H[Personal Notes]
+
+    G --> I[Statistics]
+    F --> I
+    H --> F
+
+    F --> J[Documentation]
+    I --> J
+
+    J --> K[Updated Repository]
 ```
 
 ## Workflow
@@ -497,19 +508,19 @@ flowchart TD
 
 8. **Repository Repair & Consistency Checks**
 
-- Existing SQL files are scanned for missing note entries.
+- Existing files are scanned for missing note entries.
 - Missing entries are automatically added to `leetcode_notes.json`.
-- Recently detected accepted submissions can regenerate missing SQL files when available through the LeetCode API.
+- Recently detected accepted submissions can regenerate missing solution files when available through the LeetCode API.
 
 9. **Optimization & Reliability**
 
 - LeetCode difficulty requests are cached to reduce unnecessary API calls.
 - Problem titles are normalized into safe filenames.
-- SQL comments and notes are reformatted consistently during synchronization.
+- Language specific cxomments and notes are reformatted consistently during synchronization.
 
 10. **Statistics Generation**
 
-- Solution counts are calculated from existing `.sql` files.
+- Solution counts are calculated from files with supported extensions.
 - `leetcode_stats.json` is updated.
 - README statistics are automatically regenerated.
 
@@ -532,7 +543,7 @@ flowchart TD
 ## LeetCode Integration
 
 - [x] Fetch accepted submissions through GraphQL API
-- [x] Retrieve submitted SQL code
+- [x] Retrieve submitted code
 - [x] Retrieve problem difficulty
 - [x] Track runtime performance
 - [x] Cache repeated difficulty requests
@@ -584,7 +595,7 @@ flowchart TD
 - [ ] Generate solution explanations
 - [ ] Generate problem summaries
 - [ ] Detect inefficient queries
-- [ ] Suggest SQL optimizations
+- [ ] Suggest code optimizations
 
 ## Organization
 
