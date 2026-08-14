@@ -12,7 +12,6 @@ pair. The rest of the problem is basic math, but don't forget to round the avera
 the nearest integer and order by reports_to. [TC: O(NLogN), 2 passes?]
 */
 
-
 select
     e.reports_to as 'employee_id',
     em.name,

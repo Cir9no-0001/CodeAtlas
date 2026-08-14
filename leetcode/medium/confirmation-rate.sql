@@ -10,7 +10,6 @@ Hint: Use left join and group by carefully to include missing IDs not in Confirm
 otherwise, it's simple math. Also, use avg for one pass. [TC: O(S + C), 1 pass]
 */
 
-
 select 
     s.user_id,
     round(

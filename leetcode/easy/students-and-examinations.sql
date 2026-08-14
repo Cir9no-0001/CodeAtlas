@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 select 
     s.student_id, 
     s.student_name, 

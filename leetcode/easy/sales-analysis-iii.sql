@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 select p.product_id, p.product_name
 from Product p
 inner join Sales s

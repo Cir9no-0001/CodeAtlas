@@ -9,7 +9,6 @@ Hint: CTE and double inner join to filter banned users, case to sum cancels, and
 date
 */
 
-
 with active as(
     select t.id, t.client_id, t.driver_id, t.city_id, t.status, t.request_at
     from Trips t

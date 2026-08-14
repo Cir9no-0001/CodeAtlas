@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 # Write your MySQL query statement below
 Select e.name, b.bonus
 from Employee e

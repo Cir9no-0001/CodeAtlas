@@ -9,7 +9,6 @@ Hint: use case and modulo to change the IDs, then reorder the IDs, don't forget 
 last odd seat
 */
 
-
 select 
     case
         when s.id%2=0 then s.id-1

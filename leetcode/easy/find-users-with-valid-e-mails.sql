@@ -11,7 +11,6 @@ binary. Watch out for the period in the suffix, which is a wildcard, so put it i
 brackets. [TC: O(N), 1 pass]
 */
 
-
 select *
 from Users u
 where regexp_like(u.mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$', 'c')

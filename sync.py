@@ -1,9 +1,9 @@
 import os
 import requests
-import re
 import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from language_config import LANGUAGE_CONFIG, SUPPORTED_EXTENSIONS
 
 LOCAL_TZ = ZoneInfo("America/Toronto")
 META_FILE = "leetcode_meta.json"
@@ -21,8 +21,10 @@ headers = {
     "user-agent": "Mozilla/5.0"
 }
 
+
 def now():
     return datetime.now(LOCAL_TZ).strftime("%Y-%m-%d %H:%M:%S %Z")
+
 
 def post(query):
     try:
@@ -41,150 +43,22 @@ def post(query):
         print("REQUEST ERROR:", e)
         return {}
 
-def clean(name):
-    return (
-        re.sub(
-            r"[^a-zA-Z0-9\- ]",
-            "",
-            name.strip()
-        )
-        .lower()
-        .replace(" ", "-")
-        .strip("-")
-    )
 
 def language_to_extension(language):
 
-    language_extensions = {
-        "python": ".py",
-        "python2": ".py",
-        "python3": ".py",
+    if language not in LANGUAGE_CONFIG:
+        raise ValueError(
+            f"Unsupported LeetCode language: {language}"
+        )
 
-        "mysql": ".sql",
-        "mssql": ".sql",
-        "oracle": ".sql",
-        "postgresql": ".sql",
+    return LANGUAGE_CONFIG[language]["extension"]
 
-        "cpp": ".cpp",
-        "c": ".c",
-        "java": ".java",
-        "csharp": ".cs",
-        "javascript": ".js",
-        "typescript": ".ts",
-        "kotlin": ".kt",
-        "swift": ".swift",
-        "golang": ".go",
-        "rust": ".rs",
-        "php": ".php",
-        "ruby": ".rb",
-        "scala": ".scala",
-        "dart": ".dart",
-        "racket": ".rkt",
-        "erlang": ".erl",
-        "elixir": ".ex",
-        "bash": ".sh",
-        "groovy": ".groovy",
-        "lua": ".lua",
-        "perl": ".pl",
-        "clojure": ".clj",
-        "haskell": ".hs"
-    }
-
-    if language not in language_extensions:
-        raise ValueError(f"Unsupported LeetCode language: {language}")
-    
-    return language_extensions[language]
-
-
-COMMENT_SYNTAX = {
-    ".py": {
-        "single": "#",
-        "multi_start": '"""',
-        "multi_end": '"""'
-    },
-
-    ".sql": {
-        "single": "--",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".cpp": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".c": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".java": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".js": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".ts": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".cs": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".go": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".rs": {
-        "single": "//",
-        "multi_start": "/*",
-        "multi_end": "*/"
-    },
-
-    ".rb": {
-        "single": "#",
-        "multi_start": "=begin",
-        "multi_end": "=end"
-    },
-
-    ".sh": {
-        "single": "#",
-        "multi_start": None,
-        "multi_end": None
-    },
-
-    ".lua": {
-        "single": "--",
-        "multi_start": "--[[",
-        "multi_end": "]]"
-    }
-}
 
 def repair_notes_json():
 
     print("\nChecking missing notes entries...")
 
     added = 0
-
-    supported_extensions = set(
-        COMMENT_SYNTAX.keys()
-    )
 
     for difficulty in ["easy", "medium", "hard"]:
 
@@ -195,30 +69,34 @@ def repair_notes_json():
 
         for file in os.listdir(folder):
 
-            file_extension = os.path.splitext(file)[1]
-
-            if file_extension not in supported_extensions:
+            if os.path.splitext(file)[1] not in SUPPORTED_EXTENSIONS:
                 continue
 
-            slug = os.path.splitext(file)[0]
+            key = file
 
-            if slug not in notes:
-
-                notes[slug] = {
-                    "notes": ""
-                }
-
-                print("Added missing notes entry:", slug)
+            if key not in notes:
+                notes[key] = {"notes": ""}
+                print("Added missing notes entry:", key)
                 added += 1
 
     if added == 0:
         print("All solution files already have notes entries.")
-
     else:
-        print(
-            f"Added {added} missing notes entries."
-        )
-    
+        print(f"Added {added} missing notes entries.")
+
+
+def assemble_body(note_text, extension, code):
+
+    notes_str = "\n".join(format_notes(note_text, extension))
+
+    body = notes_str + "\n"
+
+    if code:
+        body += "\n" + code.lstrip("\n")
+
+    return body
+
+
 def format_notes(note_text, file_extension):
 
     max_length = 90
@@ -248,23 +126,29 @@ def format_notes(note_text, file_extension):
     else:
         formatted_lines.append("")
 
-
-    comment = COMMENT_SYNTAX.get(file_extension)
+    comment = next(
+        (
+            config["comment"]
+            for config in LANGUAGE_CONFIG.values()
+            if config["extension"] == file_extension
+        ),
+        None
+    )
 
     if not comment:
         raise ValueError(
             f"Unsupported comment syntax for extension: {file_extension}"
         )
-    
+
     if comment["multi_start"] and comment["multi_end"]:
-    
+
         return [
             comment["multi_start"],
             "Notes:",
             *formatted_lines,
             comment["multi_end"]
         ]
-    
+
     return [
         comment["single"] + " Notes:",
         *[
@@ -275,9 +159,17 @@ def format_notes(note_text, file_extension):
         ]
     ]
 
+
 def format_header(title, slug, difficulty, first_seen, runtime, file_extension):
 
-    comment = COMMENT_SYNTAX.get(file_extension)
+    comment = next(
+        (
+            config["comment"]
+            for config in LANGUAGE_CONFIG.values()
+            if config["extension"] == file_extension
+        ),
+        None
+    )
 
     if not comment:
         raise ValueError(
@@ -297,6 +189,7 @@ def format_header(title, slug, difficulty, first_seen, runtime, file_extension):
         )
 
     return lines
+
 
 if os.path.exists(META_FILE):
     with open(META_FILE, "r", encoding="utf-8") as f:
@@ -342,6 +235,7 @@ for s in subs:
 
 difficulty_cache = {}
 
+
 def get_difficulty(slug):
 
     if slug in difficulty_cache:
@@ -372,7 +266,8 @@ def get_difficulty(slug):
 
     return difficulty
 
-def get_submission(slug):
+
+def get_submission(slug, lang):
 
     history = post({
         "query": """
@@ -388,31 +283,33 @@ def get_submission(slug):
             ){
                 submissions{
                     id
+                    lang
                 }
             }
         }
         """,
         "variables": {
             "offset": 0,
-            "limit": 1,
+            "limit": 20,
             "questionSlug": slug
         }
     })
 
     try:
-        submission_id = (
-            history["data"]
-            ["submissionList"]
-            ["submissions"][0]
-            ["id"]
-        )
-
+        submissions = history["data"]["submissionList"]["submissions"]
     except Exception:
         print("No submission history:", slug)
-        return {
-            "code": "",
-            "runtime": None
-        }
+        return {"code": "", "runtime": None}
+
+    submission_id = None
+    for s in submissions:
+        if s.get("lang") == lang:
+            submission_id = s["id"]
+            break
+
+    if submission_id is None:
+        print(f"No matching-language submission found: {slug} ({lang})")
+        return {"code": "", "runtime": None}
 
     detail = post({
         "query": """
@@ -430,144 +327,84 @@ def get_submission(slug):
         }
     })
 
-
-    result = (
-        detail
-        .get("data", {})
-        .get("submissionDetails")
-    )
-
+    result = detail.get("data", {}).get("submissionDetails")
 
     if not result:
         print("No code returned:", slug)
-        return {
-            "code": "",
-            "runtime": None
-        }
-
+        return {"code": "", "runtime": None}
 
     return {
         "code": result.get("code", ""),
         "runtime": result.get("runtime")
     }
 
-def validate_file_extensions():
-
-    print("\nChecking file extensions...")
-
-    mismatches = 0
-
-    for slug, data in meta.items():
-
-        expected_extension = data.get("file_extension")
-
-        if not expected_extension:
-            print("Missing file extension metadata:", slug)
-            continue
-
-        found_file = None
-
-        for difficulty in ["easy", "medium", "hard"]:
-
-            folder = f"leetcode/{difficulty}"
-
-            if not os.path.exists(folder):
-                continue
-
-            for file in os.listdir(folder):
-
-                filename_without_extension, extension = os.path.splitext(file)
-
-                if filename_without_extension == slug:
-                    found_file = os.path.join(folder, file)
-                    actual_extension = extension
-                    break
-
-            if found_file:
-                break
-
-        if not found_file:
-            continue
-
-        if actual_extension != expected_extension:
-
-            print(
-                f"Extension mismatch: {found_file} "
-                f"(expected {expected_extension}, "
-                f"found {actual_extension})"
-            )
-
-            mismatches += 1
-
-    if mismatches == 0:
-        print("All existing file extensions match metadata.")
-
-    else:
-        print(f"Found {mismatches} extension mismatch(es).")
 
 def repair_file_extensions():
 
-    print("\nRepairing file extensions...")
+    print("\nChecking file extensions...")
+
+    slug_keys = {}
+    key_location = {}
+
+    for key in meta:
+        slug = os.path.splitext(key)[0]
+        slug_keys.setdefault(slug, []).append(key)
+
+        found = None
+        for difficulty in ["easy", "medium", "hard"]:
+            candidate = f"leetcode/{difficulty}/{key}"
+            if os.path.exists(candidate):
+                found = candidate
+                break
+        key_location[key] = found
 
     repaired = 0
 
-    for slug, data in meta.items():
+    for slug, keys in slug_keys.items():
 
-        expected_extension = data.get("file_extension")
+        missing_keys = [k for k in keys if key_location[k] is None]
 
-        if not expected_extension:
+        if not missing_keys:
             continue
 
-        found_file = None
-        actual_extension = None
+        stray_files = []
 
         for difficulty in ["easy", "medium", "hard"]:
-
             folder = f"leetcode/{difficulty}"
-
             if not os.path.exists(folder):
                 continue
 
             for file in os.listdir(folder):
+                stem, ext = os.path.splitext(file)
+                if stem != slug or ext not in SUPPORTED_EXTENSIONS:
+                    continue
+                if file in keys:
+                    continue
+                stray_files.append(os.path.join(folder, file))
 
-                filename_without_extension, extension = os.path.splitext(file)
+        if len(missing_keys) == 1 and len(stray_files) == 1:
 
-                if filename_without_extension == slug:
+            expected_key = missing_keys[0]
+            stray_path = stray_files[0]
+            new_path = os.path.join(os.path.dirname(stray_path), expected_key)
 
-                    found_file = os.path.join(folder, file)
-                    actual_extension = extension
+            if os.path.exists(new_path):
+                print(
+                    f"Cannot repair {stray_path}: {new_path} already exists.")
+                continue
 
-                    break
+            os.rename(stray_path, new_path)
+            print(f"Renamed: {stray_path} -> {new_path}")
+            repaired += 1
 
-            if found_file:
-                break
-
-        if not found_file:
-            continue
-
-        if actual_extension == expected_extension:
-            continue
-
-        new_file = os.path.splitext(found_file)[0] + expected_extension
-
-        if os.path.exists(new_file):
+        elif missing_keys or stray_files:
             print(
-                f"Cannot repair {found_file}: "
-                f"{new_file} already exists."
+                f"Ambiguous mismatch for '{slug}', skipping automatic repair "
+                f"(missing: {missing_keys}, stray: {stray_files})"
             )
-            continue
-
-        os.rename(found_file, new_file)
-
-        print(
-            f"Renamed: {found_file} -> {new_file}"
-        )
-
-        repaired += 1
 
     if repaired == 0:
         print("No file extensions needed repair.")
-
     else:
         print(f"Repaired {repaired} file extension(s).")
 
@@ -616,116 +453,71 @@ def update_notes_in_files():
 
     print("\nUpdating notes from leetcode_notes.json...")
 
-    for slug, data in notes.items():
+    for key, data in notes.items():
 
         note_text = data.get("notes", "")
+        extension = os.path.splitext(key)[1]
+        comment = next(
+            (
+                config["comment"]
+                for config in LANGUAGE_CONFIG.values()
+                if config["extension"] == extension
+            ),
+            None
+        )
 
-        if slug not in meta:
-            print("No metadata found:", slug)
-            continue
-
-        expected_extension = meta[slug].get("file_extension")
-
-        if not expected_extension:
-            print("No file extension metadata:", slug)
+        if not comment:
+            print(f"Unsupported comment syntax: {extension} ({key})")
             continue
 
         found_file = None
 
         for difficulty in ["easy", "medium", "hard"]:
-
-            folder = f"leetcode/{difficulty}"
-
-            if not os.path.exists(folder):
-                continue
-
-            expected_filename = f"{slug}{expected_extension}"
-            path = os.path.join(folder, expected_filename)
-
-            if os.path.exists(path):
-                found_file = path
+            candidate = f"leetcode/{difficulty}/{key}"
+            if os.path.exists(candidate):
+                found_file = candidate
                 break
 
         if not found_file:
-            print("Solution file not found:", slug)
+            print("Solution file not found:", key)
             continue
 
         with open(found_file, "r", encoding="utf-8") as f:
             content = f.read()
 
-        comment = COMMENT_SYNTAX.get(expected_extension)
+        notes_start, notes_end = find_notes_block(content, comment)
 
-        if not comment:
-            print(
-                f"Unsupported comment syntax: "
-                f"{expected_extension} ({slug})"
-            )
-            continue
-
-        notes_start, notes_end = find_notes_block(
-            content,
-            comment
-        )
-        
         if notes_start is not None:
-        
             before_notes = content[:notes_start]
-        
             code = content[notes_end:].lstrip("\n")
-        
-            if code:
-                code = "\n\n" + code
-            else:
-                code = ""
-        
+
         else:
-        
             lines = content.split("\n")
-        
             insert_position = 0
-        
             for i, line in enumerate(lines):
-        
                 if not line.startswith(comment["single"]):
                     insert_position = i
                     break
-        
-            before_notes = (
-                "\n".join(lines[:insert_position])
-                + "\n"
-            )
-        
-            code = "\n".join(
-                lines[insert_position:]
-            )
+            before_notes = "\n".join(lines[:insert_position]) + "\n"
+            code = "\n".join(lines[insert_position:])
 
-        new_content = before_notes
-
-        for line in format_notes(
-            note_text,
-            expected_extension
-        ):
-            new_content += line + "\n"
-
-        new_content += code
+        new_content = before_notes + assemble_body(note_text, extension, code)
 
         if new_content != content:
-
             with open(found_file, "w", encoding="utf-8") as f:
                 f.write(new_content)
-
             print("Updated notes:", found_file)
-
         else:
             print("Already correct:", found_file)
 
-validate_file_extensions()
+
 repair_file_extensions()
 
 for submission in subs:
 
     title = submission["title"]
     slug = submission["titleSlug"]
+    lang = submission["lang"]
 
     difficulty = get_difficulty(slug)
 
@@ -733,8 +525,10 @@ for submission in subs:
         print("Unknown difficulty:", title)
         continue
 
+    extension = language_to_extension(lang)
+    key = f"{slug}{extension}"
 
-    data = get_submission(slug)
+    data = get_submission(slug, lang)
 
     code = data["code"]
     runtime = data["runtime"]
@@ -743,73 +537,47 @@ for submission in subs:
         print("Skipped:", title)
         continue
 
-    if slug not in meta:
-        meta[slug] = {
-            "first_seen": now(),
-            "file_extension": language_to_extension(
-                submission["lang"]
-            )
+    if key not in meta:
+        meta[key] = {
+            "first_seen": now()
         }
 
-    if slug not in notes:
-        notes[slug] = {
+    if key not in notes:
+        notes[key] = {
             "notes": ""
         }
 
     folder = f"leetcode/{difficulty}"
 
-    os.makedirs(
-        folder,
-        exist_ok=True
-    )
+    os.makedirs(folder, exist_ok=True)
 
-    path = f"{folder}/{clean(title)}{meta[slug]['file_extension']}"
-
+    path = f"{folder}/{key}"
 
     content = format_header(
         title,
         slug,
         difficulty,
-        meta[slug]["first_seen"],
+        meta[key]["first_seen"],
         runtime,
-        meta[slug]["file_extension"]
+        extension
     )
-    
-    content.extend([
-        ""
-    ])
-    
-    content.extend(
-        format_notes(
-            notes[slug]["notes"],
-            meta[slug]["file_extension"]
-        )
-    )
-    
-    content.extend([
-        "",
-        code
-    ])
 
-    new_content = "\n".join(content)
+    header_str = "\n".join(content)
+    new_content = header_str + "\n\n" + \
+        assemble_body(notes[key]["notes"], extension, code)
     old_content = ""
 
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
             old_content = f.read()
 
-
     if new_content != old_content:
-
         with open(path, "w", encoding="utf-8") as f:
             f.write(new_content)
-
         print("Updated:", title)
 
 repair_notes_json()
 update_notes_in_files()
-
-supported_extensions = set(COMMENT_SYNTAX.keys())
 
 stats = {
     "easy": 0,
@@ -828,7 +596,7 @@ for difficulty in ["easy", "medium", "hard"]:
         stats[difficulty] = len([
             file
             for file in os.listdir(folder)
-            if os.path.splitext(file)[1] in supported_extensions
+            if os.path.splitext(file)[1] in SUPPORTED_EXTENSIONS
         ])
 
 stats["total"] = (

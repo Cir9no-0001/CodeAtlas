@@ -8,7 +8,6 @@ Notes:
 Hint: subquery to store the true values of min when a tie occurs
 */
 
-
 select s.product_id, s.year as 'first_year', s.quantity, s.price
 from Sales s
 where (s.product_id, s.year) in (

@@ -10,7 +10,6 @@ Hint: users can exist without being on the rides table, so make sure null values
 to 0; the same thing should be considered when joining. [TC: O(U+RlogU), 1 pass]
 */
 
-
 select 
     u.name,
     ifnull(sum(r.distance), 0) as 'travelled_distance'

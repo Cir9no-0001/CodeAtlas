@@ -9,7 +9,6 @@ Notes:
 Hint: group the stocks, then use if depending on the operation
 */
 
-
 select 
     s.stock_name,
     sum(if(s.operation='Buy', -s.price, s.price)) as 'capital_gain_loss'

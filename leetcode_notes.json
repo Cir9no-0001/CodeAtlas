@@ -1,224 +1,227 @@
 {
-  "product-sales-analysis-i": {
+  "product-sales-analysis-i.sql": {
     "notes": "Hint: use inner join. [O(S), 1 pass]"
   },
-  "investments-in-2016": {
+  "investments-in-2016.sql": {
     "notes": "Hint: use CTE, concat subquery for location, use exclusive logic using count and group"
   },
-  "game-play-analysis-iv": {
+  "game-play-analysis-iv.sql": {
     "notes": ""
   },
-  "managers-with-at-least-5-direct-reports": {
+  "managers-with-at-least-5-direct-reports.sql": {
     "notes": ""
   },
-  "biggest-single-number": {
+  "biggest-single-number.sql": {
     "notes": ""
   },
-  "actors-and-directors-who-cooperated-at-least-three-times": {
+  "actors-and-directors-who-cooperated-at-least-three-times.sql": {
     "notes": ""
   },
-  "not-boring-movies": {
+  "not-boring-movies.sql": {
     "notes": ""
   },
-  "two-sum": {
+  "two-sum.py": {
     "notes": "hash map, easy one"
   },
-  "triangle-judgement": {
+  "triangle-judgement.sql": {
     "notes": ""
   },
-  "consecutive-numbers": {
+  "consecutive-numbers.sql": {
     "notes": "Hint: CTE full join using union"
   },
-  "department-top-three-salaries": {
+  "department-top-three-salaries.sql": {
     "notes": "Hint: CTE + inner join + dense_rank with partition to rank"
   },
-  "swap-sex-of-employees": {
+  "swap-sex-of-employees.sql": {
     "notes": ""
   },
-  "sales-person": {
+  "sales-person.sql": {
     "notes": ""
   },
-  "department-highest-salary": {
+  "department-highest-salary.sql": {
     "notes": ""
   },
-  "rank-scores": {
+  "rank-scores.sql": {
     "notes": ""
   },
-  "nth-highest-salary": {
+  "nth-highest-salary.sql": {
     "notes": ""
   },
-  "second-highest-salary": {
+  "second-highest-salary.sql": {
     "notes": ""
   },
-  "classes-with-at-least-5-students": {
+  "classes-with-at-least-5-students.sql": {
     "notes": ""
   },
-  "big-countries": {
+  "big-countries.sql": {
     "notes": ""
   },
-  "customer-placing-the-largest-number-of-orders": {
+  "customer-placing-the-largest-number-of-orders.sql": {
     "notes": ""
   },
-  "project-employees-i": {
+  "project-employees-i.sql": {
     "notes": ""
   },
-  "sales-analysis-iii": {
+  "sales-analysis-iii.sql": {
     "notes": ""
   },
-  "user-activity-for-the-past-30-days-i": {
+  "user-activity-for-the-past-30-days-i.sql": {
     "notes": ""
   },
-  "article-views-i": {
+  "article-views-i.sql": {
     "notes": ""
   },
-  "tree-node": {
+  "tree-node.sql": {
     "notes": "Hint: use case and subquery to see if a node already exists as a p_id"
   },
-  "reformat-department-table": {
+  "reformat-department-table.sql": {
     "notes": ""
   },
-  "students-and-examinations": {
+  "students-and-examinations.sql": {
     "notes": ""
   },
-  "exchange-seats": {
+  "exchange-seats.sql": {
     "notes": "Hint: use case and modulo to change the IDs, then reorder the IDs, don't forget about the last odd seat"
   },
-  "customers-who-bought-all-products": {
+  "customers-who-bought-all-products.sql": {
     "notes": "Hint: group by id, then use having and subquery counter"
   },
-  "product-sales-analysis-iii": {
+  "product-sales-analysis-iii.sql": {
     "notes": "Hint: subquery to store the true values of min when a tie occurs"
   },
-  "product-price-at-a-given-date": {
+  "product-price-at-a-given-date.sql": {
     "notes": "Hint: subquery to find the most recent pair of price and product ID, use union to make a default of 10 for unchanged prices before the date"
   },
-  "market-analysis-i": {
+  "market-analysis-i.sql": {
     "notes": "Hint: use left join to keep people with 0 orders; filters should be after the on clause for easy"
   },
-  "last-person-to-fit-in-the-bus": {
+  "last-person-to-fit-in-the-bus.sql": {
     "notes": "Hint: CTE to track the running total, use order by and limit in the main query to retrieve the last person"
   },
-  "immediate-food-delivery-ii": {
+  "immediate-food-delivery-ii.sql": {
     "notes": "Hint: case to add to immediate orders, subquery to filter for first orders, don't use CTE"
   },
-  "trips-and-users": {
+  "trips-and-users.sql": {
     "notes": "Hint: CTE and double inner join to filter banned users, case to sum cancels, and group by date"
   },
-  "monthly-transactions-i": {
+  "monthly-transactions-i.sql": {
     "notes": "Hint: use date_format to get rid of the day portion of the date; repeat when multigrouping"
   },
-  "queries-quality-and-percentage": {
+  "queries-quality-and-percentage.sql": {
     "notes": "Hint: pure math, don't forget to round"
   },
-  "restaurant-growth": {
+  "restaurant-growth.sql": {
     "notes": "Hint: use a CTE to count the number of customers in the given time frame and find the daily sum of all customers for every day, main query to find moving sum and moving average, use offset to remove days with invalid windows"
   },
-  "dna-pattern-recognition": {
+  "dna-pattern-recognition.sql": {
     "notes": "Hint: use if, braindead question"
   },
-  "count-salary-categories": {
+  "count-salary-categories.sql": {
     "notes": "Hint: every row is an individual query; use union"
   },
-  "list-the-products-ordered-in-a-period": {
+  "list-the-products-ordered-in-a-period.sql": {
     "notes": "Hint: use date_format to get rid of the day from the date, and CTE to get the monthly total units per product_id"
   },
-  "capital-gainloss": {
+  "capital-gainloss.sql": {
     "notes": "Hint: group the stocks, then use if depending on the operation"
   },
-  "replace-employee-id-with-the-unique-identifier": {
+  "replace-employee-id-with-the-unique-identifier.sql": {
     "notes": "Hint: use left join. [O(E), 1 pass]"
   },
-  "movie-rating": {
+  "movie-rating.sql": {
     "notes": "Hint: split the query into two and merge using union all, order by has two variables to consider and lexicographically smaller means name/title asc. [TC: O(R1 + R2log M), 2 passes]"
   },
-  "confirmation-rate": {
+  "confirmation-rate.sql": {
     "notes": "Hint: Use left join and group by carefully to include missing IDs not in Confirmations; otherwise, it's simple math. Also, use avg for one pass. [TC: O(S + C), 1 pass]"
   },
-  "group-sold-products-by-the-date": {
+  "group-sold-products-by-the-date.sql": {
     "notes": "Hint: remember that only distinct pairs of (sell_date, product) are valid. Sort lexicographically using order by product asc in the group_concat. [TC: O(n), 1 pass]"
   },
-  "patients-with-a-condition": {
+  "patients-with-a-condition.sql": {
     "notes": "Hint: make sure that DIAB1 is either the beginning of the first condition name or the beginning of the condition name subsequently. [TC: O(n), 1 pass]"
   },
-  "bank-account-summary-ii": {
+  "bank-account-summary-ii.sql": {
     "notes": "Hint: group by account number and filter using having and sum [TC: O(N+M), 1 pass]"
   },
-  "percentage-of-users-attended-a-contest": {
+  "percentage-of-users-attended-a-contest.sql": {
     "notes": "Hint: math problem, group by contest_id, then count, then divide by the total number of users. [TC: O(N+MlogM), 2 passes]"
   },
-  "top-travellers": {
+  "top-travellers.sql": {
     "notes": "Hint: users can exist without being on the rides table, so make sure null values default to 0; the same thing should be considered when joining. [TC: O(U+RlogU), 1 pass]"
   },
-  "customer-who-visited-but-did-not-make-any-transactions": {
+  "customer-who-visited-but-did-not-make-any-transactions.sql": {
     "notes": "Hint: join the two tables, then filter out the ones that have ID values in both tables. Group and sum the rest accordingly. [TC: O(V+T), 2 passes]"
   },
-  "odd-and-even-transactions": {
+  "odd-and-even-transactions.sql": {
     "notes": "Hint: addition problem with modulo and case/if. [TC: O(N), 1 pass]"
   },
-  "find-students-who-improved": {
+  "find-students-who-improved.sql": {
     "notes": "Hint: use a CTE to rank the rows by date of completion, partitioned for pairs of (student_id, subject) twice (chronologically and in reverse). Use a self-join in the main query on the same pairs of (student_id, subject) where firsts meet lasts and filter for improved scores. [TC: O(NlogN), 5 passes]"
   },
-  "analyze-subscription-conversion": {
+  "analyze-subscription-conversion.sql": {
     "notes": "Hint: almost pure logic/math question; make sure that the average part includes a distinct before the case statement to count only the distinct days the user has used the plan. Filter out the people who didn't upgrade from the free plan by only keeping those with activity durations in both the free and paid plans. [TC: O(NlogN), 4 passes]"
   },
-  "find-users-with-valid-e-mails": {
+  "find-users-with-valid-e-mails.sql": {
     "notes": "Hint: use regexp_like to get case sensitivity for the suffix, or use an extra like binary. Watch out for the period in the suffix, which is a wildcard, so put it in square brackets. [TC: O(N), 1 pass]"
   },
-  "customers-who-never-order": {
+  "customers-who-never-order.sql": {
     "notes": ""
   },
-  "employees-earning-more-than-their-managers": {
+  "employees-earning-more-than-their-managers.sql": {
     "notes": ""
   },
-  "duplicate-emails": {
+  "duplicate-emails.sql": {
     "notes": ""
   },
-  "combine-two-tables": {
+  "combine-two-tables.sql": {
     "notes": ""
   },
-  "find-customer-referee": {
+  "find-customer-referee.sql": {
     "notes": ""
   },
-  "rising-temperature": {
+  "rising-temperature.sql": {
     "notes": ""
   },
-  "employee-bonus": {
+  "employee-bonus.sql": {
     "notes": ""
   },
-  "delete-duplicate-emails": {
+  "delete-duplicate-emails.sql": {
     "notes": ""
   },
-  "game-play-analysis-i": {
+  "game-play-analysis-i.sql": {
     "notes": ""
   },
-  "average-time-of-process-per-machine": {
+  "average-time-of-process-per-machine.sql": {
     "notes": "Hint: literally a math question; think about how you can rearrange the original formula to optimize it for SQL grouping. Group by the IDs, then split each group into its corresponding activity type, then find the difference and divide by the distinct processes. [O(NlogN), 1 pass]"
   },
-  "fix-names-in-a-table": {
+  "fix-names-in-a-table.sql": {
     "notes": "Hint: split each name into head and tail using substring, uppercase the head, lowercase the tail, then concat both for the correct name format. [TC: O(NlogN), 1 pass]"
   },
-  "invalid-tweets": {
+  "invalid-tweets.sql": {
     "notes": "Hint: filter for tweet ids where the length of content is greater than 15, literally. [TC: O(N), 1 pass]"
   },
-  "daily-leads-and-partners": {
+  "daily-leads-and-partners.sql": {
     "notes": "Hint: remember to group by both name and date. [TC: O(NlogN), 2 passes]"
   },
-  "find-followers-count": {
+  "find-followers-count.sql": {
     "notes": "Hint: group by user IDs, then count the distinct follower IDs per user ID. [TC: O(NlogN), 2 passes]"
   },
-  "the-number-of-employees-which-report-to-each-employee": {
+  "the-number-of-employees-which-report-to-each-employee.sql": {
     "notes": "Hint: treat the reports_to column as the main column then filter out null values, then self-join to get the manager's name instead of the employee's name, then group by this pair. The rest of the problem is basic math, but don't forget to round the average_age to the nearest integer and order by reports_to. [TC: O(NLogN), 2 passes?]"
   },
-  "find-total-time-spent-by-each-employee": {
+  "find-total-time-spent-by-each-employee.sql": {
     "notes": "Hint: brain-dead math question; just group and do math. [TC: O(NLogN), 2 passes]"
   },
-  "employees-with-missing-information": {
+  "employees-with-missing-information.sql": {
     "notes": ""
   },
-  "palindrome-number": {
+  "palindrome-number.py": {
     "notes": ""
   },
-  "roman-to-integer": {
+  "roman-to-integer.java": {
+    "notes": ""
+  },
+  "two-sum.cpp": {
     "notes": ""
   }
 }

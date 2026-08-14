@@ -9,7 +9,6 @@ Hint: use left join to keep people with 0 orders; filters should be after the on
 for easy
 */
 
-
 select 
     u.user_id as 'buyer_id', 
     u.join_date, 

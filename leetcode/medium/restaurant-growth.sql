@@ -11,7 +11,6 @@ daily sum of all customers for every day, main query to find moving sum and movi
 average, use offset to remove days with invalid windows
 */
 
-
 with sorted as(
     select c.visited_on,
     sum(c.amount) as 'daily_sum',

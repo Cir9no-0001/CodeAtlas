@@ -9,7 +9,6 @@ Notes:
 Hint: pure math, don't forget to round
 */
 
-
 select
     q.query_name,
     round(

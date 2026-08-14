@@ -10,7 +10,6 @@ Hint: use date_format to get rid of the day from the date, and CTE to get the mo
 total units per product_id
 */
 
-
 with temp as(
     select o.product_id, date_format(o.order_date, '%Y-%m') as 'date', sum(o.unit) as 'unit'
     from Orders o

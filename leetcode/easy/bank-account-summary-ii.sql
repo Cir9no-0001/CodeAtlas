@@ -9,7 +9,6 @@ Notes:
 Hint: group by account number and filter using having and sum [TC: O(N+M), 1 pass]
 */
 
-
 select 
     u.name,
     sum(t.amount) as 'balance'

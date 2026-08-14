@@ -9,7 +9,6 @@ Hint: subquery to find the most recent pair of price and product ID, use union t
 default of 10 for unchanged prices before the date
 */
 
-
 select 
     p.product_id,
     p.new_price as 'price'
