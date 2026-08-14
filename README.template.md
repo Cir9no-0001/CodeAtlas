@@ -208,7 +208,7 @@ Trade-off: The repository can contain multiple files for the same LeetCode probl
 
 `leetcode/easy/find-users-with-valid-e-mails.sql`
 
-​```sql
+```sql
 -- Find Users With Valid E-Mails
 -- https://leetcode.com/problems/find-users-with-valid-e-mails
 -- difficulty: easy
@@ -226,7 +226,7 @@ select _
 from Users u
 where regexp*like(u.mail, '^[a-zA-Z]a-zA-Z0-9.*-]_@leetcode[.]com$', 'c')
 
-````
+```
 
 Every field above is generated automatically by `sync.py`: the header
 (title, URL, difficulty, timestamp, runtime) and the code are written by
@@ -254,7 +254,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/Cir9no-0001/CodeAtlas
 cd CodeAtlas
-````
+```
 
 ## Requirements
 
