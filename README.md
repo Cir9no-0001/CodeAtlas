@@ -12,7 +12,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-14 03:49:07 EDT
+Last updated: 2026-08-14 03:51:47 EDT
 
 ---
 
@@ -208,7 +208,7 @@ Trade-off: The repository can contain multiple files for the same LeetCode probl
 
 `leetcode/easy/find-users-with-valid-e-mails.sql`
 
-​```sql
+```sql
 -- Find Users With Valid E-Mails
 -- https://leetcode.com/problems/find-users-with-valid-e-mails
 -- difficulty: easy
@@ -226,7 +226,7 @@ select _
 from Users u
 where regexp*like(u.mail, '^[a-zA-Z]a-zA-Z0-9.*-]_@leetcode[.]com$', 'c')
 
-````
+```
 
 Every field above is generated automatically by `sync.py`: the header
 (title, URL, difficulty, timestamp, runtime) and the code are written by
@@ -254,7 +254,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/Cir9no-0001/CodeAtlas
 cd CodeAtlas
-````
+```
 
 ## Requirements
 
