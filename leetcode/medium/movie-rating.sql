@@ -11,7 +11,6 @@ consider and lexicographically smaller means name/title asc. [TC: O(R1 + R2log M
 passes]
 */
 
-
 (
 select u.name as 'results'
 from MovieRating mr

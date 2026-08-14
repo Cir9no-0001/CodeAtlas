@@ -9,7 +9,6 @@ Notes:
 Hint: remember to group by both name and date. [TC: O(NlogN), 2 passes]
 */
 
-
 select 
     d.date_id, 
     d.make_name,

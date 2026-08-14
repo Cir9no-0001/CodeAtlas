@@ -9,7 +9,6 @@ Notes:
 Hint: brain-dead math question; just group and do math. [TC: O(NLogN), 2 passes]
 */
 
-
 select
     e.event_day as 'day',
     e.emp_id,

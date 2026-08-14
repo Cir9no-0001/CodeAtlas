@@ -9,7 +9,6 @@ Notes:
 Hint: addition problem with modulo and case/if. [TC: O(N), 1 pass]
 */
 
-
 select
     t.transaction_date,
     sum(if(t.amount%2=1, t.amount, 0)) as 'odd_sum',

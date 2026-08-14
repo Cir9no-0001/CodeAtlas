@@ -10,7 +10,6 @@ Hint: split each name into head and tail using substring, uppercase the head, lo
 the tail, then concat both for the correct name format. [TC: O(NlogN), 1 pass]
 */
 
-
 select 
     u.user_id,
     concat(upper(substring(u.name, 1, 1)), lower(substring(u.name, 2))) as 'name'

@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 Select p.email as Email
 from Person p
 inner join (

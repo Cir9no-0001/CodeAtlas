@@ -9,7 +9,6 @@ Hint: CTE to track the running total, use order by and limit in the main query t
 retrieve the last person
 */
 
-
 with temp as(
     select q.person_name, sum(q.weight) over (order by q.turn) as 'total_weight'
     from Queue q

@@ -10,7 +10,6 @@ Hint: filter for tweet ids where the length of content is greater than 15, liter
 [TC: O(N), 1 pass]
 */
 
-
 select t.tweet_id
 from Tweets t
 where length(t.content)>15

@@ -9,7 +9,6 @@ Notes:
 Hint: every row is an individual query; use union
 */
 
-
 select 'High Salary' as 'category', sum(if(a.income>50000, 1, 0)) as 'accounts_count'
 from Accounts a
 

@@ -8,7 +8,6 @@ Notes:
 Hint: use case and subquery to see if a node already exists as a p_id
 */
 
-
 select t.id,
 case
     when t.p_id is null then 'Root'

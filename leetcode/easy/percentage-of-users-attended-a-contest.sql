@@ -10,7 +10,6 @@ Hint: math problem, group by contest_id, then count, then divide by the total nu
 users. [TC: O(N+MlogM), 2 passes]
 */
 
-
 select 
     r.contest_id, 
     round(count(distinct r.user_id) * 100 /(select count(user_id) from Users) ,2) as 'percentage'

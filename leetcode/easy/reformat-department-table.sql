@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 select 
     d.id, 
     sum(case when d.month='Jan' then d.revenue else null end) as 'Jan_Revenue',

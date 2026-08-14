@@ -9,7 +9,6 @@ Notes:
 Hint: use left join. [O(E), 1 pass]
 */
 
-
 select 
     eu.unique_id,
     e.name

@@ -12,7 +12,6 @@ corresponding activity type, then find the difference and divide by the distinct
 processes. [O(NlogN), 1 pass]
 */
 
-
 select 
     a.machine_id,
     round(

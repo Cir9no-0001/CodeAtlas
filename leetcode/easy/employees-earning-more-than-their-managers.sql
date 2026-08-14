@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 SELECT 
     e.name AS Employee
 FROM Employee e

@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 Delete d
 from Person p
 inner join Person d

@@ -10,7 +10,6 @@ Hint: group by user IDs, then count the distinct follower IDs per user ID. [TC: 
 2 passes]
 */
 
-
 select
     f.user_id,
     count(distinct f.follower_id) as 'followers_count'

@@ -8,7 +8,6 @@ Notes:
 
 */
 
-
 Select e.name
 from Employee e
 inner join Employee a

@@ -10,7 +10,6 @@ Hint: join the two tables, then filter out the ones that have ID values in both 
 Group and sum the rest accordingly. [TC: O(V+T), 2 passes]
 */
 
-
 select 
     v.customer_id,
     ifnull(count(v.visit_id), 0) as 'count_no_trans'

@@ -10,7 +10,6 @@ Hint: use date_format to get rid of the day portion of the date; repeat when
 multigrouping
 */
 
-
 select 
     date_format(t.trans_date, '%Y-%m') as 'month', 
     t.country, 

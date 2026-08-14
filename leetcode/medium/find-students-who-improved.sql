@@ -12,7 +12,6 @@ query on the same pairs of (student_id, subject) where firsts meet lasts and fil
 improved scores. [TC: O(NlogN), 5 passes]
 */
 
-
 with valid as (
     select 
         *, 
