@@ -1,4 +1,4 @@
-# CodeAtlas 
+# CodeAtlas
 
 <p align="center">
   <img src="CodeAtlas-1.png" width="100%">
@@ -12,18 +12,18 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-14 02:30:32 EDT
+Last updated: 2026-08-14 03:38:02 EDT
 
 ---
 
 # Statistics
 
-| Difficulty | Count |
-|---|---:|
-| Easy | 47 |
-| Medium | 26 |
-| Hard | 2 |
-| **Total** | **75** |
+| Difficulty |         Count |
+| ---------- | ------------: |
+| Easy       |      47 |
+| Medium     |    26 |
+| Hard       |      2 |
+| **Total**  | **75** |
 
 ---
 
@@ -51,16 +51,17 @@ Last updated: 2026-08-14 02:30:32 EDT
 
 ## What is this?
 
-CodeAtlas is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured SQL repository.
+CodeAtlas is an automated solution archive designed to synchronize accepted LeetCode submissions into a structured repository.
 
 Instead of manually copying solutions, organizing files, tracking metadata, and maintaining documentation, this project automates the process through GitHub Actions and the LeetCode GraphQL API.
 
-Currently focused on SQL solutions, this project automatically:
+CodeAtlas currently supports multiple programming languages and automatically:
 
 - Retrieves accepted LeetCode submissions
-- Creates and organizes SQL solution files
+- Creates and organizes solution files by difficulty and language
 - Tracks solution metadata and timestamps
 - Maintains separate personal notes and explanations
+- Applies language-specific file extensions and comment syntax
 - Generates repository statistics
 - Keeps documentation synchronized with the repository
 
@@ -72,8 +73,9 @@ The long-term goal is to transform a simple solution archive into a continuously
 - **API Integration:** LeetCode GraphQL API
 - **CI/CD:** GitHub Actions (scheduled + manual workflow dispatch)
 - **Data Persistence:** JSON (metadata, notes, statistics)
+- **Language Configuration:** Python configuration mapping LeetCode languages to file extensions and comment syntax
 - **Dependencies:** `requests`
-- **Standard Library:** `zoneinfo` (timezone-aware timestamps), `re` (filename normalization), `json`, `os`
+- **Standard Library:** `zoneinfo` (timezone-aware timestamps), `json`, `os`
 - **Version Control Automation:** Git (automated commits via GitHub Actions bot identity)
 
 ## Key Features
@@ -114,7 +116,7 @@ Over time, it evolved into a larger system focused on separating:
 - Personal learning notes
 - Generated metadata
 - Future analysis features
-    
+
 This allows solutions to remain unchanged while documentation, complexity analysis, tagging, and other features can continue improving after the solution is created.
 
 ---
@@ -155,6 +157,45 @@ This allows solutions to remain unchanged while documentation, complexity analys
 
 **Why:** Generated output is diffed against the existing file before any write. This keeps the commit history meaningful (a commit means something actually changed), avoids triggering unnecessary downstream GitHub Actions runs, and reduces disk I/O on every sync.
 
+## Centralized Language Configuration
+
+**Decision:** Language-specific file extensions and comment syntax are stored in `language_config.py` rather than being hardcoded throughout `sync.py`.
+
+The configuration maps each supported LeetCode language to the information required to generate and maintain its solution files, including:
+
+- File extension
+- Single-line comment syntax
+- Multiline comment delimiters where supported
+
+**Why:** Supporting multiple languages requires the synchronization engine to understand how each language should be represented on disk. Keeping this information in one configuration module prevents language-specific rules from being duplicated across functions such as solution generation, notes formatting, extension repair, and statistics collection.
+
+This also makes adding another language a localized change: the language mapping can be extended without rewriting the synchronization logic.
+
+**Trade-off:** `sync.py` depends on the configuration being complete and internally consistent. An unsupported language or missing comment syntax causes the synchronization process to reject that language rather than generating an incorrectly formatted solution file.
+
+## Independent Solutions Per Language
+
+**Decision:** Solutions for the same LeetCode problem are treated as independent repository entries when they use different programming languages.
+
+For example:
+
+```text
+two-sum.py
+two-sum.cpp
+```
+
+represent two separate solution records rather than two versions of the same record.
+
+The solution key is therefore based on the LeetCode problem slug together with the language-specific file extension:
+
+{titleSlug}{extension}
+
+This allows the same problem to exist independently across supported languages while preserving separate code, runtime information, and metadata.
+
+Why: A solution written in Python and a solution written in C++ are different implementations with potentially different algorithms, complexity characteristics, runtime performance, and language-specific syntax. Treating them as one record would make it difficult to preserve that information independently.
+
+Trade-off: The repository can contain multiple files for the same LeetCode problem, increasing the number of tracked solution files. This is intentional because the statistics represent stored solution implementations rather than only unique LeetCode problems.
+
 </details>
 
 ---
@@ -174,17 +215,18 @@ This allows solutions to remain unchanged while documentation, complexity analys
 -- first_seen: 2026-08-01 20:11:01 EDT
 -- runtime: 744ms
 
-/*
+/_
 Notes:
 Hint: use regexp_like to get case sensitivity for the suffix, or use an extra
 like binary. Watch out for the period in the suffix, which is a wildcard, so
 put it in square brackets. [TC: O(N), 1 pass]
-*/
+_/
 
-select *
+select _
 from Users u
-where regexp_like(u.mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$', 'c')
-```
+where regexp*like(u.mail, '^[a-zA-Z]a-zA-Z0-9.*-]_@leetcode[.]com$', 'c')
+
+````
 
 Every field above is generated automatically by `sync.py`: the header
 (title, URL, difficulty, timestamp, runtime) and the code are written by
@@ -192,6 +234,10 @@ the sync engine on each run. The `Notes` block is the one exception as it's
 independently maintained in `leetcode_notes.json` and re-injected into the
 file without touching the surrounding code or header, so documentation can
 keep improving without ever risking the submitted solution itself.
+
+Solution files are language-specific. The same LeetCode problem may therefore
+appear as multiple independent files, such as `two-sum.py`, `two-sum.cpp`, or
+`two-sum.java`, when solutions have been submitted in different languages.
 
 </details>
 
@@ -208,7 +254,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/Cir9no-0001/CodeAtlas
 cd CodeAtlas
-```
+````
 
 ## Requirements
 
@@ -335,22 +381,34 @@ along with updated:
 <summary>Repository Structure</summary>
 <a name="repository-structure"></a>
 
-    .
-    ├── sync.py
-    ├── leetcode_meta.json
-    ├── leetcode_notes.json
-    ├── leetcode_stats.json
-    ├── README.md
+```text
+.
+├── sync.py
+├── language_config.py
+├── requirements.txt
+├── leetcode_meta.json
+├── leetcode_notes.json
+├── leetcode_stats.json
+├── README.md
+├── README.template.md
+├── CHANGELOG.md
+├── VERSION.md
+├── LICENSE
+├── .gitignore
+│
+└── leetcode/
+    ├── easy/
+    │   ├── {problem-slug}.{extension}
+    │   └── ...
     │
-    └── leetcode/
-        ├── easy/
-        │   └── *.sql
-        │
-        ├── medium/
-        │   └── *.sql
-        │
-        └── hard/
-            └── *.sql
+    ├── medium/
+    │   ├── {problem-slug}.{extension}
+    │   └── ...
+    │
+    └── hard/
+        ├── {problem-slug}.{extension}
+        └── ...
+```
 
 </details>
 
@@ -378,21 +436,25 @@ flowchart TD
 ## Workflow
 
 1. **Automation**
+
 - GitHub Actions runs `sync.py` automatically on a scheduled interval.
 - Manual synchronization can also be triggered through GitHub Actions.
 
 2. **Authentication & API Connection**
+
 - The script authenticates with the LeetCode GraphQL API.
 - Credentials are securely stored through GitHub Actions secrets:
   - `LEETCODE_USERNAME`
   - `LEETCODE_SESSION`
 
 3. **Submission Retrieval**
+
 - The script queries LeetCode's `recentAcSubmissionList` GraphQL endpoint.
-- The endpoint currently provides access to the 15 most recently accepted submissions.
+- The endpoint currently provides access to the 20 most recently accepted submissions.
 - Retrieved submissions are processed and synchronized automatically.
 
 4. **Metadata Collection**
+
 - Additional GraphQL requests collect:
   - Problem title
   - Difficulty
@@ -400,37 +462,53 @@ flowchart TD
 - Repository tracking timestamps are stored separately in `leetcode_meta.json`.
 
 5. **Solution Generation**
-- SQL solution files are automatically created or updated.
-- Solutions are organized by difficulty:
-    
-    leetcode/
-        ├── easy/
-        ├── medium/
-        └── hard/
+
+- Solution files are automatically created or updated using the submission's LeetCode language.
+- Files are organized by difficulty:
+
+  leetcode/
+  ├── easy/
+  ├── medium/
+  └── hard/
+
+- File extensions are determined by `language_config.py`.
+- The problem slug and language-specific extension form the solution key, allowing different implementations of the same problem to coexist independently.
+
+6. **Multi-Language Handling**
+
+- The accepted submission's LeetCode language determines the solution file extension.
+- `language_config.py` provides the extension and comment syntax required for each supported language.
+- The same problem can be represented by multiple independent files when submitted in different languages.
+- Language-specific comment syntax is used when generating headers and injecting personal notes.
 
 6. **Metadata & Notes Separation**
+
 - Automated metadata is stored separately from manual notes:
 - `leetcode_meta.json` -> generated repository metadata
 - `leetcode_notes.json` -> manually maintained explanations and hints
 - Prevents API synchronization from overwriting personal documentation.
 
 7. **Notes Synchronization**
-- Manual notes are injected into SQL files independently from LeetCode API responses.
-- Notes are formatted into SQL block comments.
+
+- Manual notes are injected into solution files independently from LeetCode API responses.
+- Notes are formatted using the comment syntax associated with the solution's language.
 - Long notes are automatically wrapped for readability.
-- Existing SQL solutions are preserved while comments are updated.
+- Existing solution code is preserved while notes are updated.
 
 8. **Repository Repair & Consistency Checks**
+
 - Existing SQL files are scanned for missing note entries.
 - Missing entries are automatically added to `leetcode_notes.json`.
 - Recently detected accepted submissions can regenerate missing SQL files when available through the LeetCode API.
 
 9. **Optimization & Reliability**
+
 - LeetCode difficulty requests are cached to reduce unnecessary API calls.
 - Problem titles are normalized into safe filenames.
 - SQL comments and notes are reformatted consistently during synchronization.
 
 10. **Statistics Generation**
+
 - Solution counts are calculated from existing `.sql` files.
 - `leetcode_stats.json` is updated.
 - README statistics are automatically regenerated.
@@ -462,12 +540,14 @@ flowchart TD
 
 ## File Management
 
-- [x] Automatically create SQL solution files
+- [x] Automatically create solution files for supported languages
+- [x] Determine file extensions from centralized language configuration
+- [x] Generate language-appropriate comment syntax
+- [x] Treat different language implementations of the same problem as independent solutions
 - [x] Avoid unnecessary file rewrites when no changes occur
 - [x] Organize solutions by difficulty
 - [x] Clean problem titles into filenames
 - [x] Preserve existing solutions
-- [x] Avoid unnecessary file writes
 - [x] Repair missing note entries and synchronize existing solutions
 
 ## Metadata System
@@ -482,9 +562,10 @@ flowchart TD
 
 - [x] Separate manual notes from generated files
 - [x] Automatically create missing notes
-- [x] Inject notes into SQL solutions
-- [x] Convert notes into SQL block comments
-- [x] Preserve SQL code during updates
+- [x] Inject notes into solutions
+- [x] Convert notes into language-appropriate comments
+- [x] Support language-specific comment syntax
+- [x] Preserve existing code during updates
 - [x] Wrap long notes automatically
 - [x] Support comment format migration
 
@@ -530,7 +611,6 @@ flowchart TD
 
 ## Platform Expansion
 
-- [ ] Multi-language support
 - [ ] Automatically deploy a web interface/extension for browsing solutions through CI/CD
 - [ ] Interactive solution explorer
 
@@ -545,13 +625,13 @@ flowchart TD
 ## API Limitations
 
 - The project currently relies on LeetCode's `recentAcSubmissionList` GraphQL endpoint.
-- This endpoint only provides access to the 15 most recently accepted submissions.
-- If a solution is missed because it falls outside this limit, the problem may need to be resubmitted on LeetCode to appear in synchronization.
+- Synchronization is limited to the accepted submissions exposed by this endpoint.
+- If a solution is no longer included in the submissions returned by the endpoint, it may not be detected automatically during synchronization.
 
 ## Current Scope
 
-- Currently optimized for SQL LeetCode solutions.
-- Multi-language support is planned but not currently implemented.
+- The synchronization engine supports multiple programming languages through `language_config.py`.
+- The repository currently contains a larger number of SQL solutions than solutions in other languages.
 - Some metadata depends on information available through the LeetCode API.
 
 ## Repository Tracking
