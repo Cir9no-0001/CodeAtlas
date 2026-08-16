@@ -1,19 +1,49 @@
+"""
+FIle Name: sync.py
+Author: Stanley Chen
+Last Upd: CHECK README.template.md
+
+
+Sections:
+    # IMPORTS
+    # CONSTANTS / CONFIGURATION
+    # ENVIRONMENT + API CONFIGURATION
+    # LEETCODE API QUERIES
+    # FORMATTER FUNCTIONS
+    # FILE / NOTES MANAGEMENT
+    # EXECUTION
+
+"""
+
+
+# IMPORTS
+
 import os
-import requests
 import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+import requests
+
 from language_config import LANGUAGE_CONFIG, SUPPORTED_EXTENSIONS
 
+
+# CONSTANTS / CONFIGURATION
+
 LOCAL_TZ = ZoneInfo("America/Toronto")
+
 META_FILE = "leetcode_meta.json"
 NOTES_FILE = "leetcode_notes.json"
+
 username = os.environ.get("LEETCODE_USERNAME")
 session = os.environ.get("LEETCODE_SESSION")
+
 
 if not username or not session:
     raise Exception("Missing LEETCODE_USERNAME or LEETCODE_SESSION")
 
+
+# ENVIRONMENT + API CONFIGURATION
 headers = {
     "cookie": f"LEETCODE_SESSION={session}",
     "referer": "https://leetcode.com",
@@ -44,195 +74,7 @@ def post(query):
         return {}
 
 
-def language_to_extension(language):
-
-    if language not in LANGUAGE_CONFIG:
-        raise ValueError(
-            f"Unsupported LeetCode language: {language}"
-        )
-
-    return LANGUAGE_CONFIG[language]["extension"]
-
-
-def repair_notes_json():
-
-    print("\nChecking missing notes entries...")
-
-    added = 0
-
-    for difficulty in ["easy", "medium", "hard"]:
-
-        folder = f"leetcode/{difficulty}"
-
-        if not os.path.exists(folder):
-            continue
-
-        for file in os.listdir(folder):
-
-            if os.path.splitext(file)[1] not in SUPPORTED_EXTENSIONS:
-                continue
-
-            key = file
-
-            if key not in notes:
-                notes[key] = {"notes": ""}
-                print("Added missing notes entry:", key)
-                added += 1
-
-    if added == 0:
-        print("All solution files already have notes entries.")
-    else:
-        print(f"Added {added} missing notes entries.")
-
-
-def assemble_body(note_text, extension, code):
-
-    notes_str = "\n".join(format_notes(note_text, extension))
-
-    body = notes_str + "\n"
-
-    if code:
-        body += "\n" + code.lstrip("\n")
-
-    return body
-
-
-def format_notes(note_text, file_extension):
-
-    max_length = 90
-
-    formatted_lines = []
-
-    if note_text:
-
-        for paragraph in note_text.split("\n"):
-
-            words = paragraph.split(" ")
-
-            current_line = ""
-
-            for word in words:
-
-                if len(current_line) + len(word) + 1 <= max_length:
-                    current_line += word + " "
-
-                else:
-                    formatted_lines.append(current_line.rstrip())
-                    current_line = word + " "
-
-            if current_line:
-                formatted_lines.append(current_line.rstrip())
-
-    else:
-        formatted_lines.append("")
-
-    comment = next(
-        (
-            config["comment"]
-            for config in LANGUAGE_CONFIG.values()
-            if config["extension"] == file_extension
-        ),
-        None
-    )
-
-    if not comment:
-        raise ValueError(
-            f"Unsupported comment syntax for extension: {file_extension}"
-        )
-
-    if comment["multi_start"] and comment["multi_end"]:
-
-        return [
-            comment["multi_start"],
-            "Notes:",
-            *formatted_lines,
-            comment["multi_end"]
-        ]
-
-    return [
-        comment["single"] + " Notes:",
-        *[
-            comment["single"] + " " + line
-            if line
-            else comment["single"]
-            for line in formatted_lines
-        ]
-    ]
-
-
-def format_header(title, slug, difficulty, first_seen, runtime, file_extension):
-
-    comment = next(
-        (
-            config["comment"]
-            for config in LANGUAGE_CONFIG.values()
-            if config["extension"] == file_extension
-        ),
-        None
-    )
-
-    if not comment:
-        raise ValueError(
-            f"Unsupported comment syntax for extension: {file_extension}"
-        )
-
-    lines = [
-        f"{comment['single']} {title}",
-        f"{comment['single']} https://leetcode.com/problems/{slug}",
-        f"{comment['single']} difficulty: {difficulty}",
-        f"{comment['single']} first_seen: {first_seen}"
-    ]
-
-    if runtime is not None:
-        lines.append(
-            f"{comment['single']} runtime: {runtime}ms"
-        )
-
-    return lines
-
-
-if os.path.exists(META_FILE):
-    with open(META_FILE, "r", encoding="utf-8") as f:
-        meta = json.load(f)
-else:
-    meta = {}
-
-if os.path.exists(NOTES_FILE):
-    with open(NOTES_FILE, "r", encoding="utf-8") as f:
-        notes = json.load(f)
-else:
-    notes = {}
-
-response = post({
-    "query": """
-    query recentAcSubmissions($username:String!){
-        recentAcSubmissionList(username:$username){
-            title
-            titleSlug
-            lang
-        }
-    }
-    """,
-    "variables": {
-        "username": username
-    }
-})
-
-subs = (
-    response
-    .get("data", {})
-    .get("recentAcSubmissionList", [])
-)
-
-if not subs:
-    raise Exception("No submissions returned")
-
-print("\nAccepted submissions:")
-
-for s in subs:
-    print("-", s["title"])
-    print("  Language:", s.get("lang"))
-
+# LEETCODE API QUERIES
 difficulty_cache = {}
 
 
@@ -284,6 +126,7 @@ def get_submission(slug, lang):
                 submissions{
                     id
                     lang
+                    statusDisplay
                 }
             }
         }
@@ -303,12 +146,12 @@ def get_submission(slug, lang):
 
     submission_id = None
     for s in submissions:
-        if s.get("lang") == lang:
+        if s.get("lang") == lang and s.get("statusDisplay") == "Accepted":
             submission_id = s["id"]
             break
 
     if submission_id is None:
-        print(f"No matching-language submission found: {slug} ({lang})")
+        print(f"No matching accepted submission found: {slug} ({lang})")
         return {"code": "", "runtime": None}
 
     detail = post({
@@ -338,6 +181,119 @@ def get_submission(slug, lang):
         "runtime": result.get("runtime")
     }
 
+
+# FORMATTER FUNCTIONS
+
+def language_to_extension(language):  # Validates and formats file ext
+    if language not in LANGUAGE_CONFIG:
+        raise ValueError(
+            f"Unsupported LeetCode language: {language}"
+        )
+
+    return LANGUAGE_CONFIG[language]["extension"]
+
+
+# Formats header according to file ext
+def format_header(title, slug, difficulty, first_seen, runtime, file_extension):
+    comment = next(
+        (
+            config["comment"]
+            for config in LANGUAGE_CONFIG.values()
+            if config["extension"] == file_extension
+        ),
+        None
+    )
+
+    if not comment:
+        raise ValueError(
+            f"Unsupported comment syntax for extension: {file_extension}")
+
+    lines = [
+        f"{comment['single']} {title}",
+        f"{comment['single']} https://leetcode.com/problems/{slug}",
+        f"{comment['single']} difficulty: {difficulty}",
+        f"{comment['single']} first_seen: {first_seen}"
+    ]
+
+    if runtime is not None:
+        lines.append(f"{comment['single']} runtime: {runtime}ms")
+
+    return lines
+
+
+# Formats and wraps notes into multi/single line comments  according to file ext
+def format_notes(note_text, file_extension):
+
+    line_limit = 90
+    formatted_lines = []
+
+    if note_text:
+        for paragraph in note_text.split("\n"):
+            words = paragraph.split(" ")
+            current_line = ""
+
+            for word in words:
+                if len(current_line) + len(word) + 1 <= line_limit:
+                    current_line += word + " "
+
+                else:
+                    formatted_lines.append(current_line.rstrip())
+                    current_line = word + " "
+
+            if current_line:
+                formatted_lines.append(current_line.rstrip())
+
+    else:
+        formatted_lines.append("")
+
+    comment = next(
+        (
+            config["comment"]
+            for config in LANGUAGE_CONFIG.values()
+            if config["extension"] == file_extension
+        ),
+        None
+    )
+
+    if not comment:
+        raise ValueError(
+            f"Unsupported comment syntax for extension: {file_extension}"
+        )
+
+    if comment["multi_start"] and comment["multi_end"]:
+
+        return [
+            comment["multi_start"],
+            "Notes:",
+            *formatted_lines,
+            comment["multi_end"]
+        ]
+
+    return [
+        comment["single"] + " Notes:",
+        *[
+            comment["single"] + " " + line
+            if line
+            else comment["single"]
+            for line in formatted_lines
+        ]
+    ]
+
+
+# Combines formatted comments and main code
+def assemble_body(note_text, extension, code):
+
+    notes_str = "\n".join(format_notes(note_text, extension))
+
+    body = notes_str + "\n"
+
+    if code:
+        body += "\n" + code.lstrip("\n")
+
+    return body
+
+
+# FILE / NOTES MANAGEMENT
 
 def repair_file_extensions():
 
@@ -409,18 +365,38 @@ def repair_file_extensions():
         print(f"Repaired {repaired} file extension(s).")
 
 
+def repair_notes_json():
+
+    print("\nChecking missing notes entries...")
+
+    added = 0
+
+    for difficulty in ["easy", "medium", "hard"]:
+
+        folder = f"leetcode/{difficulty}"
+
+        if not os.path.exists(folder):
+            continue
+
+        for file in os.listdir(folder):
+
+            if os.path.splitext(file)[1] not in SUPPORTED_EXTENSIONS:
+                continue
+
+            key = file
+
+            if key not in notes:
+                notes[key] = {"notes": ""}
+                print("Added missing notes entry:", key)
+                added += 1
+
+    if added == 0:
+        print("All solution files already have notes entries.")
+    else:
+        print(f"Added {added} missing notes entries.")
+
+
 def find_notes_block(content, comment):
-    """
-    Find the CodeAtlas-generated Notes block.
-
-    Returns:
-        (notes_start, notes_end)
-        where notes_start is the beginning of the multiline
-        comment and notes_end is the end of the multiline
-        comment.
-
-        Returns (None, None) if no CodeAtlas Notes block exists.
-    """
 
     if not comment["multi_start"] or not comment["multi_end"]:
         return None, None
@@ -511,7 +487,63 @@ def update_notes_in_files():
             print("Already correct:", found_file)
 
 
+# EXECUTION
+if os.path.exists(META_FILE):  # Load meta file
+    with open(META_FILE, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+else:
+    meta = {}
+
+if os.path.exists(NOTES_FILE):  # Load notes file
+    with open(NOTES_FILE, "r", encoding="utf-8") as f:
+        notes = json.load(f)
+else:
+    notes = {}
+
 repair_file_extensions()
+
+response = post({
+    "query": """
+    query recentSubmissions($username:String!, $limit:Int){
+        recentSubmissionList(username:$username, limit:$limit){
+            title
+            titleSlug
+            lang
+            statusDisplay
+        }
+    }
+    """,
+    "variables": {
+        "username": username,
+        "limit": 40
+    }
+})
+
+raw_subs = response.get("data", {}).get("recentSubmissionList", [])
+
+if not raw_subs:
+    raise Exception("No submissions returned")
+
+seen = set()
+subs = []
+for s in raw_subs:
+    if s.get("statusDisplay") != "Accepted":
+        continue
+    dedupe_key = (s["titleSlug"], s["lang"])
+    if dedupe_key in seen:
+        continue
+    seen.add(dedupe_key)
+    subs.append(s)
+
+if not subs:
+    raise Exception("No accepted submissions returned")
+
+print("\nAccepted submissions:")
+
+for s in subs:
+    print("-", s["title"])
+    print("  Language:", s.get("lang"))
+
 
 for submission in subs:
 
@@ -635,5 +667,6 @@ if "{{" in readme or "}}" in readme:
 
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme)
+
 
 print("\nSync complete")

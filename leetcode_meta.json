@@ -223,5 +223,14 @@
   },
   "two-sum.cpp": {
     "first_seen": "2026-08-13 23:09:02 EDT"
+  },
+  "add-two-numbers.cpp": {
+    "first_seen": "2026-08-15 22:40:32 EDT"
+  },
+  "longest-substring-without-repeating-characters.java": {
+    "first_seen": "2026-08-16 04:10:09 EDT"
+  },
+  "longest-substring-without-repeating-characters.cpp": {
+    "first_seen": "2026-08-16 04:33:56 EDT"
   }
 }

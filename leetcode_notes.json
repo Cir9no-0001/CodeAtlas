@@ -223,5 +223,14 @@
   },
   "two-sum.cpp": {
     "notes": ""
+  },
+  "add-two-numbers.cpp": {
+    "notes": "Hint: while the values of both lists are not both null or carried value is not 0, extract the two pointer values and if null, set them to 0. Add them and the carry value for the sum then modulo by 10 to get the ones place digit and set carry value according to sum. Append new digit value to tail and advance all pointers"
+  },
+  "longest-substring-without-repeating-characters.java": {
+    "notes": ""
+  },
+  "longest-substring-without-repeating-characters.cpp": {
+    "notes": ""
   }
 }
