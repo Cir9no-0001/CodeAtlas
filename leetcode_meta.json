@@ -232,5 +232,8 @@
   },
   "longest-substring-without-repeating-characters.cpp": {
     "first_seen": "2026-08-16 04:33:56 EDT"
+  },
+  "longest-common-prefix.cpp": {
+    "first_seen": "2026-08-17 20:24:37 EDT"
   }
 }

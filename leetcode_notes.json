@@ -232,5 +232,8 @@
   },
   "longest-substring-without-repeating-characters.cpp": {
     "notes": ""
+  },
+  "longest-common-prefix.cpp": {
+    "notes": ""
   }
 }
