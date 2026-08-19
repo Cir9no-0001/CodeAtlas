@@ -9,7 +9,6 @@ Notes:
 
 """
 
-
 class Solution:
     def stoneGame(self, piles: List[int]) -> bool:
-        return 1 == 1
+        return 1==1
