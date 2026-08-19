@@ -146,6 +146,7 @@ def get_submission(slug, lang):
 
     submission_id = None
     for s in submissions:
+
         if s.get("lang") == lang and s.get("statusDisplay") == "Accepted":
             submission_id = s["id"]
             break
@@ -276,7 +277,8 @@ def format_notes(note_text, file_extension):
             if line
             else comment["single"]
             for line in formatted_lines
-        ]
+        ],
+        comment["single"] + " End Notes"
     ]
 
 
@@ -398,30 +400,22 @@ def repair_notes_json():
 
 def find_notes_block(content, comment):
 
-    if not comment["multi_start"] or not comment["multi_end"]:
-        return None, None
+    if comment["multi_start"] and comment["multi_end"]:
+        start_marker = comment["multi_start"] + "\n" + "Notes:"
+        end_marker = comment["multi_end"]
+    else:
+        start_marker = comment["single"] + " Notes:"
+        end_marker = comment["single"] + " End Notes"
 
-    notes_marker = (
-        comment["multi_start"]
-        + "\n"
-        + "Notes:"
-    )
-
-    notes_start = content.find(notes_marker)
-
+    notes_start = content.find(start_marker)
     if notes_start == -1:
         return None, None
 
-    notes_end = content.find(
-        comment["multi_end"],
-        notes_start + len(notes_marker)
-    )
-
+    notes_end = content.find(end_marker, notes_start + len(start_marker))
     if notes_end == -1:
         return None, None
 
-    notes_end += len(comment["multi_end"])
-
+    notes_end += len(end_marker)
     return notes_start, notes_end
 
 

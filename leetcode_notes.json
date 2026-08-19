@@ -241,5 +241,8 @@
   },
   "stone-game.cpp": {
     "notes": ""
+  },
+  "tenth-line.sh": {
+    "notes": "Hint: Read line by line using awk, NR stores current line number. When NR is 10, awk will print it, else nothing is printed. [TC: O(N)]"
   }
 }
