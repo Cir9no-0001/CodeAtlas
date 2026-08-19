@@ -4,7 +4,7 @@
   <img src="CodeAtlas-1.png" width="100%">
 </p>
 
-**Status:** Pre-Alpha Testing
+**Status:** Pre-Alpha Testing, Active Development
 
 ![Version](https://img.shields.io/badge/version-v0.1.0--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
@@ -666,7 +666,7 @@ However:
 ## License
 
 This project is source-available but **not open source**. Copyright (c)
-2026 Stanley Chen — All Rights Reserved.
+2026 Stanley Chen - All Rights Reserved.
 
 You may clone, fork, and run this project locally for personal, non-commercial
 evaluation, testing, and code review. Commercial use, redistribution,
