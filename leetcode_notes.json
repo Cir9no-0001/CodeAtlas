@@ -249,9 +249,9 @@
     "notes": ""
   },
   "recyclable-and-low-fat-products.sql": {
-    "notes": ""
+    "notes": "Hint: just filter with where"
   },
   "integer-to-roman.cpp": {
-    "notes": ""
+    "notes": "Hint: Create two arrays to store the values and corresponding strings to append in order. Use a for loop to scan through all 13 potential letters to add, and while the number is greater than the corresponding value, append the corresponding string to the final answer num/value[i] times. Then set the number to the number modulo the corresponding value. DO NOT use .append since some corresponding letters to append are strings, not chars, while .append expects chars. [TC: O(1)]"
   }
 }
