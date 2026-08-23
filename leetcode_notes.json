@@ -250,5 +250,8 @@
   },
   "recyclable-and-low-fat-products.sql": {
     "notes": ""
+  },
+  "integer-to-roman.cpp": {
+    "notes": ""
   }
 }

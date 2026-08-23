@@ -250,5 +250,8 @@
   },
   "recyclable-and-low-fat-products.sql": {
     "first_seen": "2026-08-22 21:48:37 EDT"
+  },
+  "integer-to-roman.cpp": {
+    "first_seen": "2026-08-23 19:03:35 EDT"
   }
 }
