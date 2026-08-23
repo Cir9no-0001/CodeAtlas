@@ -6,7 +6,7 @@
 
 /*
 Notes:
-
+Hint: just filter with where
 */
 
 select p.product_id
