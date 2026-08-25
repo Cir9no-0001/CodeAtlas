@@ -255,6 +255,6 @@
     "notes": "Hint: Create two arrays to store the values and corresponding strings to append in order. Use a for loop to scan through all 13 potential letters to add, and while the number is greater than the corresponding value, append the corresponding string to the final answer num/value[i] times. Then set the number to the number modulo the corresponding value. DO NOT use .append since some corresponding letters to append are strings, not chars, while .append expects chars. [TC: O(1)]"
   },
   "container-with-most-water.cpp": {
-    "notes": ""
+    "notes": "Hint: Use two variables to store the indices of the front and back of the array, and one more for the best area. Start the pointers at opposite ends and calculate the current area. Overwrite the best area when the current area is bigger, then increment the front pointer or decrement the back pointer depending on which height is shorter, since the shorter height always limits the area. [TC: O(n)]"
   }
 }
