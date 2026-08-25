@@ -253,5 +253,8 @@
   },
   "integer-to-roman.cpp": {
     "first_seen": "2026-08-23 19:03:35 EDT"
+  },
+  "container-with-most-water.cpp": {
+    "first_seen": "2026-08-24 21:16:53 EDT"
   }
 }
