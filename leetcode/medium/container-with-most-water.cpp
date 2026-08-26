@@ -6,7 +6,11 @@
 
 /*
 Notes:
-
+Hint: Use two variables to store the indices of the front and back of the array, and one
+more for the best area. Start the pointers at opposite ends and calculate the current
+area. Overwrite the best area when the current area is bigger, then increment the front
+pointer or decrement the back pointer depending on which height is shorter, since the
+shorter height always limits the area. [TC: O(n)]
 */
 
 class Solution {
