@@ -259,5 +259,8 @@
   },
   "3sum.cpp": {
     "first_seen": "2026-08-26 20:31:49 EDT"
+  },
+  "3sum-closest.cpp": {
+    "first_seen": "2026-08-26 21:15:07 EDT"
   }
 }
