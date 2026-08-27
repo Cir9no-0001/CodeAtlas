@@ -6,7 +6,12 @@
 
 /*
 Notes:
-
+Hint: Sort the array from least to greatest, then iterate through it using a for loop.
+For each run, use a two-pointer approach with a left pointer starting at the first number
++ 1 and a right pointer starting at the tail. Calculate the triplet sum and update the
+best answer if it is closer to the target than the current answer. Then move the pointers
+according to the sum: decrement the right pointer if the sum is greater than the target;
+otherwise, increment the left pointer. [TC: O(N^2)]
 */
 
 class Solution {
