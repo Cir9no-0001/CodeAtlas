@@ -12,7 +12,7 @@
 
 > An automated LeetCode solution synchronization platform that retrieves accepted submissions, organizes solutions, manages documentation, and tracks programming progress through GitHub Actions.
 
-Last updated: 2026-08-26 21:33:36 EDT
+Last updated: 2026-08-26 23:11:10 EDT
 
 ---
 
@@ -195,6 +195,14 @@ This allows the same problem to exist independently across supported languages w
 **Why:** A solution written in Python and a solution written in C++ are different implementations with potentially different algorithms, complexity characteristics, runtime performance, and language-specific syntax. Treating them as one record would make it difficult to preserve that information independently.
 
 **Trade-off:** The repository can contain multiple files for the same LeetCode problem, increasing the number of tracked solution files. This is intentional because the statistics represent stored solution implementations rather than only unique LeetCode problems.
+
+## Chrome Extension + Dashboard
+
+**Decision:** CodeAtlas is being developed as a Chrome extension with an integrated dashboard rather than as a standalone app or website.
+
+**Why:** A browser extension provides easier access to CodeAtlas directly from the browser where users already solve LeetCode problems. Combining the extension with a dedicated dashboard also provides enough UI space for features such as synchronization controls, sync status, logs, repository information, and user settings without relying on a separate application or website. This keeps the user experience centralized and reduces friction between solving problems on LeetCode and managing their CodeAtlas repository.
+
+**Trade-off:** A Chrome extension is more constrained by browser security and extension APIs than a standalone application or website. It also makes CodeAtlas more dependent on the Chrome extension ecosystem, which may limit future platform support. However, the improved accessibility and more focused UI make the extension a better fit for the project's current goals.
 
 </details>
 
