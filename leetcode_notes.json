@@ -258,6 +258,6 @@
     "notes": "Hint: Use two variables to store the indices of the front and back of the array, and one more for the best area. Start the pointers at opposite ends and calculate the current area. Overwrite the best area when the current area is bigger, then increment the front pointer or decrement the back pointer depending on which height is shorter, since the shorter height always limits the area. [TC: O(n)]"
   },
   "3sum.cpp": {
-    "notes": ""
+    "notes": "Hint: Sort the array from least to greatest, then iterate through it using a for loop. In the for loop, make sure each run starts with a distinct, fixed first number to prevent duplicate triplets (skip if it is the same as the previous loop). Use a two-pointer approach with a while loop to find the other two numbers that work with the first number. Start the second number at first number + 1 and the third at the tail. When the triplet adds up to 0, make sure the moving second number is distinct for every triplet with a fixed first number; otherwise, move the pointers according to the sum. [TC: O(N^2)]"
   }
 }
