@@ -6,7 +6,13 @@
 
 /*
 Notes:
-
+Hint: Sort the array from least to greatest, then iterate through it using a for loop. In
+the for loop, make sure each run starts with a distinct, fixed first number to prevent
+duplicate triplets (skip if it is the same as the previous loop). Use a two-pointer
+approach with a while loop to find the other two numbers that work with the first number.
+Start the second number at first number + 1 and the third at the tail. When the triplet
+adds up to 0, make sure the moving second number is distinct for every triplet with a
+fixed first number; otherwise, move the pointers according to the sum. [TC: O(N^2)]
 */
 
 class Solution {
