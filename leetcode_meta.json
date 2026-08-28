@@ -262,5 +262,8 @@
   },
   "3sum-closest.cpp": {
     "first_seen": "2026-08-26 21:15:07 EDT"
+  },
+  "valid-parentheses.cpp": {
+    "first_seen": "2026-08-27 22:39:48 EDT"
   }
 }
