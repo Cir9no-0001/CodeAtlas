@@ -6,7 +6,9 @@
 
 /*
 Notes:
-
+Hint: Compare the current nodes of both linked lists. Recursively choose the node with
+the smaller value as the next node in the merged list, then merge the remaining nodes. If
+either list is empty, return the other list. [TC: O(n + m)]
 */
 
 /**

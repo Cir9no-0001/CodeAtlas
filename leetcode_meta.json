@@ -268,5 +268,8 @@
   },
   "merge-two-sorted-lists.cpp": {
     "first_seen": "2026-08-28 03:08:58 EDT"
+  },
+  "climbing-stairs.cpp": {
+    "first_seen": "2026-08-28 05:54:56 EDT"
   }
 }
