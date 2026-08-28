@@ -264,6 +264,6 @@
     "notes": "Hint: Sort the array from least to greatest, then iterate through it using a for loop. For each run, use a two-pointer approach with a left pointer starting at the first number + 1 and a right pointer starting at the tail. Calculate the triplet sum and update the best answer if it is closer to the target than the current answer. Then move the pointers according to the sum: decrement the right pointer if the sum is greater than the target; otherwise, increment the left pointer. [TC: O(N^2)]"
   },
   "valid-parentheses.cpp": {
-    "notes": ""
+    "notes": "Hint: Use a stack and peel the string from the innermost brackets out with a for loop for each char in the string. Let the opening brackets stack, and when a closing bracket shows up, it should match the most recent opening bracket; if not, return false. Also, make sure that the first bracket isn't a closing bracket. Once the for loop goes through all the chars in the string, the stack should be empty and return that state. [TC: O(N)]"
   }
 }
