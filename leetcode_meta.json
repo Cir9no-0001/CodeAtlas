@@ -265,5 +265,8 @@
   },
   "valid-parentheses.cpp": {
     "first_seen": "2026-08-27 22:39:48 EDT"
+  },
+  "merge-two-sorted-lists.cpp": {
+    "first_seen": "2026-08-28 03:08:58 EDT"
   }
 }
