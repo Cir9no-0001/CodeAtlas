@@ -6,7 +6,9 @@
 
 /*
 Notes:
-
+Hint: Use pen and paper for the first 4-5 to see the pattern. Once the pattern is
+obvious, establish the minimum number of base cases and approach the problem using a for
+loop according to the pattern. [TC: O(n)]
 */
 
 class Solution {
