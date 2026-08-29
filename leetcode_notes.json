@@ -270,9 +270,9 @@
     "notes": "Hint: Compare the current nodes of both linked lists. Recursively choose the node with the smaller value as the next node in the merged list, then merge the remaining nodes. If either list is empty, return the other list. [TC: O(n + m)]"
   },
   "climbing-stairs.cpp": {
-    "notes": ""
+    "notes": "Hint: Use pen and paper for the first 4-5 to see the pattern. Once the pattern is obvious, establish the minimum number of base cases and approach the problem using a for loop according to the pattern. [TC: O(n)]"
   },
   "remove-duplicates-from-sorted-array.cpp": {
-    "notes": ""
+    "notes": "Hint: Use a for loop to count the unique integers in the nums array, then move the unique integers to the corresponding index of the counter. Start at index 1 if you want to compare with the previous index to prevent an out-of-bounds error. [TC: O(n)]"
   }
 }
