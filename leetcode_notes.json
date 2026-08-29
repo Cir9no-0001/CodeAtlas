@@ -277,5 +277,8 @@
   },
   "pascals-triangle.cpp": {
     "notes": "Hint: Use the previous row stash method to keep the values of the previous row to build the current row and push it into the answer array. Loop to create each new row, initializing it completely with 1s and sizing it to match the current row number. Then, loop from index 1 to the second-to-last index, overwriting the 1s with the sum of the values at the current index and the previous index from the previous row. Finally, push the completed row into the 2D array answer and shift the previous frame. [TC: O(n^2)]"
+  },
+  "primary-department-for-each-employee.sql": {
+    "notes": ""
   }
 }
