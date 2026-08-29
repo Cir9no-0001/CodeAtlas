@@ -274,5 +274,8 @@
   },
   "remove-duplicates-from-sorted-array.cpp": {
     "first_seen": "2026-08-28 23:58:21 EDT"
+  },
+  "pascals-triangle.cpp": {
+    "first_seen": "2026-08-29 02:05:11 EDT"
   }
 }
