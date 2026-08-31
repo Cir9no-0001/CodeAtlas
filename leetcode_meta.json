@@ -280,5 +280,8 @@
   },
   "primary-department-for-each-employee.sql": {
     "first_seen": "2026-08-29 03:06:58 EDT"
+  },
+  "calculate-special-bonus.sql": {
+    "first_seen": "2026-08-31 12:17:09 EDT"
   }
 }
