@@ -280,5 +280,8 @@
   },
   "primary-department-for-each-employee.sql": {
     "notes": ""
+  },
+  "calculate-special-bonus.sql": {
+    "notes": ""
   }
 }
