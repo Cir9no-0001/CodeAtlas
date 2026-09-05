@@ -283,5 +283,8 @@
   },
   "calculate-special-bonus.sql": {
     "first_seen": "2026-08-31 12:17:09 EDT"
+  },
+  "remove-element.cpp": {
+    "first_seen": "2026-09-05 16:25:29 EDT"
   }
 }

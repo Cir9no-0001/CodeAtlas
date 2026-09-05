@@ -283,5 +283,8 @@
   },
   "calculate-special-bonus.sql": {
     "notes": ""
+  },
+  "remove-element.cpp": {
+    "notes": ""
   }
 }
