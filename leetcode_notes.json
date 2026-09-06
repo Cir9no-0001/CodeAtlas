@@ -286,5 +286,8 @@
   },
   "remove-element.cpp": {
     "notes": ""
+  },
+  "number-of-unique-subjects-taught-by-each-teacher.sql": {
+    "notes": ""
   }
 }
