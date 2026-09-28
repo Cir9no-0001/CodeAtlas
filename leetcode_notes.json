@@ -292,5 +292,8 @@
   },
   "search-insert-position.cpp": {
     "notes": ""
+  },
+  "remove-nth-node-from-end-of-list.cpp": {
+    "notes": ""
   }
 }
