@@ -292,5 +292,8 @@
   },
   "search-insert-position.cpp": {
     "first_seen": "2026-09-07 22:54:18 EDT"
+  },
+  "remove-nth-node-from-end-of-list.cpp": {
+    "first_seen": "2026-09-28 14:07:57 EDT"
   }
 }
