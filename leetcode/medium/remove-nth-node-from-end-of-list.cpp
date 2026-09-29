@@ -6,7 +6,11 @@
 
 /*
 Notes:
-
+Hint: Use a sliding window/two pointer approach to traverse the linked list while
+maintaining a gap of n+1 from head to tail so the tail lands on the node before the one
+you want to delete. If the list's total length equals n, the back pointer won't advance
+past the head, meaning you must manually handle removing the first node as an edge case.
+[TC: O(N), SC: O(1)]
 */
 
 class Solution {
