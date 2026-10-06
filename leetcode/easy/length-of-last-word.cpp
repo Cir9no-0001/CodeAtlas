@@ -6,7 +6,9 @@
 
 /*
 Notes:
-
+Hint: Traverse the string backwards, filtering out all whitespace and counting the chars
+of the first word you see until another whitespace appears, then stop. [TC: O(N), SC:
+O(1)]
 */
 
 class Solution {

@@ -6,7 +6,9 @@
 
 /*
 Notes:
-
+Traverse the left and right subtrees recursively, using a nullptr node as the base case.
+At each node, determine whether the left or right subtree has a greater depth, and return
+that maximum value plus one to account for the current node. [TC: O(N), SC: O(N)]
 */
 
 /**
