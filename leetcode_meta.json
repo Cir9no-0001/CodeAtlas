@@ -304,5 +304,14 @@
   },
   "maximum-depth-of-binary-tree.cpp": {
     "first_seen": "2026-10-05 13:12:28 EDT"
+  },
+  "remove-duplicates-from-sorted-list.cpp": {
+    "first_seen": "2026-10-17 21:36:04 EDT"
+  },
+  "find-the-index-of-the-first-occurrence-in-a-string.cpp": {
+    "first_seen": "2026-10-17 21:36:05 EDT"
+  },
+  "plus-one.cpp": {
+    "first_seen": "2026-10-17 21:36:05 EDT"
   }
 }
