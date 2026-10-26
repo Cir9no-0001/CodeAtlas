@@ -6,7 +6,9 @@
 
 /*
 Notes:
-
+Hint: Binary search 101, just remember the edge cases where target is greater than
+greatest of array, less than smallest of the array, and between the two pointers when the
+diff between pointers is 1. [TC: O(logN), SC: O(1)]
 */
 
 class Solution {

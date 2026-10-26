@@ -6,7 +6,10 @@
 
 /*
 Notes:
-
+Hint: Use a sliding window approach with a sliding tail and head pointer to maintain a
+window size equal to the length of the needle string. Inside the window, loop through and
+compare each character step-by-step, breaking early on any mismatch, and return the tail
+index if the loop completes fully. [TC: O(N*M), SC: O(1)]
 */
 
 class Solution {
