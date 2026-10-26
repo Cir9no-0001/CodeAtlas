@@ -6,7 +6,10 @@
 
 /*
 Notes:
-
+Hint: Merge the arrays in order using the two-pointer method and slap the remainder of
+the bigger array onto the merged array once the smaller array is fully merged. Median is
+just math, but remember that arrays use 0-based numbering, and the result for an
+even-length merged array is a double. [TC: O(N+M), SC: O(N+M)]
 */
 
 class Solution {
