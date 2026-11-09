@@ -328,5 +328,8 @@
   },
   "merge-sorted-array.cpp": {
     "notes": ""
+  },
+  "assign-cookies.cpp": {
+    "notes": ""
   }
 }
