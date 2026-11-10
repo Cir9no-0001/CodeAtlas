@@ -331,5 +331,8 @@
   },
   "assign-cookies.cpp": {
     "notes": ""
+  },
+  "array-partition.cpp": {
+    "notes": ""
   }
 }
