@@ -334,5 +334,8 @@
   },
   "array-partition.cpp": {
     "notes": ""
+  },
+  "longest-palindrome.cpp": {
+    "notes": ""
   }
 }
